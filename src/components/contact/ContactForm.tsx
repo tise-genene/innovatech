@@ -2,10 +2,12 @@
 
 import { useRef, useState } from 'react';
 import { useInView } from '@/hooks/useInView';
+import { useTheme } from '@/contexts/ThemeContext';
 
 export default function ContactForm() {
   const ref = useRef(null);
   const isInView = useInView(ref);
+  const { theme } = useTheme();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -46,11 +48,13 @@ export default function ContactForm() {
   return (
     <div
       ref={ref}
-      className={`bg-white rounded-2xl shadow-xl p-8 transition-all duration-700 ${
-        isInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
-      }`}
+      className={`rounded-2xl shadow-xl p-8 transition-all duration-700 ${
+        theme === 'light' ? 'bg-white' : 'bg-[#1e293b] border border-[#334155]'
+      } ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}
     >
-      <h2 className="text-3xl font-bold text-[#1A1A1A] mb-6">Send us a Message</h2>
+      <h2 className={`text-3xl font-bold mb-6 ${theme === 'light' ? 'text-[#1A1A1A]' : 'text-white'}`}>
+        Send us a Message
+      </h2>
       
       {submitStatus === 'success' && (
         <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
@@ -60,7 +64,7 @@ export default function ContactForm() {
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label htmlFor="name" className="block text-gray-700 font-semibold mb-2">
+          <label htmlFor="name" className={`block font-semibold mb-2 ${theme === 'light' ? 'text-gray-700' : 'text-gray-300'}`}>
             Full Name *
           </label>
           <input
@@ -70,13 +74,17 @@ export default function ContactForm() {
             value={formData.name}
             onChange={handleChange}
             required
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00AEEF] transition-all duration-300"
+            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00AEEF] transition-all duration-300 ${
+              theme === 'light' 
+                ? 'bg-white border-gray-300 text-gray-900' 
+                : 'bg-[#0f172a] border-[#334155] text-white'
+            }`}
             placeholder="John Doe"
           />
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-gray-700 font-semibold mb-2">
+          <label htmlFor="email" className={`block font-semibold mb-2 ${theme === 'light' ? 'text-gray-700' : 'text-gray-300'}`}>
             Email Address *
           </label>
           <input
@@ -86,13 +94,17 @@ export default function ContactForm() {
             value={formData.email}
             onChange={handleChange}
             required
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00AEEF] transition-all duration-300"
+            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00AEEF] transition-all duration-300 ${
+              theme === 'light' 
+                ? 'bg-white border-gray-300 text-gray-900' 
+                : 'bg-[#0f172a] border-[#334155] text-white'
+            }`}
             placeholder="john@example.com"
           />
         </div>
 
         <div>
-          <label htmlFor="company" className="block text-gray-700 font-semibold mb-2">
+          <label htmlFor="company" className={`block font-semibold mb-2 ${theme === 'light' ? 'text-gray-700' : 'text-gray-300'}`}>
             Company Name
           </label>
           <input
@@ -101,13 +113,17 @@ export default function ContactForm() {
             name="company"
             value={formData.company}
             onChange={handleChange}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00AEEF] transition-all duration-300"
+            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00AEEF] transition-all duration-300 ${
+              theme === 'light' 
+                ? 'bg-white border-gray-300 text-gray-900' 
+                : 'bg-[#0f172a] border-[#334155] text-white'
+            }`}
             placeholder="Your Company"
           />
         </div>
 
         <div>
-          <label htmlFor="service" className="block text-gray-700 font-semibold mb-2">
+          <label htmlFor="service" className={`block font-semibold mb-2 ${theme === 'light' ? 'text-gray-700' : 'text-gray-300'}`}>
             Service Interested In
           </label>
           <select
@@ -115,7 +131,11 @@ export default function ContactForm() {
             name="service"
             value={formData.service}
             onChange={handleChange}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00AEEF] transition-all duration-300"
+            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00AEEF] transition-all duration-300 ${
+              theme === 'light' 
+                ? 'bg-white border-gray-300 text-gray-900' 
+                : 'bg-[#0f172a] border-[#334155] text-white'
+            }`}
           >
             <option value="">Select a service</option>
             <option value="web-development">Web & App Development</option>
@@ -131,7 +151,7 @@ export default function ContactForm() {
         </div>
 
         <div>
-          <label htmlFor="message" className="block text-gray-700 font-semibold mb-2">
+          <label htmlFor="message" className={`block font-semibold mb-2 ${theme === 'light' ? 'text-gray-700' : 'text-gray-300'}`}>
             Message *
           </label>
           <textarea
@@ -141,7 +161,11 @@ export default function ContactForm() {
             onChange={handleChange}
             required
             rows={5}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00AEEF] transition-all duration-300 resize-none"
+            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00AEEF] transition-all duration-300 resize-none ${
+              theme === 'light' 
+                ? 'bg-white border-gray-300 text-gray-900' 
+                : 'bg-[#0f172a] border-[#334155] text-white'
+            }`}
             placeholder="Tell us about your project..."
           ></textarea>
         </div>

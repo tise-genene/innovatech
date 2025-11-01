@@ -2,6 +2,7 @@
 
 import { useRef } from 'react';
 import { useInView } from '@/hooks/useInView';
+import { useTheme } from '@/contexts/ThemeContext';
 import Link from 'next/link';
 
 const services = [
@@ -15,8 +16,6 @@ const services = [
       'Mobile App Development',
       'API Development & Integration',
     ],
-    icon: '💻',
-    color: 'from-blue-500 to-blue-600',
   },
   {
     title: 'AI Apps & Integration',
@@ -28,8 +27,6 @@ const services = [
       'Computer Vision Solutions',
       'AI Workflow Automation',
     ],
-    icon: '🤖',
-    color: 'from-purple-500 to-purple-600',
   },
   {
     title: 'Product Design',
@@ -41,8 +38,6 @@ const services = [
       'Interaction Design',
       'Design Systems',
     ],
-    icon: '🎨',
-    color: 'from-pink-500 to-pink-600',
   },
   {
     title: 'Branding & Logo Design',
@@ -54,8 +49,6 @@ const services = [
       'Brand Guidelines',
       'Rebranding Services',
     ],
-    icon: '🎯',
-    color: 'from-red-500 to-red-600',
   },
   {
     title: 'AI & Machine Learning',
@@ -67,8 +60,6 @@ const services = [
       'Data Mining',
       'ML Model Training',
     ],
-    icon: '🧠',
-    color: 'from-indigo-500 to-indigo-600',
   },
   {
     title: 'Video & Animation',
@@ -80,8 +71,6 @@ const services = [
       'Video Editing',
       'Corporate Videos',
     ],
-    icon: '🎬',
-    color: 'from-yellow-500 to-yellow-600',
   },
   {
     title: 'Graphic, Editorial & Presentation Design',
@@ -93,8 +82,6 @@ const services = [
       'Editorial Design',
       'Print Design',
     ],
-    icon: '✏️',
-    color: 'from-green-500 to-green-600',
   },
   {
     title: 'Digital Marketing',
@@ -106,8 +93,6 @@ const services = [
       'Email Marketing',
       'Marketing Analytics',
     ],
-    icon: '📈',
-    color: 'from-orange-500 to-orange-600',
   },
   {
     title: 'Social Media Management',
@@ -119,65 +104,52 @@ const services = [
       'Influencer Marketing',
       'Analytics & Reporting',
     ],
-    icon: '📱',
-    color: 'from-teal-500 to-teal-600',
   },
 ];
 
 export default function ServicesList() {
   const ref = useRef(null);
   const isInView = useInView(ref);
+  const { theme } = useTheme();
 
   return (
-    <section ref={ref} className="py-20 bg-[#F2F2F2]">
-      <div className="container mx-auto px-4 lg:px-8">
+    <section ref={ref} className={`py-20 ${theme === 'light' ? 'bg-[#F2F2F2]' : ''}`}>
+      <div className="container mx-auto px-6 md:px-12 lg:px-16 xl:px-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {services.map((service, index) => (
             <div
               key={index}
-              className={`bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 ${
-                isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-              }`}
+              className={`rounded-xl p-8 transition-all duration-300 hover:shadow-lg ${
+                theme === 'light' ? 'bg-white' : 'bg-[#1e293b] border border-[#334155]'
+              } ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
               style={{ transitionDelay: `${index * 100}ms` }}
             >
-              <div className={`bg-gradient-to-r ${service.color} p-6`}>
-                <div className="flex items-center">
-                  <div className="text-5xl mr-4">{service.icon}</div>
-                  <h3 className="text-2xl font-bold text-white">{service.title}</h3>
-                </div>
-              </div>
+              <h3 className={`text-2xl mb-3 ${theme === 'light' ? 'text-[#1A1A1A]' : 'text-white'}`}>
+                {service.title}
+              </h3>
               
-              <div className="p-6">
-                <p className="text-gray-600 mb-4">{service.description}</p>
-                
-                <ul className="space-y-2 mb-6">
-                  {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start">
-                      <svg
-                        className="w-5 h-5 text-[#00AEEF] mr-2 mt-1 flex-shrink-0"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                      <span className="text-gray-700">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
+              <p className={`mb-6 leading-relaxed ${theme === 'light' ? 'text-gray-600' : 'text-gray-400'}`}>
+                {service.description}
+              </p>
+              
+              <ul className="space-y-3 mb-8">
+                {service.features.map((feature, idx) => (
+                  <li key={idx} className={`text-sm ${theme === 'light' ? 'text-gray-600' : 'text-gray-400'}`}>
+                    • {feature}
+                  </li>
+                ))}
+              </ul>
 
-                <Link
-                  href="/contact"
-                  className="inline-block bg-[#00AEEF] text-white px-6 py-3 rounded-full hover:bg-[#0090c9] transition-all duration-300 font-semibold"
-                >
-                  Get Started
-                </Link>
-              </div>
+              <Link
+                href="/contact"
+                className={`inline-block px-6 py-2 rounded-lg transition-all duration-300 ${
+                  theme === 'light'
+                    ? 'bg-gray-100 text-[#1A1A1A] hover:bg-[#00AEEF] hover:text-white'
+                    : 'bg-[#0f172a] text-gray-300 hover:bg-[#00AEEF] hover:text-white'
+                }`}
+              >
+                Learn More →
+              </Link>
             </div>
           ))}
         </div>

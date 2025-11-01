@@ -18,7 +18,7 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden pt-32">
-      <div className="container mx-auto px-4 lg:px-8 relative z-10 py-20">
+      <div className="container mx-auto px-6 md:px-12 lg:px-16 xl:px-24 relative z-10 py-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div>

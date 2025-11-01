@@ -2,6 +2,7 @@
 
 import { useRef } from 'react';
 import { useInView } from '@/hooks/useInView';
+import { useTheme } from '@/contexts/ThemeContext';
 
 const steps = [
   {
@@ -39,45 +40,48 @@ const steps = [
 export default function Process() {
   const ref = useRef(null);
   const isInView = useInView(ref);
+  const { theme } = useTheme();
 
   return (
-    <section ref={ref} className="py-20 bg-white">
-      <div className="container mx-auto px-4 lg:px-8">
+    <section ref={ref} className={`py-20 ${theme === 'light' ? 'bg-white' : ''}`}>
+      <div className="container mx-auto px-6 md:px-12 lg:px-16 xl:px-24">
         <div className="text-center mb-16">
           <h2
-            className={`text-4xl md:text-5xl font-bold text-[#1A1A1A] mb-4 transition-all duration-700 ${
-              isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}
+            className={`text-4xl md:text-5xl font-bold mb-4 transition-all duration-700 ${
+              theme === 'light' ? 'text-[#1A1A1A]' : 'text-white'
+            } ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           >
             Our <span className="text-[#00AEEF]">Process</span>
           </h2>
           <p
-            className={`text-xl text-gray-600 max-w-2xl mx-auto transition-all duration-700 delay-200 ${
-              isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}
+            className={`text-xl max-w-2xl mx-auto transition-all duration-700 delay-200 ${
+              theme === 'light' ? 'text-gray-600' : 'text-gray-400'
+            } ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           >
             A proven approach to delivering exceptional results
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {steps.map((step, index) => (
             <div
               key={index}
-              className={`relative p-8 bg-[#F2F2F2] rounded-xl hover:bg-white hover:shadow-lg transition-all duration-500 ${
-                isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-              }`}
+              className={`p-6 rounded-lg transition-all duration-300 ${
+                theme === 'light' 
+                  ? 'bg-white border border-gray-200' 
+                  : 'bg-[#1e293b] border border-[#334155]'
+              } ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
               style={{ transitionDelay: `${index * 100}ms` }}
             >
-              <div className="text-6xl font-bold text-[#00AEEF] opacity-20 absolute top-4 right-4">
+              <div className={`text-sm mb-2 ${theme === 'light' ? 'text-gray-400' : 'text-gray-500'}`}>
                 {step.number}
               </div>
-              <div className="relative z-10">
-                <h3 className="text-2xl font-bold text-[#1A1A1A] mb-3">
-                  {step.title}
-                </h3>
-                <p className="text-gray-600">{step.description}</p>
-              </div>
+              <h3 className={`text-xl mb-2 ${theme === 'light' ? 'text-[#1A1A1A]' : 'text-white'}`}>
+                {step.title}
+              </h3>
+              <p className={`text-sm leading-relaxed ${theme === 'light' ? 'text-gray-600' : 'text-gray-400'}`}>
+                {step.description}
+              </p>
             </div>
           ))}
         </div>

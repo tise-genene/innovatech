@@ -27,8 +27,8 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-[100] pt-6">
-      <div className="container mx-auto px-4 lg:px-8 relative z-10">
+    <nav className="fixed top-0 left-0 right-0 z-[100] py-6">
+      <div className="container mx-auto px-6 md:px-12 lg:px-16 xl:px-24 relative z-10">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="text-2xl font-bold tracking-wider relative z-10">
@@ -37,11 +37,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation - Pill Shape */}
-          <div className={`hidden md:flex items-center backdrop-blur-md border rounded-full px-8 py-3 ${
-            theme === 'light' 
-              ? 'bg-white/80 border-gray-200' 
-              : 'bg-white/10 border-white/20'
-          }`}>
+          <div className="hidden md:flex items-center backdrop-blur-xl bg-white/10 border border-white/20 rounded-full px-8 py-3 shadow-lg">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -60,11 +56,7 @@ export default function Navbar() {
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className={`p-3 rounded-full backdrop-blur-md border transition-all duration-300 ${
-                theme === 'light'
-                  ? 'bg-white/80 border-gray-200 text-[#1A1A1A] hover:bg-white'
-                  : 'bg-white/10 border-white/20 text-white hover:bg-white/20'
-              }`}
+              className="p-3 rounded-full backdrop-blur-xl bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-all duration-300 shadow-lg"
               aria-label="Toggle theme"
             >
               {theme === 'light' ? (
@@ -116,11 +108,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className={`md:hidden mt-4 mx-4 backdrop-blur-md border rounded-2xl p-4 ${
-          theme === 'light'
-            ? 'bg-white/80 border-gray-200'
-            : 'bg-white/10 border-white/20'
-        }`}>
+        <div className="md:hidden mt-4 mx-4 backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-4 shadow-lg">
           {navLinks.map((link) => (
             <Link
               key={link.href}

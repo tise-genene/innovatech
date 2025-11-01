@@ -2,6 +2,7 @@
 
 import { useRef } from 'react';
 import { useInView } from '@/hooks/useInView';
+import { useTheme } from '@/contexts/ThemeContext';
 
 const contactDetails = [
   {
@@ -79,6 +80,7 @@ const socialLinks = [
 export default function ContactInfo() {
   const ref = useRef(null);
   const isInView = useInView(ref);
+  const { theme } = useTheme();
 
   return (
     <div
@@ -88,8 +90,10 @@ export default function ContactInfo() {
       }`}
     >
       <div>
-        <h2 className="text-3xl font-bold text-[#1A1A1A] mb-6">Contact Information</h2>
-        <p className="text-gray-600 mb-8">
+        <h2 className={`text-3xl font-bold mb-6 ${theme === 'light' ? 'text-[#1A1A1A]' : 'text-white'}`}>
+          Contact Information
+        </h2>
+        <p className={`mb-8 ${theme === 'light' ? 'text-gray-600' : 'text-gray-400'}`}>
           Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
         </p>
       </div>
@@ -98,22 +102,26 @@ export default function ContactInfo() {
         {contactDetails.map((detail, index) => (
           <div
             key={index}
-            className="flex items-start p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+            className={`flex items-start p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 ${
+              theme === 'light' ? 'bg-white' : 'bg-[#1e293b] border border-[#334155]'
+            }`}
           >
             <div className="text-[#00AEEF] mr-4 flex-shrink-0">{detail.icon}</div>
             <div>
-              <h3 className="text-lg font-semibold text-[#1A1A1A] mb-1">
+              <h3 className={`text-lg font-semibold mb-1 ${theme === 'light' ? 'text-[#1A1A1A]' : 'text-white'}`}>
                 {detail.title}
               </h3>
-              <p className="text-gray-700 font-medium">{detail.info}</p>
-              <p className="text-gray-500 text-sm">{detail.subInfo}</p>
+              <p className={`font-medium ${theme === 'light' ? 'text-gray-700' : 'text-gray-300'}`}>{detail.info}</p>
+              <p className={`text-sm ${theme === 'light' ? 'text-gray-500' : 'text-gray-400'}`}>{detail.subInfo}</p>
             </div>
           </div>
         ))}
       </div>
 
       {/* Map Placeholder */}
-      <div className="bg-white rounded-xl shadow-lg overflow-hidden h-64">
+      <div className={`rounded-xl shadow-lg overflow-hidden h-64 ${
+        theme === 'light' ? 'bg-white' : 'bg-[#1e293b] border border-[#334155]'
+      }`}>
         <div className="w-full h-full bg-gradient-to-br from-[#00AEEF] to-[#0090c9] flex items-center justify-center">
           <div className="text-center text-white">
             <svg className="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -126,14 +134,22 @@ export default function ContactInfo() {
       </div>
 
       {/* Social Links */}
-      <div className="bg-white rounded-xl shadow-lg p-6">
-        <h3 className="text-lg font-semibold text-[#1A1A1A] mb-4">Follow Us</h3>
+      <div className={`rounded-xl shadow-lg p-6 ${
+        theme === 'light' ? 'bg-white' : 'bg-[#1e293b] border border-[#334155]'
+      }`}>
+        <h3 className={`text-lg font-semibold mb-4 ${theme === 'light' ? 'text-[#1A1A1A]' : 'text-white'}`}>
+          Follow Us
+        </h3>
         <div className="flex space-x-4">
           {socialLinks.map((social) => (
             <a
               key={social.name}
               href={social.href}
-              className="w-12 h-12 bg-[#F2F2F2] rounded-full flex items-center justify-center text-gray-600 hover:bg-[#00AEEF] hover:text-white transition-all duration-300"
+              className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
+                theme === 'light'
+                  ? 'bg-[#F2F2F2] text-gray-600 hover:bg-[#00AEEF] hover:text-white'
+                  : 'bg-[#0f172a] text-gray-400 hover:bg-[#00AEEF] hover:text-white'
+              }`}
               aria-label={social.name}
             >
               {social.icon}

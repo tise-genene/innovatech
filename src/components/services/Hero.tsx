@@ -15,7 +15,7 @@ export default function Hero() {
         <div className="absolute w-96 h-96 bg-[#00AEEF] rounded-full blur-3xl opacity-20 -top-48 left-1/2 animate-pulse"></div>
       </div>
 
-      <div className="container mx-auto px-4 lg:px-8 relative z-10 pt-32 pb-16">
+      <div className="container mx-auto px-6 md:px-12 lg:px-16 xl:px-24 relative z-10 pt-32 pb-16">
         <div className="max-w-4xl mx-auto text-center">
           <h1
             className={`text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 transition-all duration-1000 ${

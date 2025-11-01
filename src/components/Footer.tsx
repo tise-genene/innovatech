@@ -1,7 +1,11 @@
+'use client';
+
 import Link from 'next/link';
+import { useTheme } from '@/contexts/ThemeContext';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const { theme } = useTheme();
 
   const services = [
     'Web & App Development',
@@ -50,16 +54,20 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-[#1A1A1A] text-white">
-      <div className="container mx-auto px-4 lg:px-8 py-12">
+    <footer className={`border-t ${
+      theme === 'light'
+        ? 'bg-white text-[#1A1A1A] border-gray-200'
+        : 'bg-[#1A1A1A] text-white border-white/10'
+    }`}>
+      <div className="container mx-auto px-6 md:px-12 lg:px-16 xl:px-24 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Company Info */}
           <div>
             <h3 className="text-2xl font-bold mb-4">
-              <span className="text-white">Innova</span>
+              <span className={theme === 'light' ? 'text-[#1A1A1A]' : 'text-white'}>Innova</span>
               <span className="text-[#00AEEF]">Tech</span>
             </h3>
-            <p className="text-gray-300 mb-4">
+            <p className={`mb-4 ${theme === 'light' ? 'text-gray-700' : 'text-gray-300'}`}>
               A multi-service digital agency based in Addis Ababa, Ethiopia. We deliver innovative solutions in web development, design, and digital marketing.
             </p>
             <div className="flex space-x-4">
@@ -67,7 +75,9 @@ export default function Footer() {
                 <a
                   key={social.name}
                   href={social.href}
-                  className="text-gray-300 hover:text-[#00AEEF] transition-colors duration-300"
+                  className={`hover:text-[#00AEEF] transition-colors duration-300 ${
+                    theme === 'light' ? 'text-gray-600' : 'text-gray-300'
+                  }`}
                   aria-label={social.name}
                 >
                   {social.icon}
@@ -84,7 +94,9 @@ export default function Footer() {
                 <li key={service}>
                   <Link
                     href="/services"
-                    className="text-gray-300 hover:text-[#00AEEF] transition-colors duration-300"
+                    className={`hover:text-[#00AEEF] transition-colors duration-300 ${
+                      theme === 'light' ? 'text-gray-600' : 'text-gray-300'
+                    }`}
                   >
                     {service}
                   </Link>
@@ -101,7 +113,9 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-gray-300 hover:text-[#00AEEF] transition-colors duration-300"
+                    className={`hover:text-[#00AEEF] transition-colors duration-300 ${
+                      theme === 'light' ? 'text-gray-600' : 'text-gray-300'
+                    }`}
                   >
                     {link.label}
                   </Link>
@@ -113,7 +127,7 @@ export default function Footer() {
           {/* Contact Info */}
           <div>
             <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
-            <ul className="space-y-3 text-gray-300">
+            <ul className={`space-y-3 ${theme === 'light' ? 'text-gray-700' : 'text-gray-300'}`}>
               <li className="flex items-start">
                 <svg className="w-5 h-5 mr-2 mt-1 text-[#00AEEF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -141,16 +155,24 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-700 pt-8">
+        <div className={`border-t pt-8 ${
+          theme === 'light' ? 'border-gray-200' : 'border-gray-700'
+        }`}>
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm mb-4 md:mb-0">
+            <p className={`text-sm mb-4 md:mb-0 ${
+              theme === 'light' ? 'text-gray-600' : 'text-gray-400'
+            }`}>
               © {currentYear} Innova Tech. All rights reserved.
             </p>
             <div className="flex space-x-6 text-sm">
-              <Link href="#" className="text-gray-400 hover:text-[#00AEEF] transition-colors duration-300">
+              <Link href="#" className={`hover:text-[#00AEEF] transition-colors duration-300 ${
+                theme === 'light' ? 'text-gray-600' : 'text-gray-400'
+              }`}>
                 Privacy Policy
               </Link>
-              <Link href="#" className="text-gray-400 hover:text-[#00AEEF] transition-colors duration-300">
+              <Link href="#" className={`hover:text-[#00AEEF] transition-colors duration-300 ${
+                theme === 'light' ? 'text-gray-600' : 'text-gray-400'
+              }`}>
                 Terms of Service
               </Link>
             </div>

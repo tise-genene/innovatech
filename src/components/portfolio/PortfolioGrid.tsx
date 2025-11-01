@@ -102,7 +102,7 @@ export default function PortfolioGrid() {
 
   return (
     <section ref={ref} className="py-20 bg-[#F2F2F2]">
-      <div className="container mx-auto px-4 lg:px-8">
+      <div className="container mx-auto px-6 md:px-12 lg:px-16 xl:px-24">
         {/* Category Filter */}
         <div
           className={`flex flex-wrap justify-center gap-4 mb-12 transition-all duration-700 ${

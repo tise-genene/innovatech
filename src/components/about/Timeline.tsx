@@ -42,7 +42,7 @@ export default function Timeline() {
 
   return (
     <section ref={ref} className="py-20 bg-white">
-      <div className="container mx-auto px-4 lg:px-8">
+      <div className="container mx-auto px-6 md:px-12 lg:px-16 xl:px-24">
         <div className="text-center mb-16">
           <h2
             className={`text-4xl md:text-5xl font-bold text-[#1A1A1A] mb-4 transition-all duration-700 ${

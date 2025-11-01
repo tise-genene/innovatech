@@ -2,6 +2,7 @@
 
 import { useRef, useState } from 'react';
 import { useInView } from '@/hooks/useInView';
+import { useTheme } from '@/contexts/ThemeContext';
 
 const testimonials = [
   {
@@ -31,29 +32,36 @@ export default function Testimonials() {
   const ref = useRef(null);
   const isInView = useInView(ref);
   const [activeIndex, setActiveIndex] = useState(0);
+  const { theme } = useTheme();
 
   return (
-    <section ref={ref} className="py-20 bg-gradient-to-br from-[#1A1A1A] to-[#2A2A2A]">
-      <div className="container mx-auto px-4 lg:px-8">
+    <section ref={ref} className={`py-20 ${
+      theme === 'light' ? 'bg-gray-50' : 'bg-gradient-to-br from-[#1A1A1A] to-[#2A2A2A]'
+    }`}>
+      <div className="container mx-auto px-6 md:px-12 lg:px-16 xl:px-24">
         <div className="text-center mb-16">
           <h2
-            className={`text-4xl md:text-5xl font-bold text-white mb-4 transition-all duration-700 ${
+            className={`text-4xl md:text-5xl font-bold mb-4 transition-all duration-700 ${
               isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}
+            } ${theme === 'light' ? 'text-[#1A1A1A]' : 'text-white'}`}
           >
             What Our <span className="text-[#00AEEF]">Clients Say</span>
           </h2>
           <p
-            className={`text-xl text-gray-300 max-w-2xl mx-auto transition-all duration-700 delay-200 ${
+            className={`text-xl max-w-2xl mx-auto transition-all duration-700 delay-200 ${
               isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}
+            } ${theme === 'light' ? 'text-gray-700' : 'text-gray-300'}`}
           >
             Don't just take our word for it - hear from our satisfied clients.
           </p>
         </div>
 
         <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-2xl p-8 md:p-12 shadow-2xl">
+          <div className={`rounded-2xl p-8 md:p-12 shadow-2xl backdrop-blur-sm border ${
+            theme === 'light'
+              ? 'bg-white border-gray-200'
+              : 'bg-white/5 border-white/10'
+          }`}>
             <div className="flex flex-col items-center text-center">
               <div className="text-6xl mb-4">{testimonials[activeIndex].image}</div>
               <div className="flex mb-4">
@@ -67,10 +75,14 @@ export default function Testimonials() {
                   </svg>
                 ))}
               </div>
-              <p className="text-xl text-gray-700 mb-6 italic leading-relaxed">
+              <p className={`text-xl mb-6 italic leading-relaxed ${
+                theme === 'light' ? 'text-gray-700' : 'text-gray-300'
+              }`}>
                 "{testimonials[activeIndex].text}"
               </p>
-              <h4 className="text-2xl font-bold text-[#1A1A1A]">
+              <h4 className={`text-2xl font-bold ${
+                theme === 'light' ? 'text-[#1A1A1A]' : 'text-white'
+              }`}>
                 {testimonials[activeIndex].name}
               </h4>
               <p className="text-[#00AEEF] font-medium">
@@ -102,7 +114,9 @@ export default function Testimonials() {
             isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
-          <p className="text-center text-gray-400 mb-8">Trusted by leading companies</p>
+          <p className={`text-center mb-8 ${
+            theme === 'light' ? 'text-gray-600' : 'text-gray-400'
+          }`}>Trusted by leading companies</p>
           <div className="relative">
             <div className="flex animate-scroll">
               {[
@@ -130,7 +144,9 @@ export default function Testimonials() {
               ].map((company, index) => (
                 <div
                   key={index}
-                  className="text-white text-lg md:text-xl font-bold whitespace-nowrap mx-8 hover:text-[#00AEEF] transition-colors duration-300 opacity-60 hover:opacity-100"
+                  className={`text-lg md:text-xl font-bold whitespace-nowrap mx-8 hover:text-[#00AEEF] transition-colors duration-300 opacity-60 hover:opacity-100 ${
+                    theme === 'light' ? 'text-[#1A1A1A]' : 'text-white'
+                  }`}
                 >
                   {company}
                 </div>
