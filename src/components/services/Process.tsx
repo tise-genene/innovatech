@@ -1,85 +1,59 @@
 'use client';
 
-import { useRef } from 'react';
-import { useInView } from '@/hooks/useInView';
 import { useTheme } from '@/contexts/ThemeContext';
 
 const steps = [
   {
-    number: '01',
     title: 'Discovery',
-    description: 'We start by understanding your business, goals, and target audience.',
+    description: 'We start by understanding your business goals, target audience, and project requirements.',
   },
   {
-    number: '02',
-    title: 'Strategy',
-    description: 'Develop a comprehensive plan tailored to your specific needs.',
+    title: 'Planning',
+    description: 'We create a detailed project roadmap with timelines, milestones, and deliverables.',
   },
   {
-    number: '03',
     title: 'Design',
-    description: 'Create beautiful, user-friendly designs that align with your brand.',
+    description: 'Our designers create wireframes, mockups, and prototypes for your approval.',
   },
   {
-    number: '04',
     title: 'Development',
-    description: 'Build robust, scalable solutions using the latest technologies.',
+    description: 'Our developers build your solution using best practices and modern technologies.',
   },
   {
-    number: '05',
     title: 'Testing',
-    description: 'Rigorous quality assurance to ensure flawless performance.',
+    description: 'Rigorous testing ensures quality, performance, and a bug-free experience.',
   },
   {
-    number: '06',
     title: 'Launch',
-    description: 'Deploy your solution and provide ongoing support and optimization.',
+    description: 'We deploy your project and provide ongoing support and maintenance.',
   },
 ];
 
 export default function Process() {
-  const ref = useRef(null);
-  const isInView = useInView(ref);
   const { theme } = useTheme();
 
   return (
-    <section ref={ref} className={`py-20 ${theme === 'light' ? 'bg-white' : ''}`}>
+    <section className={`py-20 border-t ${
+      theme === 'light' ? 'bg-gray-50 border-gray-200' : 'bg-[#1a2332] border-gray-800'
+    }`}>
       <div className="container mx-auto px-6 md:px-12 lg:px-16 xl:px-24">
-        <div className="text-center mb-16">
-          <h2
-            className={`text-4xl md:text-5xl font-bold mb-4 transition-all duration-700 ${
-              theme === 'light' ? 'text-[#1A1A1A]' : 'text-white'
-            } ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-          >
-            Our <span className="text-[#00AEEF]">Process</span>
+        <div className="mb-16">
+          <h2 className={`text-4xl font-bold mb-4 ${theme === 'light' ? 'text-[#1A1A1A]' : 'text-white'}`}>
+            Our Process
           </h2>
-          <p
-            className={`text-xl max-w-2xl mx-auto transition-all duration-700 delay-200 ${
-              theme === 'light' ? 'text-gray-600' : 'text-gray-400'
-            } ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-          >
-            A proven approach to delivering exceptional results
+          <p className={`text-lg max-w-2xl ${theme === 'light' ? 'text-gray-600' : 'text-gray-400'}`}>
+            A streamlined approach to deliver exceptional results.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {steps.map((step, index) => (
-            <div
-              key={index}
-              className={`p-6 rounded-lg transition-all duration-300 ${
-                theme === 'light' 
-                  ? 'bg-white border border-gray-200' 
-                  : 'bg-[#1e293b] border border-[#334155]'
-              } ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-              style={{ transitionDelay: `${index * 100}ms` }}
-            >
-              <div className={`text-sm mb-2 ${theme === 'light' ? 'text-gray-400' : 'text-gray-500'}`}>
-                {step.number}
-              </div>
-              <h3 className={`text-xl mb-2 ${theme === 'light' ? 'text-[#1A1A1A]' : 'text-white'}`}>
+            <div key={index}>
+              <div className="text-3xl font-bold text-[#00AEEF] mb-3">{String(index + 1).padStart(2, '0')}</div>
+              <h3 className={`text-xl font-semibold mb-2 ${theme === 'light' ? 'text-[#1A1A1A]' : 'text-white'}`}>
                 {step.title}
               </h3>
-              <p className={`text-sm leading-relaxed ${theme === 'light' ? 'text-gray-600' : 'text-gray-400'}`}>
+              <p className={theme === 'light' ? 'text-gray-600' : 'text-gray-400'}>
                 {step.description}
               </p>
             </div>
@@ -89,4 +63,3 @@ export default function Process() {
     </section>
   );
 }
-

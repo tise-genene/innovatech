@@ -1,39 +1,26 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useTheme } from '@/contexts/ThemeContext';
 
 export default function Hero() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
+  const { theme } = useTheme();
 
   return (
-    <section className="relative min-h-[60vh] flex items-center justify-center bg-gradient-to-br from-[#1A1A1A] via-[#2A2A2A] to-[#1A1A1A] overflow-hidden">
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute w-96 h-96 bg-[#00AEEF] rounded-full blur-3xl opacity-20 -bottom-48 -right-48 animate-pulse"></div>
-      </div>
-
-      <div className="container mx-auto px-6 md:px-12 lg:px-16 xl:px-24 relative z-10 pt-32 pb-16">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1
-            className={`text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 transition-all duration-1000 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}
-          >
-            Our <span className="text-[#00AEEF]">Blog</span>
+    <section className="pt-32 pb-20">
+      <div className="container mx-auto px-6 md:px-12 lg:px-16 xl:px-24">
+        <div className="max-w-4xl">
+          <h1 className={`text-5xl md:text-6xl font-bold mb-6 leading-tight ${
+            theme === 'light' ? 'text-[#1A1A1A]' : 'text-white'
+          }`}>
+            Blog
           </h1>
-          <p
-            className={`text-xl md:text-2xl text-gray-300 transition-all duration-1000 delay-200 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}
-          >
-            Insights, trends, and tips from the world of digital innovation
+          <p className={`text-xl leading-relaxed ${
+            theme === 'light' ? 'text-gray-600' : 'text-gray-400'
+          }`}>
+            Insights on technology, design, and digital marketing.
           </p>
         </div>
       </div>
     </section>
   );
 }
-
