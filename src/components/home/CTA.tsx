@@ -11,7 +11,7 @@ export default function CTA() {
       theme === 'light' ? 'bg-gray-50 border-gray-200' : 'bg-[#1a2332] border-gray-800'
     }`}>
       <div className="container mx-auto px-6 md:px-12 lg:px-16 xl:px-24">
-        <div className="max-w-3xl">
+        <div className="max-w-3xl mx-auto text-center">
           <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${
             theme === 'light' ? 'text-[#1A1A1A]' : 'text-white'
           }`}>
