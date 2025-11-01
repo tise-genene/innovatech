@@ -79,18 +79,21 @@ export default function ServicesList() {
       theme === 'light' ? 'border-gray-200' : 'border-gray-800'
     }`}>
       <div className="container mx-auto px-6 md:px-12 lg:px-16 xl:px-24">
-        <div className="space-y-16">
+        {/* Two Column Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {services.map((service, index) => (
             <div
               key={index}
-              className={`pb-16 ${
-                index !== services.length - 1 ? 'border-b' : ''
-              } ${theme === 'light' ? 'border-gray-200' : 'border-gray-800'}`}
+              className={`p-8 rounded-lg border ${
+                theme === 'light'
+                  ? 'bg-white border-gray-200'
+                  : 'bg-[#1a2332] border-gray-800'
+              }`}
             >
-              <h2 className={`text-3xl font-bold mb-4 ${theme === 'light' ? 'text-[#1A1A1A]' : 'text-white'}`}>
+              <h2 className={`text-2xl font-bold mb-3 ${theme === 'light' ? 'text-[#1A1A1A]' : 'text-white'}`}>
                 {service.title}
               </h2>
-              <p className={`text-lg mb-6 max-w-3xl ${theme === 'light' ? 'text-gray-600' : 'text-gray-400'}`}>
+              <p className={`mb-6 ${theme === 'light' ? 'text-gray-600' : 'text-gray-400'}`}>
                 {service.description}
               </p>
               <ul className={`space-y-2 ${theme === 'light' ? 'text-gray-600' : 'text-gray-400'}`}>
