@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
 
 const testimonials = [
@@ -19,54 +19,92 @@ const testimonials = [
     position: 'Founder, AI Innovations',
     text: 'The AI integration services provided by Innova Tech gave us a competitive edge. Highly professional team!',
   },
+  {
+    name: 'Sara Bekele',
+    position: 'COO, Digital Marketing Agency',
+    text: 'Working with Innova Tech was seamless. They understood our vision and delivered a solution that exceeded expectations.',
+  },
+  {
+    name: 'Michael Tesfaye',
+    position: 'Product Manager, FinTech Startup',
+    text: 'Their attention to detail and commitment to quality is outstanding. The mobile app they built for us is incredible.',
+  },
+  {
+    name: 'Hanna Kebede',
+    position: 'Director, Healthcare Tech',
+    text: 'Innova Tech brought our complex healthcare platform to life with elegant design and robust functionality.',
+  },
 ];
 
 export default function Testimonials() {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const { theme } = useTheme();
+
+  // Auto-loop every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 2) % testimonials.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const visibleTestimonials = [
+    testimonials[currentIndex],
+    testimonials[(currentIndex + 1) % testimonials.length],
+  ];
 
   return (
     <section className={`py-20 border-t ${
       theme === 'light' ? 'bg-gray-50 border-gray-200' : 'bg-[#1a2332] border-gray-800'
     }`}>
       <div className="container mx-auto px-6 md:px-12 lg:px-16 xl:px-24">
-        <div className="mb-16">
-          <h2 className={`text-4xl font-bold mb-4 ${theme === 'light' ? 'text-[#1A1A1A]' : 'text-white'}`}>
+        <div className="mb-12">
+          <h2 className={`text-4xl font-bold ${theme === 'light' ? 'text-[#1A1A1A]' : 'text-white'}`}>
             What Clients Say
           </h2>
         </div>
 
-        <div className="max-w-3xl">
-          <div className={`p-8 rounded-lg border ${
-            theme === 'light' ? 'bg-white border-gray-200' : 'bg-[#0f172a] border-gray-800'
-          }`}>
-            <p className={`text-lg mb-6 leading-relaxed ${
-              theme === 'light' ? 'text-gray-700' : 'text-gray-300'
-            }`}>
-              "{testimonials[activeIndex].text}"
-            </p>
-            <div>
-              <div className={`font-semibold ${theme === 'light' ? 'text-[#1A1A1A]' : 'text-white'}`}>
-                {testimonials[activeIndex].name}
-              </div>
-              <div className={`text-sm ${theme === 'light' ? 'text-gray-600' : 'text-gray-400'}`}>
-                {testimonials[activeIndex].position}
+        {/* Two Column Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          {visibleTestimonials.map((testimonial, index) => (
+            <div
+              key={currentIndex + index}
+              className={`p-8 rounded-lg border transition-all duration-500 ${
+                theme === 'light' 
+                  ? 'bg-white border-gray-200' 
+                  : 'bg-[#0f172a] border-gray-800'
+              }`}
+            >
+              <p className={`text-lg mb-6 leading-relaxed ${
+                theme === 'light' ? 'text-gray-700' : 'text-gray-300'
+              }`}>
+                "{testimonial.text}"
+              </p>
+              <div>
+                <div className={`font-semibold mb-1 ${theme === 'light' ? 'text-[#1A1A1A]' : 'text-white'}`}>
+                  {testimonial.name}
+                </div>
+                <div className={`text-sm ${theme === 'light' ? 'text-gray-600' : 'text-gray-400'}`}>
+                  {testimonial.position}
+                </div>
               </div>
             </div>
-          </div>
+          ))}
+        </div>
 
-          <div className="flex gap-2 mt-6">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setActiveIndex(index)}
-                className={`h-2 rounded-full transition-all ${
-                  index === activeIndex ? 'w-8 bg-[#00AEEF]' : 'w-2 bg-gray-400'
-                }`}
-                aria-label={`Go to testimonial ${index + 1}`}
-              />
-            ))}
-          </div>
+        {/* Progress Dots */}
+        <div className="flex justify-center gap-2">
+          {Array.from({ length: Math.ceil(testimonials.length / 2) }).map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentIndex(index * 2)}
+              className={`h-2 rounded-full transition-all ${
+                currentIndex === index * 2 ? 'w-8 bg-[#00AEEF]' : 'w-2 bg-gray-400'
+              }`}
+              aria-label={`Go to testimonials ${index * 2 + 1}-${index * 2 + 2}`}
+            />
+          ))}
         </div>
       </div>
     </section>
