@@ -52,12 +52,68 @@ const services = [
   },
 ];
 
+'use client';
+
+import Link from 'next/link';
+import { useInView } from '@/hooks/useInView';
+import { useRef } from 'react';
+import { useTheme } from '@/contexts/ThemeContext';
+
+const services = [
+  {
+    title: 'Web & App Development',
+    description: 'Custom websites and mobile applications built with cutting-edge technologies.',
+    icon: '💻',
+  },
+  {
+    title: 'AI Apps & Integration',
+    description: 'Intelligent solutions powered by artificial intelligence and machine learning.',
+    icon: '🤖',
+  },
+  {
+    title: 'Product Design',
+    description: 'User-centered design that delivers exceptional experiences.',
+    icon: '🎨',
+  },
+  {
+    title: 'Branding & Logo Design',
+    description: 'Create memorable brand identities that resonate with your audience.',
+    icon: '🎯',
+  },
+  {
+    title: 'AI & Machine Learning',
+    description: 'Advanced AI solutions to automate and optimize your business processes.',
+    icon: '🧠',
+  },
+  {
+    title: 'Video & Animation',
+    description: 'Engaging video content and animations that tell your story.',
+    icon: '🎬',
+  },
+  {
+    title: 'Graphic Design',
+    description: 'Eye-catching graphics for print, digital, and presentation needs.',
+    icon: '✏️',
+  },
+  {
+    title: 'Digital Marketing',
+    description: 'Data-driven marketing strategies to grow your online presence.',
+    icon: '📈',
+  },
+  {
+    title: 'Social Media Management',
+    description: 'Build and engage your community across all social platforms.',
+    icon: '📱',
+  },
+];
+
 export default function Services() {
   const ref = useRef(null);
   const isInView = useInView(ref);
+  const { theme } = useTheme();
 
   return (
-    <section ref={ref} className="py-20 bg-[#F2F2F2]">
+    <section ref={ref} className="py-20">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="text-center mb-16">
           <h2
