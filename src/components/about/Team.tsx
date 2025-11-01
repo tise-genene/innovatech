@@ -4,24 +4,14 @@ import { useTheme } from '@/contexts/ThemeContext';
 
 const teamMembers = [
   {
-    name: 'Dawit Alemayehu',
-    role: 'CEO & Founder',
-    bio: 'Visionary leader with 10+ years in tech innovation.',
+    name: 'Bekalu Teketel T.',
+    role: 'Video Editor | Graphic Designer | Marketing Specialist',
+    upworkUrl: 'https://www.upwork.com/freelancers/~0135ea11e94cfe1b1c',
   },
   {
-    name: 'Sara Bekele',
-    role: 'Lead Designer',
-    bio: 'Creative expert specializing in user-centered design.',
-  },
-  {
-    name: 'Michael Tesfaye',
-    role: 'Lead Developer',
-    bio: 'Full-stack developer with expertise in modern frameworks.',
-  },
-  {
-    name: 'Hanna Kebede',
-    role: 'Marketing Director',
-    bio: 'Digital marketing strategist driving measurable results.',
+    name: 'Genene T.',
+    role: 'Developer & Creative Professional',
+    upworkUrl: 'https://upwork.com/freelancers/~0168af3ce207f551f3',
   },
 ];
 
@@ -37,25 +27,38 @@ export default function Team() {
           <h2 className={`text-4xl font-bold mb-4 ${theme === 'light' ? 'text-[#1A1A1A]' : 'text-white'}`}>
             Our Team
           </h2>
-          <p className={`text-lg max-w-2xl ${theme === 'light' ? 'text-gray-600' : 'text-gray-400'}`}>
-            Meet the talented professionals behind Innova Tech.
-          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl">
           {teamMembers.map((member, index) => (
-            <div key={index}>
-              <div className={`aspect-square rounded-lg mb-4 ${
-                theme === 'light' ? 'bg-gray-200' : 'bg-gray-800'
-              }`}></div>
-              <h3 className={`text-lg font-semibold mb-1 ${theme === 'light' ? 'text-[#1A1A1A]' : 'text-white'}`}>
+            <a
+              key={index}
+              href={member.upworkUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`p-8 rounded-lg border hover:border-[#00AEEF] transition-colors ${
+                theme === 'light'
+                  ? 'bg-white border-gray-200'
+                  : 'bg-[#0f172a] border-gray-800'
+              }`}
+            >
+              <div className={`w-20 h-20 mb-4 rounded-full flex items-center justify-center text-2xl font-bold ${
+                theme === 'light'
+                  ? 'bg-gray-100 text-gray-400'
+                  : 'bg-[#1a2332] text-gray-600'
+              }`}>
+                {member.name.charAt(0)}
+              </div>
+
+              <h3 className={`text-xl font-semibold mb-2 ${
+                theme === 'light' ? 'text-[#1A1A1A]' : 'text-white'
+              }`}>
                 {member.name}
               </h3>
-              <p className="text-[#00AEEF] text-sm mb-2">{member.role}</p>
               <p className={`text-sm ${theme === 'light' ? 'text-gray-600' : 'text-gray-400'}`}>
-                {member.bio}
+                {member.role}
               </p>
-            </div>
+            </a>
           ))}
         </div>
       </div>
