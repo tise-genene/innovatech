@@ -2,6 +2,7 @@
 
 import { useRef } from 'react';
 import { useInView } from '@/hooks/useInView';
+import { useTheme } from '@/contexts/ThemeContext';
 
 const features = [
   {
@@ -63,22 +64,23 @@ const features = [
 export default function WhyChooseUs() {
   const ref = useRef(null);
   const isInView = useInView(ref);
+  const { theme } = useTheme();
 
   return (
-    <section ref={ref} className="py-20 bg-white">
+    <section ref={ref} className="py-20">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="text-center mb-16">
           <h2
-            className={`text-4xl md:text-5xl font-bold text-[#1A1A1A] mb-4 transition-all duration-700 ${
+            className={`text-4xl md:text-5xl font-bold mb-4 transition-all duration-700 ${
               isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}
+            } ${theme === 'light' ? 'text-[#1A1A1A]' : 'text-white'}`}
           >
             Why Choose <span className="text-[#00AEEF]">Innova Tech</span>
           </h2>
           <p
-            className={`text-xl text-gray-600 max-w-2xl mx-auto transition-all duration-700 delay-200 ${
+            className={`text-xl max-w-2xl mx-auto transition-all duration-700 delay-200 ${
               isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}
+            } ${theme === 'light' ? 'text-gray-700' : 'text-gray-300'}`}
           >
             We combine expertise, innovation, and dedication to deliver exceptional results.
           </p>
@@ -88,16 +90,24 @@ export default function WhyChooseUs() {
           {features.map((feature, index) => (
             <div
               key={index}
-              className={`p-8 rounded-xl border-2 border-gray-100 hover:border-[#00AEEF] transition-all duration-500 hover:shadow-xl ${
+              className={`p-8 rounded-xl border-2 backdrop-blur-sm transition-all duration-500 hover:shadow-xl ${
                 isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              } ${
+                theme === 'light'
+                  ? 'bg-white/80 border-gray-100 hover:border-[#00AEEF]'
+                  : 'bg-white/5 border-white/10 hover:border-[#00AEEF]'
               }`}
               style={{ transitionDelay: `${index * 100}ms` }}
             >
               <div className="text-[#00AEEF] mb-4">{feature.icon}</div>
-              <h3 className="text-2xl font-bold text-[#1A1A1A] mb-3">
+              <h3 className={`text-2xl font-bold mb-3 ${
+                theme === 'light' ? 'text-[#1A1A1A]' : 'text-white'
+              }`}>
                 {feature.title}
               </h3>
-              <p className="text-gray-600">{feature.description}</p>
+              <p className={theme === 'light' ? 'text-gray-600' : 'text-gray-300'}>
+                {feature.description}
+              </p>
             </div>
           ))}
         </div>
@@ -105,4 +115,3 @@ export default function WhyChooseUs() {
     </section>
   );
 }
-
