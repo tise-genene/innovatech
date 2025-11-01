@@ -1,36 +1,219 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Innova Tech - Digital Agency Website
 
-## Getting Started
+A world-class, modern digital agency website built with **Next.js** and **Tailwind CSS**. This project showcases a comprehensive suite of digital services including web development, AI integration, design, and marketing.
 
-First, run the development server:
+![Innova Tech](https://img.shields.io/badge/Next.js-16.0-black?style=for-the-badge&logo=next.js)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0-38B2AC?style=for-the-badge&logo=tailwind-css)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript)
 
+## 🚀 Features
+
+### Pages
+- **Home** - Hero section, services overview, testimonials, and CTA
+- **About** - Company mission, vision, team showcase, and timeline
+- **Services** - All 9 service categories with detailed descriptions
+- **Portfolio** - Filterable project showcase with case studies
+- **Blog** - Article listings with featured posts
+- **Contact** - Contact form, location map, and business info
+
+### Design & UX
+- ✨ Modern, clean, and professional aesthetic
+- 🎨 Custom color scheme (#1A1A1A, #00AEEF, #FFFFFF, #F2F2F2)
+- 📱 Fully responsive (mobile-first approach)
+- 🎭 Smooth scroll animations and transitions
+- 🔄 Interactive hover effects
+- 💫 Fade-in and slide-in animations on scroll
+- 📍 Sticky navigation header
+
+### Technical
+- ⚡ Built with Next.js 16 (App Router)
+- 💅 Styled with Tailwind CSS 4
+- 🔍 SEO optimized with meta tags and sitemap
+- ♿ Accessible and semantic HTML
+- 🎯 TypeScript for type safety
+- 🚀 Fast loading with optimized assets
+- 📦 Modular component structure
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 16.0
+- **Styling**: Tailwind CSS 4.0
+- **Language**: TypeScript 5.x
+- **Font**: Inter (Google Fonts)
+- **Icons**: SVG (inline)
+
+## 📦 Installation
+
+1. **Clone the repository**
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repository-url>
+cd innova
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Install dependencies**
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. **Run the development server**
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. **Open in browser**
+```
+http://localhost:3000
+```
 
-## Learn More
+## 🏗️ Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+innova/
+├── src/
+│   ├── app/
+│   │   ├── about/
+│   │   │   └── page.tsx
+│   │   ├── services/
+│   │   │   └── page.tsx
+│   │   ├── portfolio/
+│   │   │   └── page.tsx
+│   │   ├── blog/
+│   │   │   └── page.tsx
+│   │   ├── contact/
+│   │   │   └── page.tsx
+│   │   ├── layout.tsx
+│   │   ├── page.tsx
+│   │   ├── globals.css
+│   │   └── sitemap.ts
+│   ├── components/
+│   │   ├── Navbar.tsx
+│   │   ├── Footer.tsx
+│   │   ├── home/
+│   │   │   ├── Hero.tsx
+│   │   │   ├── Services.tsx
+│   │   │   ├── WhyChooseUs.tsx
+│   │   │   ├── Testimonials.tsx
+│   │   │   └── CTA.tsx
+│   │   ├── about/
+│   │   ├── services/
+│   │   ├── portfolio/
+│   │   ├── blog/
+│   │   └── contact/
+│   └── hooks/
+│       └── useInView.ts
+├── public/
+│   └── robots.txt
+├── package.json
+├── tailwind.config.ts
+├── tsconfig.json
+└── README.md
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎨 Color Palette
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Primary Dark**: `#1A1A1A` - Main dark color
+- **Primary Blue**: `#00AEEF` - Brand accent color
+- **Primary White**: `#FFFFFF` - White
+- **Primary Gray**: `#F2F2F2` - Light gray background
 
-## Deploy on Vercel
+## 📝 Available Scripts
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm start` - Start production server
+- `npm run lint` - Run ESLint
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🌐 Services Offered
+
+1. **Web & App Development** - Custom websites and mobile applications
+2. **AI Apps & Integration** - Intelligent solutions with AI
+3. **Product Design** - User-centered design
+4. **Branding & Logo Design** - Brand identity creation
+5. **AI & Machine Learning** - Advanced AI solutions
+6. **Video & Animation** - Engaging video content
+7. **Graphic, Editorial & Presentation Design** - Professional designs
+8. **Digital Marketing** - Data-driven marketing strategies
+9. **Social Media Management** - Community building
+
+## 🚀 Deployment
+
+### Vercel (Recommended)
+```bash
+npm install -g vercel
+vercel
+```
+
+### Build for Production
+```bash
+npm run build
+npm start
+```
+
+## 📱 Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+## 🔧 Customization
+
+### Changing Colors
+Edit `src/app/globals.css`:
+```css
+:root {
+  --primary-dark: #1A1A1A;
+  --primary-blue: #00AEEF;
+  --primary-white: #FFFFFF;
+  --primary-gray: #F2F2F2;
+}
+```
+
+### Adding New Pages
+1. Create a new folder in `src/app/`
+2. Add `page.tsx` with your content
+3. Update navigation in `src/components/Navbar.tsx`
+
+### Modifying Services
+Edit the services array in `src/components/home/Services.tsx`
+
+## 📧 Contact Form Integration
+
+The contact form is ready for backend integration. To connect it:
+
+1. Set up an API route in `src/app/api/contact/route.ts`
+2. Integrate with email service (SendGrid, Resend, etc.)
+3. Update form submission handler in `ContactForm.tsx`
+
+Example API route:
+```typescript
+import { NextResponse } from 'next/server';
+
+export async function POST(request: Request) {
+  const data = await request.json();
+  // Send email using your preferred service
+  return NextResponse.json({ success: true });
+}
+```
+
+## 🎯 SEO Features
+
+- Meta tags for all pages
+- Open Graph tags
+- Sitemap.xml
+- Robots.txt
+- Semantic HTML structure
+- Fast loading times
+- Mobile responsive
+
+## 📄 License
+
+© 2024 Innova Tech. All rights reserved.
+
+## 🤝 Support
+
+For support, email info@innovatech.et or visit our website.
+
+---
+
+**Built with ❤️ by Innova Tech Team**
