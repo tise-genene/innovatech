@@ -1,134 +1,179 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '@/contexts/ThemeContext';
+import { 
+  Sun, 
+  Moon, 
+  Menu, 
+  X, 
+  ArrowUpRight, 
+  Sparkles, 
+  Terminal, 
+  Code2, 
+  Layers, 
+  Workflow, 
+  Users, 
+  Mail 
+} from 'lucide-react';
 
 export default function Navbar() {
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/about', label: 'About' },
-    { href: '/services', label: 'Services' },
-    { href: '/portfolio', label: 'Portfolio' },
-    { href: '/blog', label: 'Blog' },
-    { href: '/contact', label: 'Contact' },
+    { href: '/#work', label: 'Featured Work', icon: Code2 },
+    { href: '/#services', label: 'Services', icon: Layers },
+    { href: '/#why-us', label: 'Why Us', icon: Sparkles },
+    { href: '/#process', label: 'Process', icon: Workflow },
+    { href: '/#about', label: 'About', icon: Users },
+    { href: '/#contact', label: 'Contact', icon: Mail },
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-[100] border-b ${
-      theme === 'light' ? 'bg-white border-gray-200' : 'bg-[#0f172a] border-gray-800'
-    }`}>
-      <div className="container mx-auto px-6 md:px-12 lg:px-16 xl:px-24">
-        <div className="flex items-center justify-between h-16">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? 'py-3 glass-nav backdrop-blur-xl shadow-2xl shadow-black/20'
+          : 'py-5 bg-transparent'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="text-xl font-semibold">
-            <span className={theme === 'light' ? 'text-[#1A1A1A]' : 'text-white'}>innova</span>
-            <span className="text-[#00AEEF]">tech</span>
+          <Link href="/" className="flex items-center gap-2.5 group">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#00aeef] to-[#6366f1] p-0.5 shadow-lg shadow-[#00aeef]/20 transition-transform duration-300 group-hover:scale-105">
+              <div className="w-full h-full bg-[#070a12] rounded-[10px] flex items-center justify-center">
+                <Terminal className="w-5 h-5 text-[#00aeef]" />
+              </div>
+            </div>
+            <div className="flex flex-col">
+              <div className="flex items-center gap-1">
+                <span className="text-xl font-bold tracking-tight text-white dark:text-white">
+                  INNOVA
+                </span>
+                <span className="text-xl font-bold tracking-tight text-[#00aeef]">
+                  TECH
+                </span>
+              </div>
+              <span className="text-[10px] font-mono tracking-widest text-slate-400 uppercase font-semibold">
+                Software & AI Studio
+              </span>
+            </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`text-sm hover:text-[#00AEEF] transition-colors ${
-                  theme === 'light' ? 'text-gray-600' : 'text-gray-300'
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
+          {/* Desktop Navigation Links */}
+          <nav className="hidden md:flex items-center gap-1 bg-slate-900/60 dark:bg-slate-900/70 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/10 shadow-inner">
+            {navLinks.map((link) => {
+              const Icon = link.icon;
+              return (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="flex items-center gap-1.5 text-xs font-medium text-slate-300 hover:text-white px-3 py-1.5 rounded-full transition-all duration-200 hover:bg-white/5"
+                >
+                  <Icon className="w-3.5 h-3.5 text-[#00aeef]/80" />
+                  {link.label}
+                </Link>
+              );
+            })}
+          </nav>
 
-          {/* Right Side - Theme Toggle + CTA */}
-          <div className="flex items-center gap-4">
-            {/* Theme Toggle */}
+          {/* Right Action Controls */}
+          <div className="flex items-center gap-3">
+            {/* Theme Toggle Button */}
             <button
               onClick={toggleTheme}
-              className={`p-2 rounded-lg transition-colors ${
-                theme === 'light' ? 'hover:bg-gray-100' : 'hover:bg-gray-800'
-              }`}
-              aria-label="Toggle theme"
+              className="p-2.5 rounded-xl bg-slate-900/80 border border-white/10 text-slate-300 hover:text-white hover:bg-slate-800 transition-all"
+              aria-label="Toggle dark/light mode"
             >
               {theme === 'light' ? (
-                <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                </svg>
+                <Moon className="w-4 h-4 text-indigo-500" />
               ) : (
-                <svg className="w-5 h-5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
+                <Sun className="w-4 h-4 text-amber-400" />
               )}
             </button>
 
-            {/* CTA Button */}
+            {/* Primary CTA */}
             <Link
-              href="/contact"
-              className="hidden md:block bg-[#00AEEF] text-white px-6 py-2 rounded-lg hover:bg-[#0090c9] transition-colors text-sm font-medium"
+              href="/#contact"
+              className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-[#00aeef] to-[#0090c9] hover:from-[#0090c9] hover:to-[#007ba8] shadow-lg shadow-[#00aeef]/25 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
             >
-              Get Started
+              <span>Start a Project</span>
+              <ArrowUpRight className="w-4 h-4" />
             </Link>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Menu Toggle */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`md:hidden ${
-                theme === 'light' ? 'text-[#1A1A1A]' : 'text-white'
-              }`}
-              aria-label="Toggle menu"
+              className="md:hidden p-2.5 rounded-xl bg-slate-900/80 border border-white/10 text-slate-300 hover:text-white"
+              aria-label="Toggle Mobile Menu"
             >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                {isMobileMenuOpen ? (
-                  <path d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
+              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className={`md:hidden border-t ${
-          theme === 'light' ? 'bg-white border-gray-200' : 'bg-[#0f172a] border-gray-800'
-        }`}>
-          <div className="px-6 py-4 space-y-3">
-            {navLinks.map((link) => (
+      {/* Mobile Drawer Navigation */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-[#070a12]/95 backdrop-blur-2xl border-b border-white/10 px-6 py-6 space-y-4"
+          >
+            <div className="flex flex-col space-y-2">
+              {navLinks.map((link) => {
+                const Icon = link.icon;
+                return (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-200 hover:bg-slate-800/80 hover:text-[#00aeef] transition-colors"
+                  >
+                    <Icon className="w-4 h-4 text-[#00aeef]" />
+                    <span>{link.label}</span>
+                  </Link>
+                );
+              })}
+            </div>
+
+            <div className="pt-4 border-t border-white/10 flex flex-col gap-3">
               <Link
-                key={link.href}
-                href={link.href}
-                className={`block text-sm hover:text-[#00AEEF] transition-colors ${
-                  theme === 'light' ? 'text-gray-600' : 'text-gray-300'
-                }`}
+                href="/#contact"
                 onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-[#00aeef] to-[#6366f1] shadow-lg shadow-[#00aeef]/20"
               >
-                {link.label}
+                <span>Start a Project</span>
+                <ArrowUpRight className="w-4 h-4" />
               </Link>
-            ))}
-            <Link
-              href="/contact"
-              className="block mt-4 bg-[#00AEEF] text-white px-6 py-2 rounded-lg text-center hover:bg-[#0090c9] transition-colors text-sm font-medium"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Get Started
-            </Link>
-          </div>
-        </div>
-      )}
-    </nav>
+              <div className="text-center text-xs text-slate-400 font-mono pt-2">
+                📍 Addis Ababa, Ethiopia • Global Tech Partner
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
   );
 }

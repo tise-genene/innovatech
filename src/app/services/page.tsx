@@ -1,22 +1,19 @@
+import Services from '@/components/home/Services';
+import Process from '@/components/home/Process';
+import Contact from '@/components/home/Contact';
 import type { Metadata } from 'next';
-import Hero from '@/components/services/Hero';
-import ServicesList from '@/components/services/ServicesList';
-import Process from '@/components/services/Process';
-import CTA from '@/components/home/CTA';
 
 export const metadata: Metadata = {
-  title: 'Our Services - Innova Tech | Web Development, Design & Marketing',
-  description: 'Comprehensive digital services including web development, AI integration, product design, branding, and digital marketing.',
+  title: 'Engineering & Services — Innova Tech',
+  description: 'Product Development, Full-stack Engineering, AI Solutions, and Digital Growth services by Innova Tech.',
 };
 
 export default function ServicesPage() {
   return (
-    <main>
-      <Hero />
-      <ServicesList />
+    <main className="pt-16">
+      <Services />
       <Process />
-      <CTA />
+      <Contact />
     </main>
   );
 }
-

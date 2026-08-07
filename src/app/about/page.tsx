@@ -1,22 +1,19 @@
+import About from '@/components/home/About';
+import WhyChooseUs from '@/components/home/WhyChooseUs';
+import Contact from '@/components/home/Contact';
 import type { Metadata } from 'next';
-import Hero from '@/components/about/Hero';
-import Mission from '@/components/about/Mission';
-import Team from '@/components/about/Team';
-import Timeline from '@/components/about/Timeline';
 
 export const metadata: Metadata = {
-  title: 'About Us - Innova Tech | Digital Agency in Addis Ababa',
-  description: 'Learn about Innova Tech, our mission, vision, and the expert team behind Ethiopia\'s leading digital agency.',
+  title: 'About Us — Innova Tech',
+  description: 'Innova Tech is a software development and digital solutions company based in Addis Ababa, Ethiopia.',
 };
 
 export default function AboutPage() {
   return (
-    <main>
-      <Hero />
-      <Mission />
-      <Team />
-      <Timeline />
+    <main className="pt-16">
+      <About />
+      <WhyChooseUs />
+      <Contact />
     </main>
   );
 }
-
