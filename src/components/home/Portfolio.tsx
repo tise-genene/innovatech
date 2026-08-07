@@ -8,10 +8,8 @@ import {
   ArrowRight, 
   X, 
   CheckCircle2, 
-  TrendingUp, 
-  Code2, 
-  Bot, 
   GraduationCap, 
+  Bot, 
   CreditCard, 
   ShoppingBag, 
   Building2 
@@ -22,12 +20,11 @@ interface Project {
   name: string;
   category: 'ai' | 'saas' | 'corporate' | 'ecommerce';
   badge: string;
-  shortDesc: string;
-  fullDesc: string;
+  problem: string;
+  solution: string;
   imageBg: string;
-  techStack: string[];
-  metrics: { label: string; value: string }[];
-  highlights: string[];
+  techStackString: string;
+  techTags: string[];
   icon: any;
   liveUrl?: string;
 }
@@ -41,107 +38,62 @@ export default function Portfolio() {
       id: 'eagle-pathway',
       name: 'Eagle Pathway',
       category: 'ai',
-      badge: 'Featured AI Platform',
-      shortDesc: 'AI-driven educational guidance & career pathway mapping engine for African students and professionals.',
-      fullDesc: 'Eagle Pathway leverages modern large language models and vectorized skills databases to evaluate student academic backgrounds and provide personalized career progression roadmaps, mentorship pairings, and automated course recommendations.',
-      imageBg: 'from-blue-600/30 via-cyan-500/20 to-indigo-900/40',
-      techStack: ['Next.js 16', 'Python / FastAPI', 'OpenAI API', 'Vector DB', 'Tailwind CSS', 'PostgreSQL'],
-      metrics: [
-        { label: 'Active Users', value: '45,000+' },
-        { label: 'Accuracy Rating', value: '96.8%' },
-        { label: 'Career Outcomes', value: '3.4x Growth' },
-      ],
-      highlights: [
-        'Personalized LLM career coaching bot with Amharic & English support',
-        'Interactive skill gap analyzer and resume enhancement engine',
-        'Seamless integration with local university degree frameworks',
-      ],
+      badge: 'Education & Career Platform',
+      problem: 'African students face fragmented information when searching for academic tutoring, verified international scholarships, and structured career roadmaps.',
+      solution: 'Education platform connecting students with tutors, scholarships, and career opportunities powered by automated skill matching and localized guidance.',
+      imageBg: 'from-blue-600/20 via-cyan-500/10 to-indigo-900/30 dark:from-blue-600/30 dark:via-cyan-500/20 dark:to-indigo-900/40',
+      techStackString: 'Next.js • React Native • Supabase • PostgreSQL',
+      techTags: ['Next.js', 'React Native', 'Supabase', 'PostgreSQL', 'Python'],
       icon: GraduationCap,
       liveUrl: 'https://eaglepathway.et',
     },
     {
       id: 'eagle-bot',
-      name: 'EagleBot',
+      name: 'EagleBot AI',
       category: 'ai',
       badge: 'Conversational AI System',
-      shortDesc: 'Multi-channel intelligent bot platform for customer support, automated CRM, and sales conversion.',
-      fullDesc: 'EagleBot bridges messaging applications (Telegram, WhatsApp, Web) with backend enterprise databases to handle thousands of concurrent support queries, order tracking requests, and lead qualifications autonomously.',
-      imageBg: 'from-indigo-600/30 via-purple-500/20 to-[#00aeef]/30',
-      techStack: ['React', 'Node.js', 'Telegram API', 'OpenAI Workflows', 'Redis', 'Webhooks'],
-      metrics: [
-        { label: 'Response Latency', value: '< 400ms' },
-        { label: 'Queries Handled', value: '1.2M+' },
-        { label: 'Support Cost Saved', value: '65%' },
-      ],
-      highlights: [
-        'Automated multi-lingual conversation routing and sentiment analysis',
-        'Custom workflow triggers connecting directly to local ERPs',
-        'Real-time analytics dashboard with agent handover controls',
-      ],
+      problem: 'High customer support response times and expensive manual phone center operations during peak inquiry hours across Telegram and WhatsApp.',
+      solution: 'Intelligent multi-channel conversational bot that resolves 80%+ of routine support queries and syncs leads directly into local ERP systems.',
+      imageBg: 'from-indigo-600/20 via-purple-500/10 to-[#00aeef]/20 dark:from-indigo-600/30 dark:via-purple-500/20 dark:to-[#00aeef]/30',
+      techStackString: 'React • Node.js • OpenAI Workflows • Redis • Webhooks',
+      techTags: ['React', 'Node.js', 'OpenAI', 'Redis', 'Telegram API'],
       icon: Bot,
       liveUrl: 'https://eaglebot.et',
     },
     {
-      id: 'fintech-saas',
-      name: 'OmniPay FinTech SaaS',
+      id: 'omnipay-saas',
+      name: 'OmniPay SaaS',
       category: 'saas',
-      badge: 'Enterprise SaaS',
-      shortDesc: 'Next-generation subscription billing, automated invoicing, and financial ledger platform.',
-      fullDesc: 'Built for fast-growing African digital businesses, OmniPay simplifies cross-border payment aggregation, multi-currency invoicing, tax calculations, and real-time revenue analytics.',
-      imageBg: 'from-emerald-600/30 via-[#00aeef]/20 to-slate-900',
-      techStack: ['Next.js 16', 'TypeScript', 'Stripe', 'Telebirr API', 'Node.js', 'PostgreSQL'],
-      metrics: [
-        { label: 'Volume Processed', value: '$12M+' },
-        { label: 'Transaction Speed', value: '99.99%' },
-        { label: 'Churn Reduction', value: '28%' },
-      ],
-      highlights: [
-        'Native integration with Ethiopian local payment gateways (Telebirr, CBE Birr, Chapa)',
-        'Automated recurring billing engine with failed transaction retry logic',
-        'Comprehensive financial reconciliation dashboard for accounting teams',
-      ],
+      badge: 'FinTech Billing Engine',
+      problem: 'Lack of unified subscription billing and automated cross-currency invoicing for regional software businesses in East Africa.',
+      solution: 'Enterprise recurring billing engine integrating local mobile money (Telebirr, CBE Birr) and international credit cards into a single dashboard.',
+      imageBg: 'from-emerald-600/20 via-cyan-600/10 to-slate-900/30 dark:from-emerald-600/30 dark:via-[#00aeef]/20 dark:to-slate-950',
+      techStackString: 'Next.js • TypeScript • Stripe • Telebirr API • PostgreSQL',
+      techTags: ['Next.js 16', 'TypeScript', 'Stripe', 'Telebirr API', 'PostgreSQL'],
       icon: CreditCard,
     },
     {
-      id: 'headless-ecommerce',
-      name: 'Afrimart Digital Retail Engine',
+      id: 'afrimart-ecommerce',
+      name: 'Afrimart Retail Engine',
       category: 'ecommerce',
-      badge: 'E-Commerce Platform',
-      shortDesc: 'High-conversion headless e-commerce storefront with instant search and sub-second page loads.',
-      fullDesc: 'Designed for enterprise retail brands seeking high performance on mobile networks. Features offline cart sync, rapid checkout pipelines, and intelligent product recommendations.',
-      imageBg: 'from-amber-600/30 via-orange-500/20 to-purple-900/30',
-      techStack: ['Next.js 16', 'GraphQL', 'Shopify Headless', 'Tailwind CSS', 'Vercel Edge'],
-      metrics: [
-        { label: 'Page Load Speed', value: '0.4s' },
-        { label: 'Mobile Conversion', value: '+142%' },
-        { label: 'Catalog Size', value: '50k+ SKUs' },
-      ],
-      highlights: [
-        'Ultra-fast progressive web app (PWA) optimized for low bandwidth',
-        'Instant multi-attribute search and dynamic filter system',
-        'Automated inventory sync across multiple fulfillment hubs',
-      ],
+      badge: 'Headless E-Commerce',
+      problem: 'Slow page loads on low-bandwidth mobile networks leading to high cart abandonment rates for regional retail brands.',
+      solution: 'Sub-second progressive web app with instant local catalog search, offline cart sync, and lightweight checkout pipelines.',
+      imageBg: 'from-amber-600/20 via-orange-500/10 to-purple-900/20 dark:from-amber-600/30 dark:via-orange-500/20 dark:to-purple-900/30',
+      techStackString: 'Next.js • GraphQL • Shopify Headless • Tailwind CSS',
+      techTags: ['Next.js', 'GraphQL', 'Shopify', 'Tailwind CSS'],
       icon: ShoppingBag,
     },
     {
-      id: 'banking-portal',
-      name: 'Abyssinia Secure Banking Portal',
+      id: 'abyssinia-banking',
+      name: 'Abyssinia Corporate Portal',
       category: 'corporate',
       badge: 'Banking & Enterprise',
-      shortDesc: 'Bank-grade corporate banking dashboard with biometric auth, audit logging, and asset tracking.',
-      fullDesc: 'A mission-critical enterprise portal built for institutional banking clients, enabling multi-tier transaction approval workflows, liquidity analytics, and automated compliance auditing.',
-      imageBg: 'from-cyan-600/30 via-blue-700/20 to-slate-950',
-      techStack: ['React', 'TypeScript', 'Node.js', 'Microservices', 'Docker', 'OAuth2 / WebAuthn'],
-      metrics: [
-        { label: 'Security Score', value: '100% Audit' },
-        { label: 'Daily Transfers', value: '$5M+' },
-        { label: 'Zero Downtime', value: '365 Days' },
-      ],
-      highlights: [
-        'Multi-signature authorization flows for corporate wire transfers',
-        'End-to-end audit trailing compliant with central bank standards',
-        'Dark & light mode high-density financial data charts',
-      ],
+      problem: 'Legacy institutional banking dashboards lacked multi-tier approval workflows, audit trails, and biometric authentication for corporate wires.',
+      solution: 'Bank-grade corporate treasury dashboard featuring multi-signature approvals, automated compliance checks, and real-time liquidity graphs.',
+      imageBg: 'from-cyan-600/20 via-blue-700/10 to-slate-950/40 dark:from-cyan-600/30 dark:via-blue-700/20 dark:to-slate-950',
+      techStackString: 'React • TypeScript • Node.js • Microservices • OAuth2',
+      techTags: ['React', 'TypeScript', 'Node.js', 'Docker', 'WebAuthn'],
       icon: Building2,
     },
   ];
@@ -151,8 +103,8 @@ export default function Portfolio() {
     : projects.filter(p => p.category === selectedCategory);
 
   return (
-    <section id="work" className="py-24 bg-[#070a12] relative overflow-hidden border-t border-white/10">
-      {/* Subtle Background Glow */}
+    <section id="work" className="py-24 bg-slate-50 dark:bg-[#08090a] relative overflow-hidden border-t border-slate-200 dark:border-white/10">
+      {/* Background Radial Orbs */}
       <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#00aeef]/10 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-600/10 rounded-full blur-[140px] pointer-events-none" />
 
@@ -161,59 +113,59 @@ export default function Portfolio() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div className="space-y-4 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900 border border-white/10 text-xs font-mono text-[#00aeef]">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/10 text-xs font-mono text-[#00aeef]">
               <Sparkles className="w-3.5 h-3.5" />
               <span>Proven Product Case Studies</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">
-              Featured Engineering &{' '}
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+              Featured Case Studies &{' '}
               <span className="bg-gradient-to-r from-[#00aeef] to-[#6366f1] bg-clip-text text-transparent">
                 Digital Products
               </span>
             </h2>
-            <p className="text-base text-slate-400 leading-relaxed">
-              We take full responsibility for product design, architecture, and deployment. Here is a selection of real-world platforms built for our partners.
+            <p className="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+              We take full responsibility for product design, architecture, and engineering. Explore real-world software products built for our partners.
             </p>
           </div>
 
           {/* Category Filter Pills */}
-          <div className="flex flex-wrap gap-2 bg-slate-900/80 p-1.5 rounded-2xl border border-white/10">
+          <div className="flex flex-wrap gap-2 bg-white dark:bg-slate-900/80 p-1.5 rounded-xl border border-slate-300 dark:border-white/10 shadow-sm">
             <button
               onClick={() => setSelectedCategory('all')}
-              className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
+              className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all ${
                 selectedCategory === 'all'
-                  ? 'bg-gradient-to-r from-[#00aeef] to-[#6366f1] text-white shadow-lg shadow-[#00aeef]/20'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'bg-gradient-to-r from-[#00aeef] to-[#6366f1] text-white shadow-md'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
               All Projects ({projects.length})
             </button>
             <button
               onClick={() => setSelectedCategory('ai')}
-              className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
+              className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all ${
                 selectedCategory === 'ai'
-                  ? 'bg-gradient-to-r from-[#00aeef] to-[#6366f1] text-white shadow-lg shadow-[#00aeef]/20'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'bg-gradient-to-r from-[#00aeef] to-[#6366f1] text-white shadow-md'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
               AI Systems
             </button>
             <button
               onClick={() => setSelectedCategory('saas')}
-              className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
+              className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all ${
                 selectedCategory === 'saas'
-                  ? 'bg-gradient-to-r from-[#00aeef] to-[#6366f1] text-white shadow-lg shadow-[#00aeef]/20'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'bg-gradient-to-r from-[#00aeef] to-[#6366f1] text-white shadow-md'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
               SaaS Platforms
             </button>
             <button
               onClick={() => setSelectedCategory('corporate')}
-              className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
+              className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all ${
                 selectedCategory === 'corporate'
-                  ? 'bg-gradient-to-r from-[#00aeef] to-[#6366f1] text-white shadow-lg shadow-[#00aeef]/20'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'bg-gradient-to-r from-[#00aeef] to-[#6366f1] text-white shadow-md'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
               Banking & Enterprise
@@ -228,72 +180,73 @@ export default function Portfolio() {
             return (
               <motion.div
                 key={project.id}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="group rounded-2xl border border-white/10 glass-card overflow-hidden hover:border-[#00aeef]/50 transition-all duration-500 hover:-translate-y-1.5 flex flex-col justify-between"
+                transition={{ duration: 0.5, delay: idx * 0.08 }}
+                className="group rounded-2xl theme-card overflow-hidden flex flex-col justify-between"
               >
-                {/* Visual Header / Mock Graphic */}
-                <div className={`h-48 p-6 bg-gradient-to-br ${project.imageBg} relative overflow-hidden flex flex-col justify-between border-b border-white/10`}>
+                {/* Visual Header / Mock Banner */}
+                <div className={`h-48 p-6 bg-gradient-to-br ${project.imageBg} relative overflow-hidden flex flex-col justify-between border-b border-slate-200 dark:border-white/10`}>
                   <div className="flex items-center justify-between relative z-10">
-                    <span className="px-3 py-1 rounded-full bg-slate-950/80 border border-white/10 text-[11px] font-mono text-[#00aeef] font-semibold">
+                    <span className="px-3 py-1 rounded-full bg-white/90 dark:bg-slate-950/80 border border-slate-200 dark:border-white/10 text-[11px] font-mono text-[#00aeef] font-semibold shadow-xs">
                       {project.badge}
                     </span>
-                    <div className="w-9 h-9 rounded-xl bg-slate-950/80 border border-white/10 flex items-center justify-center text-white">
+                    <div className="w-9 h-9 rounded-xl bg-white/90 dark:bg-slate-950/80 border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-800 dark:text-white">
                       <IconComponent className="w-4 h-4 text-[#00aeef]" />
                     </div>
                   </div>
 
-                  {/* Graphic Mock Content */}
-                  <div className="relative z-10 space-y-2">
-                    <h3 className="text-xl font-bold text-white group-hover:text-[#00aeef] transition-colors">
+                  <div className="relative z-10 space-y-1">
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-[#00aeef] transition-colors">
                       {project.name}
                     </h3>
-                    <div className="flex items-center gap-4 text-xs font-mono text-slate-300">
-                      {project.metrics.slice(0, 2).map((m, i) => (
-                        <span key={i} className="flex items-center gap-1 bg-slate-950/60 px-2 py-0.5 rounded border border-white/5">
-                          <TrendingUp className="w-3 h-3 text-emerald-400" />
-                          <strong className="text-white">{m.value}</strong> {m.label}
-                        </span>
-                      ))}
-                    </div>
                   </div>
 
-                  {/* Ambient Glow */}
                   <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-[#00aeef]/20 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500" />
                 </div>
 
                 {/* Body Content */}
                 <div className="p-6 space-y-5 flex-1 flex flex-col justify-between">
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                    {project.shortDesc}
-                  </p>
-
-                  {/* Tech Stack Pills */}
+                  
+                  {/* Problem & Solution */}
                   <div className="space-y-3">
-                    <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400 font-semibold block">
-                      Engineered With:
-                    </span>
-                    <div className="flex flex-wrap gap-1.5">
-                      {project.techStack.map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-2.5 py-1 rounded-md bg-slate-900 border border-white/5 text-[11px] font-mono text-slate-300"
-                        >
-                          {tech}
-                        </span>
-                      ))}
+                    <div>
+                      <span className="text-[11px] font-mono uppercase tracking-wider text-rose-500 font-semibold block">
+                        The Challenge:
+                      </span>
+                      <p className="text-xs text-slate-600 dark:text-slate-400 line-clamp-2 mt-0.5">
+                        {project.problem}
+                      </p>
+                    </div>
+
+                    <div>
+                      <span className="text-[11px] font-mono uppercase tracking-wider text-emerald-500 font-semibold block">
+                        The Solution:
+                      </span>
+                      <p className="text-xs sm:text-sm text-slate-800 dark:text-slate-200 leading-relaxed font-medium mt-0.5">
+                        {project.solution}
+                      </p>
                     </div>
                   </div>
 
-                  {/* CTA Action */}
-                  <div className="pt-4 border-t border-white/5 flex items-center justify-between">
+                  {/* Technology Stack */}
+                  <div className="space-y-2 pt-3 border-t border-slate-200 dark:border-white/5">
+                    <span className="text-[11px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold block">
+                      Technology Stack:
+                    </span>
+                    <div className="text-xs font-mono text-[#00aeef] font-medium bg-slate-100 dark:bg-slate-900/90 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-white/5">
+                      {project.techStackString}
+                    </div>
+                  </div>
+
+                  {/* Case Study Modal CTA */}
+                  <div className="pt-4 border-t border-slate-200 dark:border-white/5 flex items-center justify-between">
                     <button
                       onClick={() => setActiveProject(project)}
-                      className="text-xs font-semibold text-[#00aeef] hover:text-white flex items-center gap-1.5 group/btn transition-colors"
+                      className="text-xs font-semibold text-[#00aeef] hover:text-slate-900 dark:hover:text-white flex items-center gap-1.5 group/btn transition-colors"
                     >
-                      <span>Read Case Study</span>
+                      <span>Read Full Breakdown</span>
                       <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
                     </button>
                     {project.liveUrl && (
@@ -301,8 +254,8 @@ export default function Portfolio() {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className="text-slate-400 hover:text-white p-1 rounded transition-colors"
-                        aria-label="View Live Project"
+                        className="text-slate-400 hover:text-slate-800 dark:hover:text-white p-1 rounded transition-colors"
+                        aria-label="View Live Site"
                       >
                         <ExternalLink className="w-4 h-4" />
                       </a>
@@ -317,16 +270,16 @@ export default function Portfolio() {
         {/* Detailed Modal Popup for Case Study */}
         <AnimatePresence>
           {activeProject && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md">
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className="bg-slate-950 border border-white/15 rounded-2xl max-w-2xl w-full p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto relative shadow-2xl"
+                className="bg-white dark:bg-slate-950 border border-slate-300 dark:border-white/15 rounded-2xl max-w-2xl w-full p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto relative shadow-2xl"
               >
                 <button
                   onClick={() => setActiveProject(null)}
-                  className="absolute top-6 right-6 p-2 rounded-xl bg-slate-900 border border-white/10 text-slate-400 hover:text-white transition-colors"
+                  className="absolute top-6 right-6 p-2 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-white/10 text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -335,66 +288,47 @@ export default function Portfolio() {
                   <span className="px-3 py-1 rounded-full bg-[#00aeef]/10 border border-[#00aeef]/30 text-xs font-mono text-[#00aeef]">
                     {activeProject.badge}
                   </span>
-                  <h3 className="text-2xl sm:text-3xl font-extrabold text-white">
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
                     {activeProject.name}
                   </h3>
                 </div>
 
-                <p className="text-sm text-slate-300 leading-relaxed">
-                  {activeProject.fullDesc}
-                </p>
+                <div className="space-y-4 text-xs sm:text-sm">
+                  <div className="p-4 rounded-xl bg-rose-500/5 dark:bg-rose-500/10 border border-rose-500/20 space-y-1">
+                    <span className="font-mono uppercase font-bold text-rose-500 block text-xs">Business Challenge</span>
+                    <p className="text-slate-700 dark:text-slate-300 leading-relaxed">{activeProject.problem}</p>
+                  </div>
 
-                {/* Key Metrics */}
-                <div className="grid grid-cols-3 gap-3 p-4 rounded-xl bg-slate-900/90 border border-white/10">
-                  {activeProject.metrics.map((m, i) => (
-                    <div key={i} className="text-center">
-                      <div className="text-lg font-bold text-[#00aeef]">{m.value}</div>
-                      <div className="text-[11px] font-mono text-slate-400">{m.label}</div>
-                    </div>
-                  ))}
+                  <div className="p-4 rounded-xl bg-emerald-500/5 dark:bg-emerald-500/10 border border-emerald-500/20 space-y-1">
+                    <span className="font-mono uppercase font-bold text-emerald-500 block text-xs">Architectural Solution</span>
+                    <p className="text-slate-800 dark:text-slate-200 leading-relaxed">{activeProject.solution}</p>
+                  </div>
                 </div>
 
-                {/* Technical Highlights */}
-                <div className="space-y-3">
-                  <h4 className="text-xs font-mono uppercase tracking-wider text-slate-300 font-semibold">
-                    Key Deliverables & Architectural Features
-                  </h4>
-                  <ul className="space-y-2 text-xs sm:text-sm text-slate-300">
-                    {activeProject.highlights.map((h, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                        <span>{h}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Tech Stack */}
                 <div className="space-y-2">
-                  <span className="text-xs font-mono text-slate-400">Full Tech Stack Used:</span>
+                  <span className="text-xs font-mono text-slate-500 dark:text-slate-400 block">Technology Stack Implemented:</span>
                   <div className="flex flex-wrap gap-2">
-                    {activeProject.techStack.map((tech) => (
-                      <span key={tech} className="px-3 py-1 rounded-lg bg-slate-900 border border-white/10 text-xs font-mono text-slate-200">
+                    {activeProject.techTags.map((tech) => (
+                      <span key={tech} className="px-3 py-1 rounded-lg bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-white/10 text-xs font-mono text-slate-800 dark:text-slate-200">
                         {tech}
                       </span>
                     ))}
                   </div>
                 </div>
 
-                {/* Modal Footer Actions */}
-                <div className="pt-4 border-t border-white/10 flex items-center justify-between">
+                <div className="pt-4 border-t border-slate-200 dark:border-white/10 flex items-center justify-between">
                   <button
                     onClick={() => setActiveProject(null)}
-                    className="px-5 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-xs font-semibold text-slate-300 hover:text-white"
+                    className="px-5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-white/10 text-xs font-semibold text-slate-700 dark:text-slate-300"
                   >
                     Close Overview
                   </button>
                   <a
                     href="#contact"
                     onClick={() => setActiveProject(null)}
-                    className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#00aeef] to-[#6366f1] text-xs font-semibold text-white shadow-lg shadow-[#00aeef]/20 flex items-center gap-2"
+                    className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#00aeef] to-[#6366f1] text-xs font-semibold text-white shadow-md flex items-center gap-2"
                   >
-                    <span>Build Similar Solution</span>
+                    <span>Build Similar Product</span>
                     <ArrowRight className="w-4 h-4" />
                   </a>
                 </div>

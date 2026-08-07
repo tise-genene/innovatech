@@ -7,50 +7,49 @@ import {
   ArrowRight, 
   Sparkles, 
   MapPin, 
-  CheckCircle, 
+  CheckCircle2, 
   Play, 
-  Code2, 
   Cpu, 
-  Zap, 
   Activity, 
   ShieldCheck, 
   Terminal, 
   Layers, 
   Server, 
-  Globe
+  Globe 
 } from 'lucide-react';
 
 export default function Hero() {
   const [activeTab, setActiveTab] = useState<'analytics' | 'code' | 'ai'>('analytics');
 
   return (
-    <section className="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden bg-grid-pattern bg-radial-gradient">
-      {/* Background Decorative Glow Orbs */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-[#00aeef]/20 to-[#6366f1]/15 rounded-full blur-[120px] pointer-events-none" />
-      
+    <section className="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden bg-grid-pattern">
+      {/* Background Radial Glow (Dark & Light Mode Adaptation) */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[650px] h-[380px] bg-gradient-to-tr from-[#00aeef]/20 via-[#6366f1]/15 to-transparent rounded-full blur-[130px] pointer-events-none" />
+
+      {/* Floating Abstract Tech Elements (Minimal animations) */}
+      <div className="absolute top-28 left-8 sm:left-24 hidden md:flex items-center gap-2 px-3 py-1.5 rounded-xl border border-slate-300/40 dark:border-white/10 bg-white/70 dark:bg-slate-900/60 backdrop-blur-md shadow-md animate-float text-xs font-mono text-slate-700 dark:text-slate-300">
+        <Cpu className="w-3.5 h-3.5 text-[#00aeef]" />
+        <span>RAG Vector Engine v2.4</span>
+      </div>
+
+      <div className="absolute top-36 right-8 sm:right-24 hidden md:flex items-center gap-2 px-3 py-1.5 rounded-xl border border-slate-300/40 dark:border-white/10 bg-white/70 dark:bg-slate-900/60 backdrop-blur-md shadow-md animate-float text-xs font-mono text-slate-700 dark:text-slate-300" style={{ animationDelay: '2s' }}>
+        <Activity className="w-3.5 h-3.5 text-emerald-500" />
+        <span>99.99% Cloud Uptime</span>
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Top Badges & Trust Banner */}
+        {/* Trust Badge */}
         <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-[#00aeef]/30 text-xs font-mono text-slate-200 shadow-lg shadow-[#00aeef]/10 backdrop-blur-md"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-200/80 dark:bg-slate-900/90 border border-slate-300 dark:border-white/10 text-xs font-mono text-slate-800 dark:text-slate-200 shadow-sm backdrop-blur-md"
           >
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             <MapPin className="w-3.5 h-3.5 text-[#00aeef]" />
-            <span>Based in Addis Ababa, Ethiopia</span>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-white/10 text-xs font-mono text-slate-300 backdrop-blur-md"
-          >
-            <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
-            <span>Software Development • AI • Design • Growth</span>
+            <span>Based in Addis Ababa, Ethiopia • Serving Global Clients</span>
           </motion.div>
         </div>
 
@@ -60,11 +59,11 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.15]"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.12]"
           >
-            We Build Software Products{' '}
-            <span className="bg-gradient-to-r from-[#00aeef] via-cyan-300 to-[#6366f1] bg-clip-text text-transparent">
-              From Idea To Scale
+            Building Digital Products That{' '}
+            <span className="bg-gradient-to-r from-[#00aeef] via-cyan-500 to-[#6366f1] bg-clip-text text-transparent">
+              Drive Real Growth
             </span>
           </motion.h1>
 
@@ -72,12 +71,12 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.25 }}
-            className="text-base sm:text-lg md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-normal"
+            className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed font-normal"
           >
-            Innova Tech helps startups and businesses build SaaS platforms, web applications, AI solutions, and digital experiences with a reliable engineering team.
+            We design and build SaaS platforms, AI solutions, and scalable software products for startups and businesses.
           </motion.p>
 
-          {/* CTA Buttons */}
+          {/* Action Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -86,7 +85,7 @@ export default function Hero() {
           >
             <Link
               href="#contact"
-              className="w-full sm:w-auto px-8 py-4 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-[#00aeef] to-[#6366f1] hover:from-[#0090c9] hover:to-[#4f46e5] shadow-xl shadow-[#00aeef]/30 flex items-center justify-center gap-3 transition-all duration-300 hover:scale-[1.03] active:scale-[0.98]"
+              className="w-full sm:w-auto px-8 py-4 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-[#00aeef] to-[#6366f1] hover:from-[#0090c9] hover:to-[#4f46e5] shadow-xl shadow-[#00aeef]/25 flex items-center justify-center gap-3 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
             >
               <span>Start a Project</span>
               <ArrowRight className="w-4 h-4" />
@@ -94,58 +93,58 @@ export default function Hero() {
 
             <Link
               href="#work"
-              className="w-full sm:w-auto px-8 py-4 rounded-xl text-sm font-semibold text-slate-200 bg-slate-900/90 border border-white/15 hover:bg-slate-800 hover:text-white flex items-center justify-center gap-2.5 transition-all duration-300"
+              className="w-full sm:w-auto px-8 py-4 rounded-xl text-sm font-semibold text-slate-800 dark:text-slate-200 bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/15 hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-center gap-2.5 transition-all duration-300 shadow-sm"
             >
               <Play className="w-4 h-4 text-[#00aeef] fill-[#00aeef]/20" />
               <span>View Our Work</span>
             </Link>
           </motion.div>
 
-          {/* Trust Highlights */}
+          {/* Trust Pillars */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.45 }}
-            className="pt-6 flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-slate-400"
+            className="pt-6 flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-slate-600 dark:text-slate-400"
           >
             <span className="flex items-center gap-1.5">
-              <CheckCircle className="w-4 h-4 text-emerald-400" /> Startup Speed
+              <CheckCircle2 className="w-4 h-4 text-emerald-500" /> Startup Speed
             </span>
             <span className="flex items-center gap-1.5">
-              <CheckCircle className="w-4 h-4 text-emerald-400" /> Enterprise-Grade Code
+              <CheckCircle2 className="w-4 h-4 text-emerald-500" /> Enterprise-Grade Code
             </span>
             <span className="flex items-center gap-1.5">
-              <CheckCircle className="w-4 h-4 text-emerald-400" /> 100% Ethiopian Talent
+              <CheckCircle2 className="w-4 h-4 text-emerald-500" /> 100% In-House Talent
             </span>
           </motion.div>
         </div>
 
-        {/* Interactive Studio Preview Window */}
+        {/* Interactive Product Studio Preview Window */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="mt-14 max-w-5xl mx-auto rounded-2xl border border-white/10 glass-card shadow-2xl shadow-black/80 overflow-hidden relative"
+          className="mt-14 max-w-5xl mx-auto rounded-2xl border border-slate-300/80 dark:border-white/10 bg-white/90 dark:bg-slate-950/80 backdrop-blur-xl shadow-2xl overflow-hidden relative"
         >
-          {/* Top Window Bar */}
-          <div className="px-4 py-3 bg-slate-950/90 border-b border-white/10 flex items-center justify-between">
+          {/* Top Window Header */}
+          <div className="px-4 py-3 bg-slate-100 dark:bg-slate-900 border-b border-slate-200 dark:border-white/10 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 rounded-full bg-rose-500/80" />
               <div className="w-3 h-3 rounded-full bg-amber-500/80" />
               <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
-              <span className="ml-2 text-xs font-mono text-slate-400 hidden sm:inline-block">
-                innovatech-core-engine.v2.et
+              <span className="ml-2 text-xs font-mono text-slate-500 dark:text-slate-400 hidden sm:inline-block">
+                innovatech-product-studio.et
               </span>
             </div>
 
-            {/* View Switcher Tabs */}
-            <div className="flex items-center gap-1 bg-slate-900 rounded-lg p-1 border border-white/5">
+            {/* View Switcher */}
+            <div className="flex items-center gap-1 bg-slate-200 dark:bg-slate-950 rounded-lg p-1 border border-slate-300/50 dark:border-white/5">
               <button
                 onClick={() => setActiveTab('analytics')}
                 className={`px-3 py-1 text-xs font-medium rounded-md transition-all ${
                   activeTab === 'analytics'
                     ? 'bg-[#00aeef] text-white shadow'
-                    : 'text-slate-400 hover:text-slate-200'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
                 }`}
               >
                 Analytics
@@ -155,17 +154,17 @@ export default function Hero() {
                 className={`px-3 py-1 text-xs font-medium rounded-md transition-all ${
                   activeTab === 'code'
                     ? 'bg-[#00aeef] text-white shadow'
-                    : 'text-slate-400 hover:text-slate-200'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
                 }`}
               >
-                Engine API
+                API Engine
               </button>
               <button
                 onClick={() => setActiveTab('ai')}
                 className={`px-3 py-1 text-xs font-medium rounded-md transition-all ${
                   activeTab === 'ai'
                     ? 'bg-[#00aeef] text-white shadow'
-                    : 'text-slate-400 hover:text-slate-200'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
                 }`}
               >
                 AI Mesh
@@ -173,47 +172,47 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Window Content */}
-          <div className="p-6 md:p-8 bg-slate-950/70 min-h-[320px]">
+          {/* Window Body */}
+          <div className="p-6 md:p-8 min-h-[300px]">
             {activeTab === 'analytics' && (
               <div className="space-y-6">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  <div className="p-4 rounded-xl bg-slate-900/80 border border-white/5 space-y-1">
-                    <span className="text-xs font-mono text-slate-400">Total Products Delivered</span>
-                    <div className="text-2xl font-bold text-white flex items-center gap-2">
-                      30+ <span className="text-xs font-mono text-emerald-400">+100% Quality</span>
+                  <div className="p-4 rounded-xl bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-white/5 space-y-1">
+                    <span className="text-xs font-mono text-slate-500 dark:text-slate-400">Products Delivered</span>
+                    <div className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                      30+ <span className="text-xs font-mono text-emerald-500 font-normal">+100% Quality</span>
                     </div>
                   </div>
-                  <div className="p-4 rounded-xl bg-slate-900/80 border border-white/5 space-y-1">
-                    <span className="text-xs font-mono text-slate-400">System Uptime</span>
-                    <div className="text-2xl font-bold text-emerald-400">99.99%</div>
+                  <div className="p-4 rounded-xl bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-white/5 space-y-1">
+                    <span className="text-xs font-mono text-slate-500 dark:text-slate-400">System Uptime</span>
+                    <div className="text-2xl font-bold text-emerald-500">99.99%</div>
                   </div>
-                  <div className="p-4 rounded-xl bg-slate-900/80 border border-white/5 space-y-1">
-                    <span className="text-xs font-mono text-slate-400">Avg. Launch Time</span>
-                    <div className="text-2xl font-bold text-white">4-8 Weeks</div>
+                  <div className="p-4 rounded-xl bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-white/5 space-y-1">
+                    <span className="text-xs font-mono text-slate-500 dark:text-slate-400">Avg. Launch Sprint</span>
+                    <div className="text-2xl font-bold text-slate-900 dark:text-white">4-8 Weeks</div>
                   </div>
-                  <div className="p-4 rounded-xl bg-slate-900/80 border border-white/5 space-y-1">
-                    <span className="text-xs font-mono text-slate-400">Client Satisfaction</span>
+                  <div className="p-4 rounded-xl bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-white/5 space-y-1">
+                    <span className="text-xs font-mono text-slate-500 dark:text-slate-400">Client Satisfaction</span>
                     <div className="text-2xl font-bold text-[#00aeef]">5.0 / 5.0</div>
                   </div>
                 </div>
 
-                {/* Animated Graph / Metric Mockup */}
-                <div className="p-5 rounded-xl bg-slate-900/50 border border-white/5 space-y-4">
+                {/* Animated Pipeline Graph */}
+                <div className="p-5 rounded-xl bg-slate-100/60 dark:bg-slate-900/50 border border-slate-200 dark:border-white/5 space-y-3">
                   <div className="flex items-center justify-between text-xs font-mono">
-                    <span className="text-slate-300 flex items-center gap-2">
-                      <Activity className="w-4 h-4 text-[#00aeef]" /> Live Deployment Pipeline & AI Inference Latency
+                    <span className="text-slate-700 dark:text-slate-300 flex items-center gap-2">
+                      <Activity className="w-4 h-4 text-[#00aeef]" /> Live Production Metrics & Microservice Execution
                     </span>
-                    <span className="text-emerald-400 font-bold">14ms latency</span>
+                    <span className="text-emerald-500 font-bold">12ms latency</span>
                   </div>
                   <div className="h-24 w-full flex items-end justify-between gap-1 sm:gap-2 pt-2">
-                    {[40, 65, 45, 80, 55, 90, 85, 95, 75, 100, 88, 96, 92, 100].map((h, i) => (
-                      <div key={i} className="flex-1 bg-slate-800 rounded-t-md overflow-hidden h-full flex items-end">
+                    {[45, 60, 50, 85, 65, 95, 80, 100, 70, 90, 85, 98, 92, 100].map((h, i) => (
+                      <div key={i} className="flex-1 bg-slate-200 dark:bg-slate-800 rounded-t-md overflow-hidden h-full flex items-end">
                         <motion.div
                           initial={{ height: 0 }}
                           animate={{ height: `${h}%` }}
                           transition={{ duration: 0.8, delay: i * 0.04 }}
-                          className="w-full bg-gradient-to-t from-[#00aeef]/40 to-[#6366f1]"
+                          className="w-full bg-gradient-to-t from-[#00aeef] to-[#6366f1]"
                         />
                       </div>
                     ))}
@@ -223,51 +222,51 @@ export default function Hero() {
             )}
 
             {activeTab === 'code' && (
-              <div className="font-mono text-xs text-slate-300 space-y-2 bg-slate-900/90 p-5 rounded-xl border border-white/5 overflow-x-auto">
-                <div className="text-slate-500">// Innova Tech Core SaaS Client Architecture</div>
-                <div><span className="text-purple-400">import</span> &#123; <span className="text-cyan-300">InnovaEngine</span> &#125; <span className="text-purple-400">from</span> <span className="text-emerald-300">&apos;@innovatech/core&apos;</span>;</div>
-                <div className="pt-2"><span className="text-purple-400">export const</span> <span className="text-blue-400">deployDigitalProduct</span> = <span className="text-purple-400">async</span> (project) =&gt; &#123;</div>
-                <div className="pl-4 text-slate-300"><span className="text-purple-400">const</span> client = <span className="text-purple-400">new</span> InnovaEngine(&#123; region: <span className="text-emerald-300">&apos;AddisAbaba_GlobalMesh&apos;</span> &#125;);</div>
-                <div className="pl-4 text-slate-300"><span className="text-purple-400">return await</span> client.buildProductStack(&#123;</div>
-                <div className="pl-8 text-cyan-300">frontend: <span className="text-emerald-300">&apos;Next.js 16 + TypeScript + Tailwind&apos;</span>,</div>
-                <div className="pl-8 text-cyan-300">backend: <span className="text-emerald-300">&apos;Node.js / FastAPI Microservices&apos;</span>,</div>
-                <div className="pl-8 text-cyan-300">aiIntegration: <span className="text-emerald-300">&apos;Custom RAG + LLM Workflows&apos;</span>,</div>
-                <div className="pl-8 text-cyan-300">security: <span className="text-emerald-300">&apos;Enterprise End-to-End Encryption&apos;</span></div>
+              <div className="font-mono text-xs text-slate-800 dark:text-slate-300 space-y-2 bg-slate-100 dark:bg-slate-900/90 p-5 rounded-xl border border-slate-200 dark:border-white/5 overflow-x-auto">
+                <div className="text-slate-400">// Innova Tech Software Architecture Stack</div>
+                <div><span className="text-purple-600 dark:text-purple-400">import</span> &#123; <span className="text-cyan-600 dark:text-cyan-300">InnovaStudio</span> &#125; <span className="text-purple-600 dark:text-purple-400">from</span> <span className="text-emerald-600 dark:text-emerald-300">&apos;@innovatech/core&apos;</span>;</div>
+                <div className="pt-2"><span className="text-purple-600 dark:text-purple-400">export const</span> <span className="text-blue-600 dark:text-blue-400">buildSaaSPlatform</span> = <span className="text-purple-600 dark:text-purple-400">async</span> (startup) =&gt; &#123;</div>
+                <div className="pl-4"><span className="text-purple-600 dark:text-purple-400">const</span> studio = <span className="text-purple-600 dark:text-purple-400">new</span> InnovaStudio(&#123; region: <span className="text-emerald-600 dark:text-emerald-300">&apos;AddisAbaba_GlobalDelivery&apos;</span> &#125;);</div>
+                <div className="pl-4"><span className="text-purple-600 dark:text-purple-400">return await</span> studio.deployProduct(&#123;</div>
+                <div className="pl-8 text-cyan-700 dark:text-cyan-300">frontend: <span className="text-emerald-600 dark:text-emerald-300">&apos;Next.js 16 + TypeScript + Tailwind&apos;</span>,</div>
+                <div className="pl-8 text-cyan-700 dark:text-cyan-300">backend: <span className="text-emerald-600 dark:text-emerald-300">&apos;Python FastAPI / Node.js Microservices&apos;</span>,</div>
+                <div className="pl-8 text-cyan-700 dark:text-cyan-300">aiIntegration: <span className="text-emerald-600 dark:text-emerald-300">&apos;LLM Workflows + RAG Indexing&apos;</span>,</div>
+                <div className="pl-8 text-cyan-700 dark:text-cyan-300">database: <span className="text-emerald-600 dark:text-emerald-300">&apos;PostgreSQL + Supabase + Redis&apos;</span></div>
                 <div className="pl-4">&#125;);</div>
                 <div>&#125;;</div>
-                <div className="pt-2 text-emerald-400 flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4" /> // Build status: Ready for Production (0 Errors)
+                <div className="pt-2 text-emerald-600 dark:text-emerald-400 flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4" /> // Status: 0 Errors • Production Ready
                 </div>
               </div>
             )}
 
             {activeTab === 'ai' && (
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="p-4 rounded-xl bg-slate-900/80 border border-white/5 space-y-2">
+                <div className="p-4 rounded-xl bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-white/5 space-y-2">
                   <div className="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center">
-                    <Cpu className="w-4 h-4 text-cyan-400" />
+                    <Cpu className="w-4 h-4 text-cyan-500" />
                   </div>
-                  <h4 className="text-sm font-semibold text-white">LLM Agent Pipelines</h4>
-                  <p className="text-xs text-slate-400 leading-relaxed">
-                    Custom conversational, context-aware AI agents tailored to regional & global enterprise workflows.
+                  <h4 className="text-sm font-semibold text-slate-900 dark:text-white">Conversational Bots</h4>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                    Custom Telegram, WhatsApp, and Web AI bots connected directly to business CRMs.
                   </p>
                 </div>
-                <div className="p-4 rounded-xl bg-slate-900/80 border border-white/5 space-y-2">
+                <div className="p-4 rounded-xl bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-white/5 space-y-2">
                   <div className="w-8 h-8 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center">
-                    <Server className="w-4 h-4 text-indigo-400" />
+                    <Server className="w-4 h-4 text-indigo-500" />
                   </div>
-                  <h4 className="text-sm font-semibold text-white">RAG & Vector Search</h4>
-                  <p className="text-xs text-slate-400 leading-relaxed">
-                    Ultra-fast vector database indexing for document processing, legal, and financial intelligence.
+                  <h4 className="text-sm font-semibold text-slate-900 dark:text-white">RAG Vector Search</h4>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                    Vectorized internal knowledge base search indexing enterprise documentation.
                   </p>
                 </div>
-                <div className="p-4 rounded-xl bg-slate-900/80 border border-white/5 space-y-2">
+                <div className="p-4 rounded-xl bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-white/5 space-y-2">
                   <div className="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center">
-                    <ShieldCheck className="w-4 h-4 text-purple-400" />
+                    <ShieldCheck className="w-4 h-4 text-purple-500" />
                   </div>
-                  <h4 className="text-sm font-semibold text-white">Automated Webhooks</h4>
-                  <p className="text-xs text-slate-400 leading-relaxed">
-                    Autonomous background processing queues linking payment gateways, CRMs, and mobile bots.
+                  <h4 className="text-sm font-semibold text-slate-900 dark:text-white">Autonomous Agents</h4>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                    Background task automation queues handling cross-platform data synchronization.
                   </p>
                 </div>
               </div>
@@ -275,16 +274,16 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* Tech Stack Marquee Ticker */}
-        <div className="mt-16 pt-8 border-t border-white/10 text-center">
-          <p className="text-xs font-mono uppercase tracking-widest text-slate-300 font-semibold mb-6">
-            Technologies & Frameworks We Master
+        {/* Tech Stack Marquee */}
+        <div className="mt-16 pt-8 border-t border-slate-200 dark:border-white/10 text-center">
+          <p className="text-xs font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400 font-semibold mb-6">
+            Engineered With Cutting-Edge Tools
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 opacity-85">
-            {['Next.js 16', 'TypeScript', 'React Native', 'Node.js', 'Python FastAPI', 'PostgreSQL', 'OpenAI API', 'Tailwind CSS', 'Docker & Kubernetes', 'GraphQL'].map((tech) => (
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6">
+            {['Next.js 16', 'TypeScript', 'React Native', 'Supabase', 'PostgreSQL', 'Python FastAPI', 'OpenAI API', 'Tailwind CSS', 'Docker', 'GraphQL'].map((tech) => (
               <span
                 key={tech}
-                className="px-4 py-2 rounded-xl bg-slate-900/70 border border-white/10 text-xs font-mono text-slate-300 font-medium hover:border-[#00aeef]/40 hover:text-white transition-all shadow-sm"
+                className="px-4 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 text-xs font-mono text-slate-700 dark:text-slate-300 font-medium shadow-sm hover:border-[#00aeef] transition-colors"
               >
                 {tech}
               </span>
