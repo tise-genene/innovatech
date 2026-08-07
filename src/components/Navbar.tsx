@@ -61,36 +61,36 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 group">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#00aeef] to-[#6366f1] p-0.5 shadow-md shadow-[#00aeef]/20 transition-transform duration-300 group-hover:scale-105">
-              <div className="w-full h-full bg-[#08090a] dark:bg-[#08090a] rounded-[10px] flex items-center justify-center">
+              <div className="w-full h-full bg-slate-950 dark:bg-[#08090a] rounded-[10px] flex items-center justify-center">
                 <Terminal className="w-5 h-5 text-[#00aeef]" />
               </div>
             </div>
             <div className="flex flex-col">
               <div className="flex items-center gap-1">
-                <span className="text-xl font-bold tracking-tight text-slate-900 dark:text-white">
+                <span className="text-xl font-extrabold tracking-tight text-slate-950 dark:text-white">
                   INNOVA
                 </span>
-                <span className="text-xl font-bold tracking-tight text-[#00aeef]">
+                <span className="text-xl font-extrabold tracking-tight text-[#00aeef]">
                   TECH
                 </span>
               </div>
-              <span className="text-[10px] font-mono tracking-widest text-slate-500 dark:text-slate-400 uppercase font-semibold">
+              <span className="text-[10px] font-mono tracking-widest text-slate-600 dark:text-slate-400 uppercase font-semibold">
                 Software Product Studio
               </span>
             </div>
           </Link>
 
           {/* Desktop Links */}
-          <nav className="hidden md:flex items-center gap-1 bg-slate-200/50 dark:bg-slate-900/60 backdrop-blur-md px-4 py-1.5 rounded-full border border-slate-300/60 dark:border-white/10 shadow-inner">
+          <nav className="hidden md:flex items-center gap-1 bg-slate-200/80 dark:bg-slate-900/80 backdrop-blur-md px-4 py-1.5 rounded-full border border-slate-300 dark:border-white/10 shadow-inner">
             {navLinks.map((link) => {
               const Icon = link.icon;
               return (
                 <Link
                   key={link.label}
                   href={link.href}
-                  className="flex items-center gap-1.5 text-xs font-medium text-slate-700 dark:text-slate-300 hover:text-[#00aeef] dark:hover:text-white px-3.5 py-1.5 rounded-full transition-all duration-200 hover:bg-slate-300/40 dark:hover:bg-white/5"
+                  className="flex items-center gap-1.5 text-xs font-bold text-slate-800 dark:text-slate-200 hover:text-[#00aeef] dark:hover:text-white px-3.5 py-1.5 rounded-full transition-all duration-200 hover:bg-slate-300/60 dark:hover:bg-white/10"
                 >
-                  <Icon className="w-3.5 h-3.5 text-[#00aeef]/80" />
+                  <Icon className="w-3.5 h-3.5 text-[#00aeef]" />
                   {link.label}
                 </Link>
               );
@@ -104,7 +104,7 @@ export default function Navbar() {
             {mounted && (
               <button
                 onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                className="p-2.5 rounded-xl bg-slate-200/80 dark:bg-slate-900/80 border border-slate-300/60 dark:border-white/10 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:border-[#00aeef]/40 transition-all"
+                className="p-2.5 rounded-xl bg-slate-200 dark:bg-slate-900 border border-slate-300 dark:border-white/10 text-slate-800 dark:text-slate-200 hover:text-slate-950 dark:hover:text-white transition-all shadow-xs"
                 aria-label="Toggle theme"
               >
                 {theme === 'dark' ? (
@@ -127,7 +127,7 @@ export default function Navbar() {
             {/* Mobile Drawer Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2.5 rounded-xl bg-slate-200/80 dark:bg-slate-900/80 border border-slate-300/60 dark:border-white/10 text-slate-800 dark:text-slate-200"
+              className="md:hidden p-2.5 rounded-xl bg-slate-200 dark:bg-slate-900 border border-slate-300 dark:border-white/10 text-slate-800 dark:text-slate-200"
               aria-label="Toggle Mobile Menu"
             >
               {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -144,7 +144,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-slate-100/95 dark:bg-[#08090a]/95 backdrop-blur-2xl border-b border-slate-300/60 dark:border-white/10 px-6 py-6 space-y-4 shadow-xl"
+            className="md:hidden bg-slate-100/95 dark:bg-[#08090a]/95 backdrop-blur-2xl border-b border-slate-300 dark:border-white/10 px-6 py-6 space-y-4 shadow-xl"
           >
             <div className="flex flex-col space-y-2">
               {navLinks.map((link) => {
@@ -154,7 +154,7 @@ export default function Navbar() {
                     key={link.label}
                     href={link.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-800 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-800/80 hover:text-[#00aeef] transition-colors"
+                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-800/80 hover:text-[#00aeef] transition-colors"
                   >
                     <Icon className="w-4 h-4 text-[#00aeef]" />
                     <span>{link.label}</span>
@@ -163,7 +163,7 @@ export default function Navbar() {
               })}
             </div>
 
-            <div className="pt-4 border-t border-slate-300/60 dark:border-white/10 flex flex-col gap-3">
+            <div className="pt-4 border-t border-slate-300 dark:border-white/10 flex flex-col gap-3">
               <Link
                 href="/#contact"
                 onClick={() => setIsMobileMenuOpen(false)}
@@ -172,7 +172,7 @@ export default function Navbar() {
                 <span>Start a Project</span>
                 <ArrowUpRight className="w-4 h-4" />
               </Link>
-              <div className="text-center text-xs text-slate-500 font-mono pt-2">
+              <div className="text-center text-xs text-slate-600 dark:text-slate-400 font-mono pt-2">
                 📍 Based in Addis Ababa, Ethiopia • Serving Global Clients
               </div>
             </div>
