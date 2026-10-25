@@ -4,8 +4,8 @@ import Contact from '@/components/home/Contact';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Engineering & Services — Innova Tech',
-  description: 'Product Development, Full-stack Engineering, AI Solutions, and Digital Growth services by Innova Tech.',
+  title: 'Engineering & Capabilities — Eagle Pathway Tech Agency',
+  description: 'Full-Stack Platform Engineering, LMS Development, FinTech & Payment Integrations, and AI Automation by Eagle Pathway Tech Agency.',
 };
 
 export default function ServicesPage() {

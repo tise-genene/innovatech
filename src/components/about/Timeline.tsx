@@ -3,7 +3,7 @@
 import { useTheme } from '@/contexts/ThemeContext';
 
 const milestones = [
-  { year: '2019', title: 'Company Founded', description: 'Innova Tech was established in Addis Ababa.' },
+  { year: '2019', title: 'Agency Founded', description: 'Eagle Pathway Tech Agency was established in Addis Ababa.' },
   { year: '2020', title: 'First Major Client', description: 'Secured partnership with leading Ethiopian e-commerce platform.' },
   { year: '2021', title: 'Team Expansion', description: 'Grew our team to 10+ talented professionals.' },
   { year: '2022', title: 'AI Integration', description: 'Launched AI and machine learning services.' },

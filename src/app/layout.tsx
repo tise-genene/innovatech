@@ -10,36 +10,38 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Innova Tech — Software Development, AI Systems & Digital Solutions",
-  description: "Innova Tech helps startups and businesses build SaaS platforms, web applications, AI solutions, and digital experiences with a reliable engineering team based in Addis Ababa, Ethiopia.",
+  title: "Eagle Pathway Tech Agency — Software Engineering, LMS & Production Systems",
+  description: "Eagle Pathway Tech Agency is the software engineering & product studio building multi-tenant LMS suites, FinTech receipt verification engines, and scalable digital systems in Addis Ababa, Ethiopia.",
+  metadataBase: new URL("https://tech.eaglespathway.com"),
   keywords: [
-    "Innova Tech",
-    "Software Development Ethiopia",
-    "AI Systems Addis Ababa",
-    "SaaS Platform Development",
-    "Web Application Engineering",
-    "Ethiopian Tech Agency",
-    "Digital Product Studio",
     "Eagle Pathway",
-    "EagleBot",
-    "Full-Stack Engineering Partner"
+    "Eagle Pathway Tech Agency",
+    "Eagle Pathway LMS",
+    "tech.eaglespathway.com",
+    "VerifyReceipt",
+    "FinTech Verification Ethiopia",
+    "Ethiopian Software Engineering Studio",
+    "Telebirr Integration",
+    "CBE Receipt Verification",
+    "Addis Ababa Tech Agency",
+    "Next.js Full Stack Studio"
   ],
-  authors: [{ name: "Innova Tech Team", url: "https://innovatech.et" }],
-  creator: "Innova Tech",
-  publisher: "Innova Tech Ltd",
+  authors: [{ name: "Eagle Pathway Tech Team", url: "https://tech.eaglespathway.com" }],
+  creator: "Eagle Pathway Tech Agency",
+  publisher: "Eagle Pathway",
   openGraph: {
-    title: "Innova Tech — Software Development, AI Systems & Digital Solutions",
-    description: "Building digital software products from idea to scale with a reliable engineering team in Addis Ababa, Ethiopia.",
-    url: "https://innovatech.et",
-    siteName: "Innova Tech",
+    title: "Eagle Pathway Tech Agency — Software Engineering & Production Systems",
+    description: "The software engineering and product studio powering the Eagle Pathway educational suite, FinTech verification, and scalable cloud systems in East Africa.",
+    url: "https://tech.eaglespathway.com",
+    siteName: "Eagle Pathway Tech Agency",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Innova Tech — Software Development & AI Studio",
-    description: "Building digital software products from idea to scale. Based in Addis Ababa, Ethiopia.",
-    creator: "@innovatech",
+    title: "Eagle Pathway Tech Agency — Software Engineering Studio",
+    description: "Building production software, LMS platforms, and FinTech tools. Based in Addis Ababa, Ethiopia.",
+    creator: "@eaglespathway",
   },
   robots: {
     index: true,
@@ -54,7 +56,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} scroll-smooth`} suppressHydrationWarning>
-      <body className="antialiased bg-[var(--bg-main)] text-[var(--text-main)] min-h-screen transition-colors duration-300">
+      <body className="antialiased bg-[var(--bg-main)] text-[var(--text-main)] min-h-screen transition-colors duration-200">
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>

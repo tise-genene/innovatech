@@ -2,8 +2,8 @@ import Contact from '@/components/home/Contact';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Start a Project — Innova Tech',
-  description: 'Have a product idea? Let us build it together. Get in touch with Innova Tech engineering team in Addis Ababa, Ethiopia.',
+  title: 'Start a Project — Eagle Pathway Tech Agency',
+  description: 'Have a product or software system to engineer? Partner with Eagle Pathway Tech Agency in Addis Ababa, Ethiopia.',
 };
 
 export default function ContactPage() {

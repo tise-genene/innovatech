@@ -6,7 +6,7 @@ import {
   Palette, 
   Code2, 
   Rocket, 
-  Sparkles, 
+  Terminal, 
   CheckCircle2, 
   ArrowRight 
 } from 'lucide-react';
@@ -15,60 +15,57 @@ export default function Process() {
   const steps = [
     {
       number: '01',
-      title: 'Discover',
-      subtitle: 'Goals & Requirements',
-      description: 'We align on business goals, target audience, technical constraints, feature specs, and sprint roadmaps.',
+      title: 'Architect & Scope',
+      subtitle: 'PRD & Tech Strategy',
+      description: 'We align on business goals, user personas, technical constraints, data schemas, and sprint roadmaps.',
       icon: Search,
-      deliverables: ['Product Requirement Document (PRD)', 'Tech Stack Blueprint', 'Sprint Roadmap & Estimates'],
+      deliverables: ['Product Specs (PRD)', 'Database Architecture', 'Milestone Sprint Roadmap'],
       timeframe: 'Week 1',
     },
     {
       number: '02',
-      title: 'Design',
-      subtitle: 'Experience & Architecture',
-      description: 'We craft high-fidelity Figma UI/UX designs, interactive prototypes, design tokens, and database schemas.',
+      title: 'Design & Prototype',
+      subtitle: 'UI/UX & Design System',
+      description: 'We build interactive Figma prototypes, component design tokens, and user flow wireframes.',
       icon: Palette,
-      deliverables: ['Interactive Figma Prototype', 'Component Design System', 'Database & API Architecture'],
+      deliverables: ['Figma UI System', 'Interactive User Flows', 'API Contract Specs'],
       timeframe: 'Weeks 2 - 3',
     },
     {
       number: '03',
-      title: 'Build',
-      subtitle: 'Development & AI Systems',
-      description: 'Senior engineers develop type-safe frontend components, microservices, and AI integrations with automated testing.',
+      title: 'Engineer & Integrate',
+      subtitle: 'Type-Safe Execution',
+      description: 'Full-stack engineers write type-safe frontend components, microservices, and FinTech/API integrations.',
       icon: Code2,
-      deliverables: ['Weekly Demo Releases', 'Clean TypeScript & Python Code', 'Automated Test Coverage'],
+      deliverables: ['Bi-Weekly Demo Deployments', 'Clean TypeScript Codebase', 'Automated Test Coverage'],
       timeframe: 'Weeks 4 - 6',
     },
     {
       number: '04',
-      title: 'Launch',
-      subtitle: 'Deploy & Continuous SLA',
-      description: 'Production deployment on Vercel/AWS, SSL configuration, security auditing, and post-launch technical SLA support.',
+      title: 'Deploy & Support',
+      subtitle: 'Zero-Downtime Release',
+      description: 'Production rollout on Vercel/AWS, domain routing, telemetry setup, and continuous post-launch SLAs.',
       icon: Rocket,
-      deliverables: ['Zero-Downtime Release', 'Analytics & Monitoring Setup', 'Post-Launch Tech Support'],
+      deliverables: ['Production Cloud Deployment', 'Telemetry & Health Monitoring', 'SLA Engineering Support'],
       timeframe: 'Week 7+',
     },
   ];
 
   return (
-    <section id="process" className="py-24 bg-white dark:bg-[#08090a] relative overflow-hidden border-t border-slate-200 dark:border-white/10">
+    <section id="process" className="py-24 bg-white dark:bg-[#0c0e14] relative overflow-hidden border-t border-slate-200 dark:border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-white/10 text-xs font-mono text-[#00aeef]">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Structured Delivery Methodology</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs font-mono text-[#0099ff]">
+            <Terminal className="w-3.5 h-3.5" />
+            <span>Structured Sprint Methodology</span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            Our 4-Step Product{' '}
-            <span className="bg-gradient-to-r from-[#00aeef] to-[#6366f1] bg-clip-text text-transparent">
-              Development Workflow
-            </span>
+            How We Build & Ship
           </h2>
-          <p className="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
-            Transparent sprint milestones ensuring predictable delivery times and zero surprises.
+          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+            Transparent milestones, direct GitHub commits, and predictable delivery without chaos.
           </p>
         </div>
 
@@ -79,29 +76,29 @@ export default function Process() {
             return (
               <motion.div
                 key={step.number}
-                initial={{ opacity: 0, y: 25 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.08 }}
-                className="rounded-2xl theme-card p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group"
+                transition={{ duration: 0.4, delay: idx * 0.06 }}
+                className="rounded-2xl studio-card p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden group"
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="text-3xl font-black font-mono text-slate-400 dark:text-slate-500 group-hover:text-[#00aeef] transition-colors">
+                    <span className="text-2xl font-bold font-mono text-slate-400 dark:text-slate-500 group-hover:text-[#0099ff] transition-colors">
                       {step.number}
                     </span>
-                    <span className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300">
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300">
                       {step.timeframe}
                     </span>
                   </div>
 
-                  <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-white/10 flex items-center justify-center text-[#00aeef] group-hover:scale-110 transition-transform">
-                    <Icon className="w-5 h-5" />
+                  <div className="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-[#0099ff]">
+                    <Icon className="w-4 h-4" />
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white">{step.title}</h3>
-                    <p className="text-xs font-mono text-[#00aeef] mt-0.5">{step.subtitle}</p>
+                    <h3 className="text-lg font-bold text-slate-900 dark:text-white">{step.title}</h3>
+                    <p className="text-xs font-mono text-[#0099ff] mt-0.5">{step.subtitle}</p>
                   </div>
 
                   <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed pt-1">
@@ -109,8 +106,8 @@ export default function Process() {
                   </p>
                 </div>
 
-                <div className="pt-6 mt-6 border-t border-slate-200 dark:border-white/5 space-y-2">
-                  <span className="text-[11px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold block">
+                <div className="pt-5 mt-5 border-t border-slate-200 dark:border-white/5 space-y-2">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-semibold block">
                     Deliverables:
                   </span>
                   <ul className="space-y-1.5 text-xs text-slate-700 dark:text-slate-300">
@@ -127,12 +124,12 @@ export default function Process() {
           })}
         </div>
 
-        <div className="mt-16 text-center">
+        <div className="mt-14 text-center">
           <a
             href="#contact"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-[#00aeef] to-[#6366f1] hover:opacity-95 shadow-md transition-all"
+            className="inline-flex items-center gap-2 px-7 py-3 rounded-xl text-xs font-semibold text-white bg-[#0099ff] hover:bg-[#0088e0] shadow-sm transition-all"
           >
-            <span>Discuss Your Product Timeline</span>
+            <span>Plan Your Project Sprint</span>
             <ArrowRight className="w-4 h-4" />
           </a>
         </div>

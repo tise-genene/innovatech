@@ -5,7 +5,7 @@ import { useTheme } from '@/contexts/ThemeContext';
 const contactDetails = [
   {
     title: 'Email',
-    info: 'info@innovatech.et',
+    info: 'contact@eaglespathway.com',
   },
   {
     title: 'Phone',

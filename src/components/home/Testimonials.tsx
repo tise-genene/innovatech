@@ -7,7 +7,7 @@ const testimonials = [
   {
     name: 'Abebe Kebede',
     position: 'CEO, TechStartup Ethiopia',
-    text: 'Innova Tech transformed our digital presence completely. Their web development team delivered beyond our expectations.',
+    text: 'Eagle Pathway Tech Agency transformed our digital presence completely. Their web development team delivered beyond our expectations.',
   },
   {
     name: 'Chaltu Lemma',
@@ -17,12 +17,12 @@ const testimonials = [
   {
     name: 'Solomon Tadesse',
     position: 'Founder, AI Innovations',
-    text: 'The AI integration services provided by Innova Tech gave us a competitive edge. Highly professional team!',
+    text: 'The AI integration services provided by Eagle Pathway Tech Agency gave us a competitive edge. Highly professional team!',
   },
   {
     name: 'Sara Bekele',
     position: 'COO, Digital Marketing Agency',
-    text: 'Working with Innova Tech was seamless. They understood our vision and delivered a solution that exceeded expectations.',
+    text: 'Working with Eagle Pathway Tech Agency was seamless. They understood our vision and delivered a solution that exceeded expectations.',
   },
   {
     name: 'Michael Tesfaye',
@@ -32,7 +32,7 @@ const testimonials = [
   {
     name: 'Hanna Kebede',
     position: 'Director, Healthcare Tech',
-    text: 'Innova Tech brought our complex healthcare platform to life with elegant design and robust functionality.',
+    text: 'Eagle Pathway Tech Agency brought our complex healthcare platform to life with elegant design and robust functionality.',
   },
 ];
 

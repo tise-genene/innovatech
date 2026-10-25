@@ -3,8 +3,8 @@ import Contact from '@/components/home/Contact';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Featured Work & Case Studies — Innova Tech',
-  description: 'Explore software projects engineered by Innova Tech including Eagle Pathway, EagleBot, SaaS platforms, and enterprise banking portals.',
+  title: 'Featured Work & Case Studies — Eagle Pathway Tech Agency',
+  description: 'Explore production software engineered by Eagle Pathway Tech Agency including Eagle Pathway LMS, VerifyReceipt FinTech engine, and scalable cloud systems.',
 };
 
 export default function PortfolioPage() {
