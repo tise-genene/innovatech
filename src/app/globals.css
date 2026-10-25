@@ -6,43 +6,51 @@
   --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   
-  /* Obsidian Studio Foundation (Default Dark) */
-  --bg-main: #060709;
-  --bg-subtle: #0a0c10;
-  --bg-card: #0f1219;
-  --bg-card-hover: #141822;
+  /* High-Craft Dark Mode Defaults */
+  --bg-main: #000000;
+  --bg-subtle: #080808;
+  --bg-card: #0c0c0d;
+  --bg-card-hover: #141416;
   
-  /* Hairline Precision Borders */
   --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-hover: rgba(255, 255, 255, 0.18);
-  --border-accent: rgba(0, 153, 255, 0.4);
+  --border-hover: rgba(255, 255, 255, 0.16);
+  --border-strong: rgba(255, 255, 255, 0.24);
   
-  /* Typography */
-  --text-main: #f9fafb;
-  --text-muted: #94a3b8;
-  --text-subtle: #64748b;
-  
-  /* Signature Studio Accents */
-  --accent-cyan: #0099ff;
-  --accent-cyan-glow: rgba(0, 153, 255, 0.25);
-  --accent-emerald: #10b981;
+  --text-main: #ffffff;
+  --text-muted: #a1a1aa;
+  --text-subtle: #71717a;
 }
 
-/* Swiss Minimalist Light Mode Counterpart */
-html.light, .light {
-  --bg-main: #f8fafc;
-  --bg-subtle: #f1f5f9;
-  --bg-card: #ffffff;
-  --bg-card-hover: #fcfcfd;
+/* Swiss Minimalist Light Mode Foundation */
+html.light, .light, html:not(.dark) {
+  --bg-main: #ffffff;
+  --bg-subtle: #fafafa;
+  --bg-card: #f4f4f5;
+  --bg-card-hover: #ebebec;
+  
   --border-subtle: rgba(0, 0, 0, 0.08);
-  --border-hover: rgba(0, 0, 0, 0.18);
-  --border-accent: rgba(0, 120, 212, 0.4);
-  --text-main: #090a0f;
-  --text-muted: #475569;
-  --text-subtle: #64748b;
-  --accent-cyan: #0077cc;
-  --accent-cyan-glow: rgba(0, 119, 204, 0.15);
-  --accent-emerald: #059669;
+  --border-hover: rgba(0, 0, 0, 0.16);
+  --border-strong: rgba(0, 0, 0, 0.24);
+  
+  --text-main: #09090b;
+  --text-muted: #52525b;
+  --text-subtle: #71717a;
+}
+
+/* Explicit Dark Mode Overrides */
+html.dark, .dark {
+  --bg-main: #000000;
+  --bg-subtle: #080808;
+  --bg-card: #0c0c0d;
+  --bg-card-hover: #141416;
+  
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.16);
+  --border-strong: rgba(255, 255, 255, 0.24);
+  
+  --text-main: #ffffff;
+  --text-muted: #a1a1aa;
+  --text-subtle: #71717a;
 }
 
 * {
@@ -56,14 +64,14 @@ body {
   color: var(--text-main);
   min-height: 100vh;
   overflow-x: hidden;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: background-color 0.15s ease, color 0.15s ease;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 /* Precision Scrollbar */
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 4px;
 }
 
 ::-webkit-scrollbar-track {
@@ -71,101 +79,57 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--text-subtle);
+  background: var(--border-hover);
   border-radius: 9999px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-cyan);
-}
-
-/* Technical Blueprint Dot Grid with Radial Vignette Fade */
-.bg-blueprint-grid {
-  background-size: 32px 32px;
-  background-image: 
-    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.07) 1px, transparent 0);
-  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 40%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 40%, transparent 100%);
-}
-
-html.light .bg-blueprint-grid, .light .bg-blueprint-grid {
-  background-size: 32px 32px;
-  background-image: 
-    radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.08) 1px, transparent 0);
-  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 40%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 40%, transparent 100%);
-}
-
-/* Studio Precision Card */
+/* Architectural Card */
 .studio-card {
   background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
-  transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
-  box-shadow: 0 4px 20px -8px rgba(0, 0, 0, 0.5);
+  transition: border-color 0.15s ease, background-color 0.15s ease;
 }
 
 .studio-card:hover {
   border-color: var(--border-hover);
   background-color: var(--bg-card-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 32px -10px rgba(0, 0, 0, 0.7);
 }
 
-html.light .studio-card {
-  box-shadow: 0 4px 20px -8px rgba(0, 0, 0, 0.06);
-}
-
-html.light .studio-card:hover {
-  box-shadow: 0 12px 32px -10px rgba(0, 0, 0, 0.12);
-}
-
-/* Glass Studio Navbar */
+/* Glass Studio Header */
 .studio-nav {
-  background-color: rgba(6, 7, 9, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-html.light .studio-nav, .light .studio-nav {
-  background-color: rgba(248, 250, 252, 0.9);
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
-/* Monospace Spec Tag */
-.spec-tag {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  font-weight: 600;
+html.dark .studio-nav, .dark .studio-nav {
+  background-color: rgba(0, 0, 0, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Blueprint Corner Crosshair Mark */
-.corner-crosshair::before {
-  content: '+';
-  position: absolute;
-  top: -8px;
-  left: -8px;
-  font-family: var(--font-mono);
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.2);
-  line-height: 1;
+/* Subtle Technical Grid Lines */
+.studio-grid-lines {
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
 }
 
-.corner-crosshair::after {
-  content: '+';
-  position: absolute;
-  bottom: -8px;
-  right: -8px;
-  font-family: var(--font-mono);
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.2);
-  line-height: 1;
+html.dark .studio-grid-lines, .dark .studio-grid-lines {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 64px 64px;
 }
 
 /* Selection Color */
 ::selection {
-  background-color: rgba(0, 153, 255, 0.3);
+  background-color: #09090b;
   color: #ffffff;
+}
+
+html.dark ::selection, .dark ::selection {
+  background-color: #ffffff;
+  color: #000000;
 }

@@ -22,9 +22,9 @@ export default function AudioToggle() {
       onClick={() => soundEngine.toggle()}
       title={enabled ? 'Mute Studio Audio FX' : 'Enable Studio Audio FX'}
       aria-label="Toggle studio sound effects"
-      className="p-2 rounded-lg border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-[#11141c] text-slate-600 dark:text-slate-400 hover:text-black dark:hover:text-white transition-colors cursor-pointer"
+      className="p-1.5 rounded text-neutral-600 hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-white transition-colors cursor-pointer"
     >
-      {enabled ? <Volume2 className="w-4 h-4 text-[#0099ff]" /> : <VolumeX className="w-4 h-4" />}
+      {enabled ? <Volume2 className="w-4 h-4 text-neutral-950 dark:text-white" /> : <VolumeX className="w-4 h-4" />}
     </button>
   );
 }

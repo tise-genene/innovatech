@@ -1,318 +1,169 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Rocket, 
-  Cpu, 
-  Bot, 
-  LineChart, 
-  Check, 
-  ArrowRight, 
-  Layers, 
-  Code2, 
-  Database, 
-  Zap, 
-  Palette, 
-  Terminal,
-  FileCode2,
-  Copy
-} from 'lucide-react';
+import { ArrowUpRight, Check } from 'lucide-react';
 import { soundEngine } from '@/lib/sound';
 
-interface ServiceCategory {
+interface Discipline {
   num: string;
-  id: string;
   title: string;
-  summary: string;
-  tagline: string;
-  icon: any;
-  items: { name: string; desc: string }[];
+  subtitle: string;
+  description: string;
+  capabilities: string[];
   deliverables: string[];
-  techStack: string[];
-  codeContract: string;
+  stack: string[];
 }
 
 export default function Services() {
-  const categories: ServiceCategory[] = [
+  const disciplines: Discipline[] = [
     {
       num: '01',
-      id: 'product-dev',
-      title: 'Full-Stack Platforms & LMS',
-      summary: 'Building multi-tenant SaaS, educational portals, and web applications.',
-      tagline: 'We architect and build full-scale digital software products from zero to production deployment.',
-      icon: Rocket,
-      items: [
-        { name: 'SaaS & Portal Engineering', desc: 'Multi-tenant cloud platforms featuring role-based RBAC, subscription billing, and audit logs.' },
-        { name: 'Educational SIS & LMS', desc: 'School administration suites, grading engines, attendance trackers, and student-parent portals.' },
-        { name: 'High-Performance Web Apps', desc: 'Sub-second page rendering using Next.js 16 App Router, TypeScript, and server components.' },
-        { name: 'Cross-Platform Mobile', desc: 'Production iOS and Android applications engineered with React Native and Flutter/Dart.' },
+      title: 'Full-Stack Platforms & SIS',
+      subtitle: 'Multi-Tenant SaaS & Educational Cloud Systems',
+      description: 'We architect and build full-scale web platforms from zero to production. Specialized in multi-tenant data schemas, localized educational rubrics, and high-concurrency portals.',
+      capabilities: [
+        'Multi-Tenant School Management Systems (SIS & LMS)',
+        'Role-Based Access Control (RBAC) & Audit Trails',
+        'Sub-second page rendering using Next.js 16 App Router',
+        'Relational schema design with PostgreSQL and Supabase'
       ],
-      deliverables: ['Production Next.js Codebase', 'Database Schema & Migrations', 'CI/CD Automated Deployments', 'Comprehensive Documentation'],
-      techStack: ['Next.js 16', 'TypeScript', 'Supabase / Postgres', 'Tailwind CSS', 'Vercel / AWS'],
-      codeContract: `// CONTRACT: Institutional Multi-Tenant Isolation
-export interface TenantContract {
-  tenantId: string;
-  institutionName: string;
-  curriculumModel: "ETHIOPIAN_NATIONAL" | "CAMBRIDGE_IGCSE";
-  databaseSchema: string; // Isolated Postgres Schema
-  activeEnrolledStudents: number;
-}`
+      deliverables: ['Production Codebase', 'Database Migrations & Schemas', 'Automated CI/CD Workflows', 'Architecture Documentation'],
+      stack: ['Next.js 16', 'TypeScript', 'PostgreSQL', 'Supabase', 'Tailwind CSS']
     },
     {
       num: '02',
-      id: 'fintech-engineering',
       title: 'FinTech & Payment Systems',
-      summary: 'Ethiopian banking integrations, Telebirr APIs, and receipt verification.',
-      tagline: 'High-security transaction workflows, mobile money integration, and automated fraud prevention.',
-      icon: Cpu,
-      items: [
-        { name: 'Receipt Verification Engines', desc: 'Automated verification parsers detecting forged payment slips from Telebirr and CBE.' },
-        { name: 'Payment Gateway Integration', desc: 'Seamless checkout pipelines connecting local mobile money (Telebirr, CBE Birr) and Stripe.' },
-        { name: 'High-Concurrency Backends', desc: 'RESTful and asynchronous microservices designed for zero-downtime transaction pipelines.' },
-        { name: 'Database Query Tuning', desc: 'Relational PostgreSQL indexing, transaction locking, and ledger consistency.' },
+      subtitle: 'Banking Integrations & Receipt Anti-Fraud',
+      description: 'High-security transaction workflows, mobile money integration, and automated fraud prevention built specifically for Ethiopian financial rails.',
+      capabilities: [
+        'Deterministic payment receipt verification (Telebirr & CBE)',
+        'Payment gateway orchestration (Telebirr API, CBE Birr, Stripe)',
+        'Ledger consistency, idempotent webhooks & transactional locks',
+        'High-throughput offline verification binaries'
       ],
       deliverables: ['Banking API Adapters', 'Fraud Verification Test Suite', 'OpenAPI / Swagger Specs', 'Secure Webhook Queue'],
-      techStack: ['TypeScript', 'Dart', 'Node.js', 'Python FastAPI', 'PostgreSQL', 'Telebirr API'],
-      codeContract: `// CONTRACT: FinTech Slip Validation Response
-export interface SlipValidationResponse {
-  transactionId: string;
-  provider: "telebirr" | "cbe_birr" | "awash";
-  amountInETB: number;
-  timestamp: string;
-  tamperConfidenceScore: number; // 0.00 (tampered) to 1.00 (authentic)
-  isFraudulent: boolean;
-}`
+      stack: ['Dart', 'Flutter', 'TypeScript', 'Node.js', 'Python FastAPI', 'PostgreSQL']
     },
     {
       num: '03',
-      id: 'ai-automation',
-      title: 'AI & Operational Automation',
-      summary: 'Telegram bots, automated pipelines, and intelligent workflows.',
-      tagline: 'Eliminate repetitive manual bottlenecks with custom conversational agents and background event loops.',
-      icon: Bot,
-      items: [
-        { name: 'High-Throughput Telegram Bots', desc: 'Asynchronous bots handling thousands of customer or student queries with zero latency.' },
-        { name: 'Operational Event Queues', desc: 'Background workers that parse leads, dispatch automated emails, and update CRM records.' },
-        { name: 'RAG Knowledge Integrations', desc: 'Contextual retrieval augmented generation for instant documentation and institutional search.' },
+      title: 'Autonomous AI & Event Queues',
+      subtitle: 'High-Throughput Telegram Bots & Background Queues',
+      description: 'Eliminate manual bottlenecks with custom conversational agents, asynchronous job workers, and automated lead pipelines.',
+      capabilities: [
+        'Asynchronous Telegram service bots handling 10,000+ msgs/day',
+        'Redis-backed background task dispatchers and event queues',
+        'Automated database sync & applicant qualification pipelines',
+        'Contextual retrieval augmented generation (RAG) search'
       ],
-      deliverables: ['Custom Telegram Bot Engine', 'Redis Event Worker Pipeline', 'LLM Prompt Architecture', 'Integration Webhooks'],
-      techStack: ['Python', 'Telegram API', 'Redis', 'FastAPI', 'OpenAI / Claude', 'PgVector'],
-      codeContract: `// CONTRACT: Async Worker Job Payload
-export interface BotEventJob {
-  eventId: string;
-  channel: "telegram" | "whatsapp" | "webhook";
-  senderId: string;
-  intent: "SCHOLARSHIP_QUERY" | "ADMISSION_STATUS" | "SUPPORT";
-  enqueuedAt: number;
-}`
+      deliverables: ['Custom Bot Engine', 'Redis Worker Pipeline', 'Integration Webhooks', 'Dockerized Deployment'],
+      stack: ['Python', 'Telegram API', 'Redis', 'FastAPI', 'AsyncIO', 'PostgreSQL']
     },
     {
       num: '04',
-      id: 'design-systems',
-      title: 'Product Design & System Audits',
-      summary: 'Design systems, technical audits, and performance tuning.',
-      tagline: 'Precision UI/UX interfaces and rigorous code audits that elevate usability and technical durability.',
-      icon: LineChart,
-      items: [
-        { name: 'Design Systems & UI/UX', desc: 'Figma component libraries, responsive design layouts, and accessible design tokens.' },
-        { name: 'Codebase & Security Audits', desc: 'Deep-dive reviews of legacy codebases for memory leaks, type vulnerabilities, and security flaws.' },
-        { name: 'Web Performance Tuning', desc: 'Optimizing bundle size, font loading, Core Web Vitals, and serverless execution latency.' },
+      title: 'Technical Audits & System Hardening',
+      subtitle: 'Performance Tuning, Security, & Type-Safety',
+      description: 'Rigorous engineering reviews and architectural refactors that resolve technical debt, eliminate memory leaks, and optimize web vitals.',
+      capabilities: [
+        'Codebase & database security vulnerability audits',
+        'Core Web Vitals & bundle-size optimization',
+        'Migration of legacy codebases to strict TypeScript',
+        'Production infrastructure cost and latency reduction'
       ],
-      deliverables: ['Figma Component Library', 'Technical Audit Report', 'Web Vitals Optimization Report', 'Architectural Roadmap'],
-      techStack: ['Figma', 'TypeScript', 'Lighthouse', 'Vercel Analytics', 'Next.js Turbopack'],
-      codeContract: `// CONTRACT: Code Audit Deliverable SLA
-export interface AuditReportDeliverable {
-  securityVulnerabilitiesCount: number;
-  coreWebVitalsScore: { lcp: number; fid: number; cls: number };
-  bundleSizeReductionPercent: number;
-  refactoringRoadmap: string[];
-}`
-    },
+      deliverables: ['Technical Audit Report', 'Web Vitals Optimization Fixes', 'Architectural Roadmap', 'Refactoring PRs'],
+      stack: ['TypeScript', 'Next.js Turbopack', 'PostgreSQL Query Analyzer', 'Lighthouse']
+    }
   ];
 
-  const [activeCategory, setActiveCategory] = useState<ServiceCategory>(categories[0]);
-  const [showCode, setShowCode] = useState(false);
-
   return (
-    <section id="services" className="py-24 bg-white dark:bg-[#0c0e14] relative overflow-hidden border-t border-slate-200 dark:border-white/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="capabilities" className="py-24 lg:py-32 border-b border-neutral-200 dark:border-neutral-900 bg-neutral-50/50 dark:bg-neutral-950 transition-colors">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
         
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs font-mono text-[#0099ff]">
-            <Terminal className="w-3.5 h-3.5" />
-            <span>Studio Capabilities & Technical Scope</span>
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 pb-8 border-b border-neutral-200 dark:border-neutral-800">
+          <div>
+            <span className="text-xs font-mono uppercase tracking-wider text-neutral-500 block mb-2">
+              [ 03 // CAPABILITIES ]
+            </span>
+            <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-neutral-950 dark:text-white">
+              Engineering Disciplines
+            </h2>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            Engineering Capabilities
-          </h2>
-          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
-            We don&apos;t offer generic outsource packages. We engineer focused systems designed for real business demands.
+
+          <p className="text-sm text-neutral-600 dark:text-neutral-400 max-w-md leading-relaxed">
+            We operate as dedicated software architects and full-stack builders. No generic templates or disposable prototypes.
           </p>
         </div>
 
-        {/* 4 Large Category Selection Tabs */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
-          {categories.map((cat) => {
-            const Icon = cat.icon;
-            const isActive = activeCategory.id === cat.id;
-            return (
-              <button
-                key={cat.id}
-                onClick={() => {
-                  soundEngine.playSwitch();
-                  setActiveCategory(cat);
-                  setShowCode(false);
-                }}
-                className={`p-6 rounded-2xl text-left transition-all duration-200 relative overflow-hidden flex flex-col justify-between cursor-pointer ${
-                  isActive
-                    ? 'bg-slate-900 text-white dark:bg-[#11141c] border-2 border-[#0099ff] shadow-lg'
-                    : 'studio-card text-slate-800 dark:text-slate-200'
-                }`}
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <span className={`text-xl font-bold font-mono ${isActive ? 'text-[#0099ff]' : 'text-slate-400 dark:text-slate-500'}`}>
-                    {cat.num}
+        {/* 4 Architectural Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-neutral-200 dark:bg-neutral-850 border border-neutral-200 dark:border-neutral-850 rounded-xl overflow-hidden">
+          {disciplines.map((d) => (
+            <div
+              key={d.num}
+              className="p-8 sm:p-10 bg-white dark:bg-black flex flex-col justify-between space-y-8 group hover:bg-neutral-50 dark:hover:bg-neutral-950/60 transition-colors"
+            >
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-mono text-neutral-500 font-semibold">
+                    {d.num} //
                   </span>
-                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
-                    isActive ? 'bg-[#0099ff] text-white' : 'bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400'
-                  }`}>
-                    <Icon className="w-4 h-4" />
-                  </div>
+                  <span className="text-[11px] font-mono text-neutral-600 dark:text-neutral-400">
+                    {d.subtitle}
+                  </span>
                 </div>
 
-                <div>
-                  <h3 className={`text-base font-bold ${isActive ? 'text-white' : 'text-slate-900 dark:text-white'}`}>
-                    {cat.title}
-                  </h3>
-                  <p className={`text-xs mt-1 leading-relaxed line-clamp-2 ${isActive ? 'text-slate-300' : 'text-slate-500 dark:text-slate-400'}`}>
-                    {cat.summary}
-                  </p>
-                </div>
-              </button>
-            );
-          })}
-        </div>
+                <h3 className="text-2xl font-bold text-neutral-950 dark:text-white tracking-tight">
+                  {d.title}
+                </h3>
 
-        {/* Selected Category Detail Panel */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeCategory.id}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.25 }}
-            className="rounded-2xl studio-card p-6 sm:p-9 space-y-8 shadow-xl"
-          >
-            {/* Category Banner */}
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-slate-200 dark:border-white/10">
-              <div className="space-y-1.5 max-w-2xl">
-                <div className="flex items-center gap-2">
-                  <span className="px-2.5 py-0.5 rounded text-[10px] font-mono font-bold uppercase tracking-wider bg-blue-500/10 text-[#0099ff] border border-blue-500/20">
-                    Category {activeCategory.num}
-                  </span>
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-                    {activeCategory.title}
-                  </h3>
-                </div>
-                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
-                  {activeCategory.tagline}
+                <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed font-normal">
+                  {d.description}
                 </p>
-              </div>
 
-              <div className="flex items-center gap-3 shrink-0">
-                <button
-                  onClick={() => {
-                    soundEngine.playClick();
-                    setShowCode(!showCode);
-                  }}
-                  className="px-4 py-2.5 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-white/5 text-xs font-mono text-slate-700 dark:text-slate-300 hover:text-black dark:hover:text-white flex items-center gap-1.5 transition-colors"
-                >
-                  <FileCode2 className="w-3.5 h-3.5 text-[#0099ff]" />
-                  <span>{showCode ? 'Hide Interface Contract' : 'Preview Interface Contract'}</span>
-                </button>
-
-                <a
-                  href="#contact"
-                  onClick={() => soundEngine.playClick()}
-                  className="px-5 py-2.5 rounded-xl bg-[#0099ff] hover:bg-[#0088e0] text-xs font-semibold text-white shadow-sm flex items-center justify-center gap-2 transition-colors shrink-0"
-                >
-                  <span>Scope a Project</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </a>
-              </div>
-            </div>
-
-            {/* Optional Code Contract Preview */}
-            <AnimatePresence>
-              {showCode && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0 }}
-                  className="overflow-hidden"
-                >
-                  <pre className="p-4 rounded-xl bg-[#040507] border border-blue-500/20 text-[#0099ff] font-mono text-xs overflow-x-auto leading-relaxed">
-                    <code>{activeCategory.codeContract}</code>
-                  </pre>
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            {/* Sub-items grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {activeCategory.items.map((item, i) => (
-                <div
-                  key={i}
-                  className="p-5 rounded-xl bg-slate-50 dark:bg-[#060709] border border-slate-200 dark:border-white/5 space-y-1.5"
-                >
-                  <h4 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#0099ff]" />
-                    {item.name}
-                  </h4>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed pl-3.5">
-                    {item.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            {/* Deliverables & Stack Footer */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 pt-4 border-t border-slate-200 dark:border-white/10 text-xs">
-              <div className="md:col-span-7 space-y-2.5">
-                <span className="font-mono uppercase tracking-wider text-slate-400 font-semibold block">
-                  Engineering Deliverables:
-                </span>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                  {activeCategory.deliverables.map((deliv, idx) => (
-                    <div key={idx} className="flex items-center gap-2 text-slate-700 dark:text-slate-300">
-                      <Check className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
-                      <span>{deliv}</span>
-                    </div>
-                  ))}
+                {/* Capabilities List */}
+                <div className="space-y-2 pt-2">
+                  <span className="text-[10px] font-mono uppercase text-neutral-500 block tracking-wider">
+                    Core Capabilities
+                  </span>
+                  <ul className="space-y-1.5 text-xs text-neutral-700 dark:text-neutral-300">
+                    {d.capabilities.map((c, i) => (
+                      <li key={i} className="flex items-start gap-2">
+                        <span className="text-neutral-400 dark:text-neutral-500 select-none mt-0.5">•</span>
+                        <span>{c}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
 
-              <div className="md:col-span-5 space-y-2.5">
-                <span className="font-mono uppercase tracking-wider text-slate-400 font-semibold block">
-                  Core Technologies:
-                </span>
+              {/* Stack & Deliverables */}
+              <div className="pt-6 border-t border-neutral-200 dark:border-neutral-850 space-y-3">
                 <div className="flex flex-wrap gap-1.5">
-                  {activeCategory.techStack.map((tech) => (
+                  {d.stack.map((t) => (
                     <span
-                      key={tech}
-                      className="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 font-mono text-[11px] text-slate-800 dark:text-slate-200"
+                      key={t}
+                      className="px-2 py-0.5 rounded text-[10px] font-mono bg-neutral-100 text-neutral-800 border border-neutral-200 dark:bg-neutral-900 dark:border-neutral-800 dark:text-neutral-400"
                     >
-                      {tech}
+                      {t}
                     </span>
                   ))}
                 </div>
+
+                <div className="pt-2 flex items-center justify-between text-xs">
+                  <Link
+                    href="#contact"
+                    onClick={() => soundEngine.playClick()}
+                    className="inline-flex items-center gap-1 font-medium text-neutral-950 hover:underline dark:text-white"
+                  >
+                    <span>Inquire for {d.title}</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
               </div>
             </div>
-
-          </motion.div>
-        </AnimatePresence>
+          ))}
+        </div>
 
       </div>
     </section>
