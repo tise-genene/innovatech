@@ -47,7 +47,7 @@ export default function Footer() {
             </Link>
 
             <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-sm">
-              The software engineering studio powering the Eagle Pathway platform suite, FinTech fraud verification, and scalable multi-tenant architectures.
+              The full-cycle software engineering and product studio architecting custom platforms, scalable cloud infrastructure, and bespoke digital systems for clients worldwide.
             </p>
 
             <div className="pt-2 text-xs font-mono text-neutral-500">

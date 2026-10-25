@@ -7,7 +7,7 @@ import CommandPalette from '@/components/CommandPalette';
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   return (
-    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
       <Navbar />
       <div className="relative z-10 flex flex-col min-h-screen">
         {children}

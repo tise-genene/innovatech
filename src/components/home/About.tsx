@@ -21,7 +21,7 @@ export default function About() {
             </h2>
 
             <p className="text-base sm:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed font-normal">
-              Eagle Pathway Studio is the digital product and software engineering team powering the <strong className="text-neutral-950 dark:text-white font-medium">Eagle Pathway ecosystem</strong>. We design, build, and maintain production web platforms, FinTech verification tooling, and distributed backend systems.
+              Eagle Pathway Studio is a full-cycle software engineering and digital product agency. We partner with founders, businesses, and enterprises to design, architect, and ship whatever custom systems you require — from scalable web and mobile platforms to mission-critical backend architectures.
             </p>
 
             <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">

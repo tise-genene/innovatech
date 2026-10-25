@@ -10,8 +10,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Eagle Pathway Tech Agency — Software Engineering, LMS & Production Systems",
-  description: "Eagle Pathway Tech Agency is the software engineering & product studio building multi-tenant LMS suites, FinTech receipt verification engines, and scalable digital systems in Addis Ababa, Ethiopia.",
+  title: "Eagle Pathway Tech Agency — Custom Software Engineering, Cloud & Production Systems",
+  description: "Eagle Pathway Tech Agency is the full-cycle software engineering and product studio building bespoke systems, scalable digital platforms, mobile apps, and enterprise infrastructure for clients worldwide.",
   metadataBase: new URL("https://tech.eaglespathway.com"),
   keywords: [
     "Eagle Pathway",
@@ -30,8 +30,8 @@ export const metadata: Metadata = {
   creator: "Eagle Pathway Tech Agency",
   publisher: "Eagle Pathway",
   openGraph: {
-    title: "Eagle Pathway Tech Agency — Software Engineering & Production Systems",
-    description: "The software engineering and product studio powering the Eagle Pathway educational suite, FinTech verification, and scalable cloud systems in East Africa.",
+    title: "Eagle Pathway Tech Agency — Custom Software Engineering & Production Systems",
+    description: "The full-cycle software engineering and product studio building bespoke systems, scalable cloud platforms, and custom digital software for clients worldwide.",
     url: "https://tech.eaglespathway.com",
     siteName: "Eagle Pathway Tech Agency",
     locale: "en_US",
@@ -39,8 +39,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Eagle Pathway Tech Agency — Software Engineering Studio",
-    description: "Building production software, LMS platforms, and FinTech tools. Based in Addis Ababa, Ethiopia.",
+    title: "Eagle Pathway Tech Agency — Custom Software Engineering Studio",
+    description: "Building custom production software, scalable cloud systems, and bespoke digital platforms for clients worldwide.",
     creator: "@eaglespathway",
   },
   robots: {
@@ -55,7 +55,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} scroll-smooth`} suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} scroll-smooth dark`} suppressHydrationWarning>
       <body className="antialiased bg-[var(--bg-main)] text-[var(--text-main)] min-h-screen transition-colors duration-200">
         <ClientLayout>{children}</ClientLayout>
       </body>

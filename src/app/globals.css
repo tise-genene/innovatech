@@ -22,7 +22,7 @@
 }
 
 /* Swiss Minimalist Light Mode Foundation */
-html.light, .light, html:not(.dark) {
+html.light, .light {
   --bg-main: #ffffff;
   --bg-subtle: #fafafa;
   --bg-card: #f4f4f5;

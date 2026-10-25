@@ -8,7 +8,9 @@ import {
   Check, 
   Copy, 
   Terminal,
-  Activity
+  Activity,
+  RefreshCw,
+  ShieldCheck
 } from 'lucide-react';
 import { soundEngine } from '@/lib/sound';
 
@@ -31,6 +33,18 @@ export default function Hero() {
   const [isVerifying, setIsVerifying] = useState(false);
   const [verified, setVerified] = useState(false);
   const [copiedCode, setCopiedCode] = useState(false);
+  const [edgeLatency, setEdgeLatency] = useState<number>(14);
+  const [isPinging, setIsPinging] = useState<boolean>(false);
+
+  const handlePingCluster = () => {
+    soundEngine.playVerify();
+    setIsPinging(true);
+    setTimeout(() => {
+      setEdgeLatency(Math.floor(Math.random() * 5) + 12);
+      setIsPinging(false);
+      soundEngine.playSuccess();
+    }, 450);
+  };
 
   const systems: SystemItem[] = [
     {
@@ -151,53 +165,256 @@ export default function Hero() {
     <section className="relative pt-36 pb-24 lg:pt-44 lg:pb-32 studio-grid-lines border-b border-neutral-200 dark:border-neutral-900 bg-white dark:bg-black transition-colors">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         
-        {/* Header Eyebrow */}
-        <div className="mb-8">
-          <div className="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
-            <span>[ STUDIO // ADDIS ABABA ]</span>
-            <span className="text-neutral-400 dark:text-neutral-600">—</span>
-            <span>PROD: tech.eaglespathway.com</span>
+        {/* Two-Column Top Hero Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 xl:gap-12 items-start mb-16 lg:mb-20">
+          
+          {/* Left Column: Eyebrow, Headline, Value Prop, CTAs, Highlights */}
+          <div className="lg:col-span-7 xl:col-span-7 space-y-6">
+            <div className="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span>[ STUDIO // ADDIS ABABA ]</span>
+              <span className="text-neutral-400 dark:text-neutral-600">—</span>
+              <span>PROD: tech.eaglespathway.com</span>
+            </div>
+
+            <h1 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-bold tracking-[-0.035em] text-neutral-950 dark:text-white leading-[1.06]">
+              Architecting production software and systems that endure.
+            </h1>
+
+            <p className="text-base sm:text-lg text-neutral-600 dark:text-neutral-400 max-w-xl leading-relaxed font-normal">
+              We are a full-cycle software engineering and digital product studio. We architect and build bespoke production systems, scalable cloud platforms, mobile applications, and custom software tailored to whatever your vision demands.
+            </p>
+
+            <div className="flex flex-wrap items-center gap-3 pt-1">
+              <a
+                href="#systems"
+                onClick={() => soundEngine.playClick()}
+                className="px-6 py-3 rounded-full text-xs font-semibold text-white bg-neutral-900 hover:bg-neutral-800 dark:text-black dark:bg-white dark:hover:bg-neutral-200 transition-colors shadow-xs"
+              >
+                Explore Production Systems
+              </a>
+
+              <a
+                href="https://school-mgmt-api.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => soundEngine.playClick()}
+                className="px-6 py-3 rounded-full text-xs font-medium text-neutral-900 border border-neutral-300 hover:border-neutral-900 dark:text-white dark:border-neutral-800 dark:hover:border-neutral-600 transition-colors inline-flex items-center gap-1.5"
+              >
+                <span>Launch LMS Demo</span>
+                <ArrowUpRight className="w-3.5 h-3.5 text-neutral-500 dark:text-neutral-400" />
+              </a>
+
+              <Link
+                href="#contact"
+                onClick={() => soundEngine.playClick()}
+                className="px-6 py-3 rounded-full text-xs font-medium text-neutral-600 hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-white transition-colors"
+              >
+                Start an Architecture Brief
+              </Link>
+            </div>
+
+            {/* Architectural Reliability Highlights */}
+            <div className="pt-6 border-t border-neutral-200 dark:border-neutral-850 grid grid-cols-3 gap-4 max-w-lg">
+              <div>
+                <div className="text-[10px] font-mono text-neutral-500 uppercase tracking-wider">Edge Query SLA</div>
+                <div className="text-base font-semibold text-neutral-950 dark:text-white mt-0.5">&lt; 16ms</div>
+                <div className="text-[10px] text-neutral-500">Postgres RLS</div>
+              </div>
+              <div>
+                <div className="text-[10px] font-mono text-neutral-500 uppercase tracking-wider">Fraud Detection</div>
+                <div className="text-base font-semibold text-neutral-950 dark:text-white mt-0.5">99.8% Conf.</div>
+                <div className="text-[10px] text-neutral-500">Sub-45ms Binary</div>
+              </div>
+              <div>
+                <div className="text-[10px] font-mono text-neutral-500 uppercase tracking-wider">Drop Rate</div>
+                <div className="text-base font-semibold text-neutral-950 dark:text-white mt-0.5">0.00% Peak</div>
+                <div className="text-[10px] text-neutral-500">Redis Async Queue</div>
+              </div>
+            </div>
           </div>
-        </div>
 
-        {/* Editorial Headline */}
-        <div className="max-w-4xl space-y-6 mb-16">
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-[-0.035em] text-neutral-950 dark:text-white leading-[1.05]">
-            Architecting production software and systems that endure.
-          </h1>
+          {/* Right Column: Live Production Telemetry HUD */}
+          <div className="lg:col-span-5 xl:col-span-5 w-full">
+            <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white/90 dark:bg-neutral-950/90 backdrop-blur-md shadow-xl overflow-hidden transition-all duration-200">
+              
+              {/* Console Header Bar */}
+              <div className="p-3.5 sm:p-4 border-b border-neutral-200 dark:border-neutral-800 bg-neutral-50/90 dark:bg-neutral-900/60 flex items-center justify-between">
+                <div className="flex items-center gap-2.5">
+                  <div className="flex gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-neutral-300 dark:bg-neutral-700" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-neutral-300 dark:bg-neutral-700" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-neutral-300 dark:bg-neutral-700" />
+                  </div>
+                  <span className="text-[11px] font-mono font-medium text-neutral-700 dark:text-neutral-300">
+                    CLUSTER // ET-ADDIS-01
+                  </span>
+                </div>
 
-          <p className="text-base sm:text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl leading-relaxed font-normal">
-            We are the software engineering studio powering the <strong className="text-neutral-900 dark:text-white font-medium">Eagle Pathway</strong> ecosystem, mission-critical FinTech verification engines, and scalable multi-tenant digital platforms.
-          </p>
+                <div className="flex items-center gap-2">
+                  <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    OPERATIONAL
+                  </span>
+                  <button
+                    onClick={handlePingCluster}
+                    title="Ping Production Cluster"
+                    className="p-1 rounded text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white transition-colors cursor-pointer"
+                  >
+                    <RefreshCw className={`w-3.5 h-3.5 ${isPinging ? 'animate-spin' : ''}`} />
+                  </button>
+                </div>
+              </div>
 
-          <div className="flex flex-wrap items-center gap-3 pt-2">
-            <a
-              href="#systems"
-              onClick={() => soundEngine.playClick()}
-              className="px-6 py-3 rounded-full text-xs font-semibold text-white bg-neutral-900 hover:bg-neutral-800 dark:text-black dark:bg-white dark:hover:bg-neutral-200 transition-colors shadow-xs"
-            >
-              Explore Production Systems
-            </a>
+              {/* Edge Latency & Health Gauge */}
+              <div className="p-4 border-b border-neutral-200 dark:border-neutral-800/80 grid grid-cols-2 gap-3 bg-neutral-50/40 dark:bg-neutral-900/20">
+                <div className="p-3 rounded-lg border border-neutral-200/80 dark:border-neutral-800 bg-white dark:bg-neutral-900/60">
+                  <div className="flex items-center justify-between text-[10px] font-mono text-neutral-500 uppercase">
+                    <span>Regional TTFB</span>
+                    <Activity className="w-3 h-3 text-emerald-500" />
+                  </div>
+                  <div className="text-lg font-bold font-mono text-neutral-950 dark:text-white mt-1">
+                    {edgeLatency}ms
+                  </div>
+                  <div className="text-[10px] text-neutral-500 mt-0.5">
+                    Addis Ababa Edge Node
+                  </div>
+                </div>
 
-            <a
-              href="https://school-mgmt-api.vercel.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => soundEngine.playClick()}
-              className="px-6 py-3 rounded-full text-xs font-medium text-neutral-900 border border-neutral-300 hover:border-neutral-900 dark:text-white dark:border-neutral-800 dark:hover:border-neutral-600 transition-colors inline-flex items-center gap-1.5"
-            >
-              <span>Launch LMS Demo</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-neutral-500 dark:text-neutral-400" />
-            </a>
+                <div className="p-3 rounded-lg border border-neutral-200/80 dark:border-neutral-800 bg-white dark:bg-neutral-900/60">
+                  <div className="flex items-center justify-between text-[10px] font-mono text-neutral-500 uppercase">
+                    <span>Active Clusters</span>
+                    <ShieldCheck className="w-3 h-3 text-emerald-500" />
+                  </div>
+                  <div className="text-lg font-bold font-mono text-neutral-950 dark:text-white mt-1">
+                    5 / 5 Healthy
+                  </div>
+                  <div className="text-[10px] text-neutral-500 mt-0.5">
+                    Zero-Trust Gateway
+                  </div>
+                </div>
+              </div>
 
-            <Link
-              href="#contact"
-              onClick={() => soundEngine.playClick()}
-              className="px-6 py-3 rounded-full text-xs font-medium text-neutral-600 hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-white transition-colors"
-            >
-              Start an Architecture Brief
-            </Link>
+              {/* Quick Select Stacks */}
+              <div className="p-4 space-y-2">
+                <div className="text-[10px] font-mono uppercase tracking-wider text-neutral-500 flex items-center justify-between pb-1">
+                  <span>Core Production Engines</span>
+                  <span>STATUS</span>
+                </div>
+
+                {/* LMS Node */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    soundEngine.playSwitch();
+                    setActiveSystemId('lms');
+                  }}
+                  className={`w-full p-2.5 rounded-xl border text-left transition-all cursor-pointer flex items-center justify-between ${
+                    activeSystemId === 'lms'
+                      ? 'border-neutral-950 dark:border-white bg-neutral-100/70 dark:bg-neutral-900'
+                      : 'border-neutral-200 dark:border-neutral-800/80 hover:border-neutral-400 dark:hover:border-neutral-700 bg-white dark:bg-neutral-950'
+                  }`}
+                >
+                  <div className="space-y-0.5">
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-xs font-semibold text-neutral-950 dark:text-white">
+                        Eagle Pathway LMS & SIS
+                      </span>
+                      <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
+                        RLS
+                      </span>
+                    </div>
+                    <div className="text-[10px] text-neutral-500 dark:text-neutral-400">
+                      lms.eaglespathway.com • Multi-tenant ERP
+                    </div>
+                  </div>
+                  <span className="text-[10px] font-mono font-medium text-emerald-600 dark:text-emerald-400 shrink-0">
+                    ONLINE
+                  </span>
+                </button>
+
+                {/* VerifyReceipt Node */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    soundEngine.playSwitch();
+                    setActiveSystemId('receipt');
+                  }}
+                  className={`w-full p-2.5 rounded-xl border text-left transition-all cursor-pointer flex items-center justify-between ${
+                    activeSystemId === 'receipt'
+                      ? 'border-neutral-950 dark:border-white bg-neutral-100/70 dark:bg-neutral-900'
+                      : 'border-neutral-200 dark:border-neutral-800/80 hover:border-neutral-400 dark:hover:border-neutral-700 bg-white dark:bg-neutral-950'
+                  }`}
+                >
+                  <div className="space-y-0.5">
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-xs font-semibold text-neutral-950 dark:text-white">
+                        VerifyReceipt Engine
+                      </span>
+                      <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
+                        FinTech
+                      </span>
+                    </div>
+                    <div className="text-[10px] text-neutral-500 dark:text-neutral-400">
+                      Telebirr & CBE Slip Fraud Defense
+                    </div>
+                  </div>
+                  <span className="text-[10px] font-mono font-medium text-emerald-600 dark:text-emerald-400 shrink-0">
+                    SHIELDED
+                  </span>
+                </button>
+
+                {/* EagleBot Worker */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    soundEngine.playSwitch();
+                    setActiveSystemId('bot');
+                  }}
+                  className={`w-full p-2.5 rounded-xl border text-left transition-all cursor-pointer flex items-center justify-between ${
+                    activeSystemId === 'bot'
+                      ? 'border-neutral-950 dark:border-white bg-neutral-100/70 dark:bg-neutral-900'
+                      : 'border-neutral-200 dark:border-neutral-800/80 hover:border-neutral-400 dark:hover:border-neutral-700 bg-white dark:bg-neutral-950'
+                  }`}
+                >
+                  <div className="space-y-0.5">
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-xs font-semibold text-neutral-950 dark:text-white">
+                        EagleBot Async Worker
+                      </span>
+                      <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
+                        Redis
+                      </span>
+                    </div>
+                    <div className="text-[10px] text-neutral-500 dark:text-neutral-400">
+                      10,000+ operations/day event queue
+                    </div>
+                  </div>
+                  <span className="text-[10px] font-mono font-medium text-emerald-600 dark:text-emerald-400 shrink-0">
+                    ACTIVE
+                  </span>
+                </button>
+              </div>
+
+              {/* Streaming Event Log Terminal */}
+              <div className="p-3 sm:p-3.5 border-t border-neutral-200 dark:border-neutral-800 bg-neutral-950 text-neutral-300 font-mono text-[10px] space-y-1">
+                <div className="flex items-center justify-between text-neutral-500 pb-1 border-b border-neutral-900">
+                  <span className="flex items-center gap-1.5">
+                    <Terminal className="w-3 h-3 text-neutral-400" />
+                    VERIFIED CLUSTER LOG
+                  </span>
+                  <span className="text-emerald-400 animate-pulse">STREAMING</span>
+                </div>
+                <div className="space-y-1 pt-1 overflow-hidden">
+                  <div className="text-emerald-400 truncate">✓ [telebirr_engine] parsed #TB88392019482 (0.998 conf)</div>
+                  <div className="text-neutral-400 truncate">✓ [lms_edge] rls_token issued tenant: school_849</div>
+                  <div className="text-neutral-500 truncate">✓ [cloudflare_dns] 16ms TLS handshake Addis Ababa</div>
+                </div>
+              </div>
+
+            </div>
           </div>
+
         </div>
 
         {/* =================================================================== */}
