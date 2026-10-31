@@ -1,13 +1,6 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import ClientLayout from "@/components/ClientLayout";
-
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-inter",
-});
 
 export const metadata: Metadata = {
   title: "Eagle Pathway Tech Agency — Custom Software Engineering, Cloud & Production Systems",
@@ -55,7 +48,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} scroll-smooth dark`} suppressHydrationWarning>
+    <html lang="en" className="scroll-smooth dark" suppressHydrationWarning>
       <body className="antialiased bg-[var(--bg-main)] text-[var(--text-main)] min-h-screen transition-colors duration-200">
         <ClientLayout>{children}</ClientLayout>
       </body>

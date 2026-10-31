@@ -20,7 +20,10 @@ import {
   ArrowRight,
   Code2,
   Mail,
-  X
+  X,
+  Rocket,
+  Satellite,
+  Cpu
 } from 'lucide-react';
 import { soundEngine } from '@/lib/sound';
 
@@ -93,6 +96,45 @@ export default function CommandPalette() {
 
   const commands: CommandItem[] = [
     {
+      id: 'hyperdrive-warp',
+      category: 'Tools & Tests',
+      title: 'Ignite Falcon Hyperdrive Velocity',
+      subtitle: 'Relativistic particle warp speed overclock (1.0c)',
+      icon: Rocket,
+      action: () => {
+        setIsOpen(false);
+        soundEngine.playWarp();
+        if (typeof window !== 'undefined') {
+          window.dispatchEvent(new CustomEvent('toggle-hyperdrive'));
+        }
+      },
+      badge: 'WARP 1.0c',
+    },
+    {
+      id: 'orbital-globe',
+      category: 'Tools & Tests',
+      title: 'Inspect 3D Orbital Constellation',
+      subtitle: 'Starlink-style satellites & ground station Doppler lock',
+      icon: Satellite,
+      action: () => {
+        setIsOpen(false);
+        document.getElementById('orbital')?.scrollIntoView({ behavior: 'smooth' });
+      },
+      badge: 'NASA 3D',
+    },
+    {
+      id: 'silicon-ledger',
+      category: 'Tools & Tests',
+      title: 'Inspect Micro-Architecture Silicon Die',
+      subtitle: 'Explore Heuristic ALU, RLS Hardware Gate & SHA-256 Ledger',
+      icon: Cpu,
+      action: () => {
+        setIsOpen(false);
+        document.getElementById('silicon')?.scrollIntoView({ behavior: 'smooth' });
+      },
+      badge: 'Silicon Die',
+    },
+    {
       id: 'lms-demo',
       category: 'Ecosystem',
       title: 'Launch Eagle Pathway LMS Demo',
@@ -105,17 +147,54 @@ export default function CommandPalette() {
       badge: 'lms.eaglespathway.com',
     },
     {
+      id: 'crucible-stress',
+      category: 'Tools & Tests',
+      title: 'Launch Concurrency Stress Engine',
+      subtitle: 'Simulate 10,000,000 req/sec across global edge clusters',
+      icon: Sparkles,
+      action: () => {
+        setIsOpen(false);
+        document.getElementById('crucible')?.scrollIntoView({ behavior: 'smooth' });
+      },
+      badge: '10M Req/s',
+    },
+    {
       id: 'verify-receipt',
       category: 'Tools & Tests',
-      title: 'Run VerifyReceipt Slip Parser',
-      subtitle: 'Scroll to interactive FinTech slip simulator',
+      title: 'Run VerifyReceipt Forensic Lab',
+      subtitle: 'Inspect Telebirr & CBE digital slips for font tampering',
       icon: ShieldCheck,
       action: () => {
         setIsOpen(false);
-        const hero = document.getElementById('runtime-console');
-        hero?.scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('verify-receipt')?.scrollIntoView({ behavior: 'smooth' });
       },
-      badge: 'Live Simulator',
+      badge: 'Sub-45ms',
+    },
+    {
+      id: 'terminal-cli',
+      category: 'Tools & Tests',
+      title: 'Open Interactive CLI 3.0 Terminal',
+      subtitle: 'Execute benchmark, matrix, and deploy commands',
+      icon: Terminal,
+      action: () => {
+        setIsOpen(false);
+        document.getElementById('terminal')?.scrollIntoView({ behavior: 'smooth' });
+      },
+      badge: 'CLI 3.0',
+    },
+    {
+      id: 'toggle-matrix-stream',
+      category: 'Tools & Tests',
+      title: 'Toggle Fullscreen Matrix Stream',
+      subtitle: 'Engage cyberpunk green code rain canvas',
+      icon: Sparkles,
+      action: () => {
+        setIsOpen(false);
+        if (typeof window !== 'undefined') {
+          window.dispatchEvent(new CustomEvent('toggle-matrix'));
+        }
+      },
+      badge: 'Matrix HUD',
     },
     {
       id: 'eagle-portal',
