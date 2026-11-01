@@ -26,6 +26,7 @@ import {
   Cpu
 } from 'lucide-react';
 import { soundEngine } from '@/lib/sound';
+import BrandLogo from '@/components/BrandLogo';
 
 interface CommandItem {
   id: string;
@@ -328,7 +329,7 @@ export default function CommandPalette() {
           >
             {/* Search Input Bar */}
             <div className="flex items-center gap-3 px-4 py-3.5 border-b border-neutral-200 dark:border-neutral-800 bg-neutral-50/80 dark:bg-neutral-900/60">
-              <Search className="w-4 h-4 text-neutral-400 dark:text-neutral-500" />
+              <BrandLogo size="sm" variant="raptor" className="!w-6 !h-6 shrink-0 !p-1" />
               <input
                 ref={inputRef}
                 type="text"

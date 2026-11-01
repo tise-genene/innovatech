@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Volume2, VolumeX, Sparkles, Rocket, Zap, X } from 'lucide-react';
 import { soundEngine } from '@/lib/sound';
+import BrandLogo from '@/components/BrandLogo';
 
 export default function CyberHUD() {
   const [soundEnabled, setSoundEnabled] = useState(false);
@@ -209,6 +210,7 @@ export default function CyberHUD() {
       {/* Floating Cyber Telemetry Bar (Bottom Left) */}
       <div className="fixed bottom-6 left-6 z-30 hidden sm:flex items-center gap-3 px-3.5 py-1.5 rounded-full bg-white/90 dark:bg-neutral-950/80 border border-slate-200 dark:border-neutral-800/90 backdrop-blur-md shadow-xl text-[11px] font-mono text-slate-600 dark:text-neutral-400">
         <div className="flex items-center gap-2">
+          <BrandLogo size="sm" variant="raptor" className="!w-4 !h-4 !p-0.5" />
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />

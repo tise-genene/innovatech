@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowUp, ArrowUpRight, Globe2, ShieldCheck, Zap } from 'lucide-react';
 import { soundEngine } from '@/lib/sound';
+import BrandLogo from '@/components/BrandLogo';
 
 export default function Footer() {
   const [ethiopiaTime, setEthiopiaTime] = useState('');
@@ -38,9 +39,7 @@ export default function Footer() {
           {/* Col 1-5: Brand */}
           <div className="md:col-span-5 space-y-4">
             <Link href="/" className="flex items-center gap-3 group">
-              <div className="w-8 h-8 rounded-lg bg-sky-500/10 dark:bg-cyan-500/10 border border-sky-500/30 dark:border-cyan-500/30 text-sky-400 dark:text-cyan-400 flex items-center justify-center font-mono font-bold text-xs shadow-sm">
-                EP
-              </div>
+              <BrandLogo size="md" variant="raptor" />
               <span className="text-sm font-bold tracking-tight text-white flex items-center gap-2">
                 <span>Eagle Pathway</span>
                 <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-sky-500/10 dark:bg-cyan-500/10 text-sky-400 dark:text-cyan-400 border border-sky-500/20 dark:border-cyan-500/20">

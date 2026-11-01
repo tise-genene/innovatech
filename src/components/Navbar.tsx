@@ -13,6 +13,7 @@ import {
   Rocket
 } from 'lucide-react';
 import { soundEngine } from '@/lib/sound';
+import BrandLogo from '@/components/BrandLogo';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -66,9 +67,7 @@ export default function Navbar() {
             onClick={() => soundEngine.playClick()}
             className="flex items-center gap-3 group"
           >
-            <div className="w-8 h-8 rounded-lg bg-sky-500/10 dark:bg-cyan-500/10 border border-sky-500/30 dark:border-cyan-500/40 text-sky-600 dark:text-cyan-300 flex items-center justify-center font-mono font-bold text-xs tracking-tighter shadow-sm group-hover:scale-105 transition-transform">
-              EP
-            </div>
+            <BrandLogo size="md" variant="raptor" />
             <span className="text-sm font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-1.5">
               <span>Eagle Pathway</span>
               <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-sky-500/10 dark:bg-cyan-500/10 text-sky-600 dark:text-cyan-400 border border-sky-500/20 dark:border-cyan-500/20">
