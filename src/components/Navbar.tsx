@@ -44,17 +44,16 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { href: '/#orbital', label: 'Orbital 3D' },
-    { href: '/#silicon', label: 'Silicon' },
     { href: '/#work', label: 'Systems' },
-    { href: '/#crucible', label: 'Crucible' },
-    { href: '/#verify-receipt', label: 'Fraud Lab' },
-    { href: '/#terminal', label: 'CLI 3.0' },
+    { href: '/#lab', label: 'Deep-Tech Lab' },
+    { href: '/#manifesto', label: 'Manifesto' },
+    { href: '/#capabilities', label: 'Capabilities' },
+    { href: '/#methodology', label: 'Process' },
   ];
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 bg-white/95 dark:bg-[#030712]/95 backdrop-blur-xl border-b border-slate-200/80 dark:border-cyan-500/15 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 bg-white/95 dark:bg-[#06070a]/95 backdrop-blur-xl border-b border-black/[0.08] dark:border-white/[0.08] ${
         isScrolled ? 'py-3 shadow-md' : 'py-4'
       }`}
     >

@@ -36,7 +36,7 @@ export default function Process() {
   ];
 
   return (
-    <section id="process" className="py-24 lg:py-32 relative border-b border-slate-200 dark:border-neutral-800 bg-slate-50/70 dark:bg-[#02050b] transition-colors">
+    <section id="methodology" className="py-24 lg:py-32 relative border-b border-black/[0.08] dark:border-white/[0.08] bg-slate-50/70 dark:bg-[#06070a] transition-colors">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 pb-8 border-b border-slate-200 dark:border-neutral-800">

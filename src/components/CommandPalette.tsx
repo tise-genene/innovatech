@@ -118,7 +118,8 @@ export default function CommandPalette() {
       icon: Satellite,
       action: () => {
         setIsOpen(false);
-        document.getElementById('orbital')?.scrollIntoView({ behavior: 'smooth' });
+        window.location.hash = '#orbital';
+        document.getElementById('lab')?.scrollIntoView({ behavior: 'smooth' });
       },
       badge: 'NASA 3D',
     },
@@ -130,7 +131,8 @@ export default function CommandPalette() {
       icon: Cpu,
       action: () => {
         setIsOpen(false);
-        document.getElementById('silicon')?.scrollIntoView({ behavior: 'smooth' });
+        window.location.hash = '#silicon';
+        document.getElementById('lab')?.scrollIntoView({ behavior: 'smooth' });
       },
       badge: 'Silicon Die',
     },
@@ -154,7 +156,8 @@ export default function CommandPalette() {
       icon: Sparkles,
       action: () => {
         setIsOpen(false);
-        document.getElementById('crucible')?.scrollIntoView({ behavior: 'smooth' });
+        window.location.hash = '#crucible';
+        document.getElementById('lab')?.scrollIntoView({ behavior: 'smooth' });
       },
       badge: '10M Req/s',
     },
@@ -166,7 +169,8 @@ export default function CommandPalette() {
       icon: ShieldCheck,
       action: () => {
         setIsOpen(false);
-        document.getElementById('verify-receipt')?.scrollIntoView({ behavior: 'smooth' });
+        window.location.hash = '#verify-receipt';
+        document.getElementById('lab')?.scrollIntoView({ behavior: 'smooth' });
       },
       badge: 'Sub-45ms',
     },
@@ -178,7 +182,8 @@ export default function CommandPalette() {
       icon: Terminal,
       action: () => {
         setIsOpen(false);
-        document.getElementById('terminal')?.scrollIntoView({ behavior: 'smooth' });
+        window.location.hash = '#terminal';
+        document.getElementById('lab')?.scrollIntoView({ behavior: 'smooth' });
       },
       badge: 'CLI 3.0',
     },

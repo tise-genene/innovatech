@@ -5,7 +5,7 @@ import { soundEngine } from '@/lib/sound';
 
 export default function About() {
   return (
-    <section id="about" className="py-24 lg:py-32 relative border-b border-slate-200 dark:border-neutral-800 bg-white dark:bg-[#02050e] transition-colors">
+    <section id="about" className="py-24 lg:py-32 relative border-b border-black/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#06070a] transition-colors">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">

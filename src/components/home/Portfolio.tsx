@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, Check, Copy, Terminal, ExternalLink, Code2, Layers, Cpu, ShieldCheck } from 'lucide-react';
+import { Check, Copy, ExternalLink, Layers } from 'lucide-react';
 import { soundEngine } from '@/lib/sound';
 
 interface Project {
@@ -130,6 +130,8 @@ export default function Portfolio() {
   const [activeTab, setActiveTab] = useState<'overview' | 'code'>('overview');
   const [selectedId, setSelectedId] = useState<string>('lms');
   const [copiedCode, setCopiedCode] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isPanelHovered, setIsPanelHovered] = useState(false);
 
   const current = PROJECTS.find((p) => p.id === selectedId) || PROJECTS[0];
 
@@ -141,7 +143,7 @@ export default function Portfolio() {
   };
 
   return (
-    <section id="work" className="py-24 lg:py-32 relative border-b border-slate-200 dark:border-neutral-800 bg-white dark:bg-[#01040a] overflow-hidden transition-colors">
+    <section id="work" className="py-24 lg:py-36 relative border-b border-black/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#06070a] overflow-hidden transition-colors">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
@@ -156,7 +158,7 @@ export default function Portfolio() {
             </h2>
           </div>
 
-          <p className="text-sm text-slate-600 dark:text-neutral-400 max-w-md leading-relaxed">
+          <p className="text-sm text-slate-600 dark:text-neutral-400 max-w-md leading-relaxed font-light">
             Every product below was built by our engineering team from zero to production. Explore real live deployments, inspect architectural code, and verify performance benchmarks.
           </p>
         </div>
@@ -166,50 +168,75 @@ export default function Portfolio() {
           
           {/* Left Column: System Selector Cards */}
           <div className="lg:col-span-5 space-y-3">
-            {PROJECTS.map((proj) => (
-              <div
-                key={proj.id}
-                onClick={() => {
-                  soundEngine.playSwitch();
-                  setSelectedId(proj.id);
-                }}
-                className={`p-5 rounded-2xl border transition-all cursor-pointer relative overflow-hidden group ${
-                  selectedId === proj.id
-                    ? 'bg-white dark:bg-neutral-900/90 border-sky-500/50 dark:border-cyan-500/50 shadow-md dark:shadow-[0_0_30px_rgba(0,240,255,0.18)]'
-                    : 'bg-slate-50/80 hover:bg-slate-100/90 dark:bg-neutral-950/60 dark:hover:bg-neutral-900/40 border-slate-200 dark:border-neutral-800/80'
-                }`}
-              >
-                {/* Active Indicator Glow Bar */}
-                {selectedId === proj.id && (
-                  <div className="absolute top-0 bottom-0 left-0 w-1.5 bg-gradient-to-b from-sky-500 to-indigo-600 dark:from-cyan-400 dark:to-indigo-500 shadow-sm" />
-                )}
+            {PROJECTS.map((proj) => {
+              const isSelected = selectedId === proj.id;
+              return (
+                <div
+                  key={proj.id}
+                  onClick={() => {
+                    soundEngine.playSwitch();
+                    setSelectedId(proj.id);
+                  }}
+                  className={`p-5 rounded-2xl border transition-all cursor-pointer relative overflow-hidden group ${
+                    isSelected
+                      ? 'bg-white dark:bg-neutral-900/90 border-sky-500/50 dark:border-cyan-500/50 shadow-md dark:shadow-[0_0_30px_rgba(0,240,255,0.18)]'
+                      : 'bg-slate-50/80 hover:bg-slate-100/90 dark:bg-neutral-950/60 dark:hover:bg-neutral-900/40 border-slate-200 dark:border-neutral-800/80'
+                  }`}
+                >
+                  {/* Active Indicator Glow Bar */}
+                  {isSelected && (
+                    <motion.div 
+                      layoutId="portfolioActiveBar"
+                      className="absolute top-0 bottom-0 left-0 w-1.5 bg-gradient-to-b from-sky-500 to-indigo-600 dark:from-cyan-400 dark:to-indigo-500 shadow-sm"
+                      transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                    />
+                  )}
 
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-mono font-bold text-slate-500 dark:text-neutral-400 group-hover:text-sky-600 dark:group-hover:text-cyan-400 transition-colors">
-                    [{proj.num} // {proj.category.toUpperCase()}]
-                  </span>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20 font-semibold">
-                    {proj.sla}
-                  </span>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs font-mono font-bold text-slate-500 dark:text-neutral-400 group-hover:text-sky-600 dark:group-hover:text-cyan-400 transition-colors">
+                      {`[${proj.num} // ${proj.category.toUpperCase()}]`}
+                    </span>
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20 font-semibold">
+                      {proj.sla}
+                    </span>
+                  </div>
+
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-sky-700 dark:group-hover:text-cyan-300 transition-colors">
+                    {proj.name}
+                  </h3>
+
+                  <p className="text-xs text-slate-600 dark:text-neutral-400 line-clamp-2 mt-1 leading-relaxed">
+                    {proj.summary}
+                  </p>
                 </div>
-
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-sky-700 dark:group-hover:text-cyan-300 transition-colors">
-                  {proj.name}
-                </h3>
-
-                <p className="text-xs text-slate-600 dark:text-neutral-400 line-clamp-2 mt-1 leading-relaxed">
-                  {proj.summary}
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Right Column: Deep-Dive Interactive Inspection Panel */}
           <div className="lg:col-span-7">
-            <div className="rounded-2xl border border-slate-200 dark:border-neutral-800 bg-white dark:bg-[#050a16] shadow-xl overflow-hidden">
+            <div 
+              onMouseMove={(e) => {
+                const rect = e.currentTarget.getBoundingClientRect();
+                setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+              }}
+              onMouseEnter={() => setIsPanelHovered(true)}
+              onMouseLeave={() => setIsPanelHovered(false)}
+              className="relative rounded-2xl border border-slate-200 dark:border-neutral-800 bg-white/95 dark:bg-[#050a16]/90 backdrop-blur-xl shadow-xl overflow-hidden"
+            >
               
+              {/* Dynamic Cursor Spotlight Radial Overlay */}
+              {isPanelHovered && (
+                <div
+                  className="pointer-events-none absolute -inset-px rounded-2xl opacity-100 transition duration-300 z-0"
+                  style={{
+                    background: `radial-gradient(400px circle at ${mousePos.x}px ${mousePos.y}px, rgba(0, 240, 255, 0.08), transparent 75%)`,
+                  }}
+                />
+              )}
+
               {/* Panel Header Bar */}
-              <div className="p-4 sm:p-5 border-b border-slate-200 dark:border-neutral-800 bg-slate-50/80 dark:bg-neutral-900/60 flex items-center justify-between">
+              <div className="relative z-10 p-4 sm:p-5 border-b border-slate-200 dark:border-neutral-800 bg-slate-50/80 dark:bg-neutral-900/60 flex items-center justify-between">
                 <div>
                   <span className="text-[10px] font-mono text-sky-600 dark:text-cyan-400 uppercase tracking-widest block font-bold">
                     INSPECTION SUITE
@@ -219,115 +246,146 @@ export default function Portfolio() {
                   </h4>
                 </div>
 
-                {/* Tab Switcher */}
-                <div className="flex items-center gap-1 p-1 rounded-xl bg-slate-100 dark:bg-neutral-950 border border-slate-200 dark:border-neutral-800 text-xs font-mono">
+                {/* Tab Switcher with Fluid Pill */}
+                <div className="flex items-center gap-1 p-1 rounded-xl bg-slate-100 dark:bg-neutral-950 border border-slate-200 dark:border-neutral-800 text-xs font-mono relative">
                   <button
                     onClick={() => {
                       soundEngine.playSwitch();
                       setActiveTab('overview');
                     }}
-                    className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
+                    className={`relative px-3 py-1.5 rounded-lg transition-colors cursor-pointer z-10 ${
                       activeTab === 'overview'
-                        ? 'bg-white text-slate-900 font-bold border border-slate-300 dark:bg-cyan-500/20 dark:text-cyan-300 dark:border-cyan-500/40 shadow-xs'
+                        ? 'text-slate-900 dark:text-cyan-300 font-bold'
                         : 'text-slate-600 hover:text-slate-950 dark:text-neutral-400 dark:hover:text-white'
                     }`}
                   >
-                    OVERVIEW
+                    {activeTab === 'overview' && (
+                      <motion.div
+                        layoutId="portfolioActiveTabPill"
+                        className="absolute inset-0 rounded-lg bg-white border border-slate-300 dark:bg-cyan-500/20 dark:border-cyan-500/40 shadow-xs -z-10"
+                        transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                      />
+                    )}
+                    <span>OVERVIEW</span>
                   </button>
+
                   <button
                     onClick={() => {
                       soundEngine.playSwitch();
                       setActiveTab('code');
                     }}
-                    className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
+                    className={`relative px-3 py-1.5 rounded-lg transition-colors cursor-pointer z-10 ${
                       activeTab === 'code'
-                        ? 'bg-white text-slate-900 font-bold border border-slate-300 dark:bg-cyan-500/20 dark:text-cyan-300 dark:border-cyan-500/40 shadow-xs'
+                        ? 'text-slate-900 dark:text-cyan-300 font-bold'
                         : 'text-slate-600 hover:text-slate-950 dark:text-neutral-400 dark:hover:text-white'
                     }`}
                   >
-                    CODE BLUEPRINT
+                    {activeTab === 'code' && (
+                      <motion.div
+                        layoutId="portfolioActiveTabPill"
+                        className="absolute inset-0 rounded-lg bg-white border border-slate-300 dark:bg-cyan-500/20 dark:border-cyan-500/40 shadow-xs -z-10"
+                        transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                      />
+                    )}
+                    <span>CODE BLUEPRINT</span>
                   </button>
                 </div>
               </div>
 
               {/* Panel Body */}
-              <div className="p-6 sm:p-8">
-                {activeTab === 'overview' ? (
-                  <div className="space-y-6">
-                    <div>
-                      <span className="text-xs font-mono text-slate-500 dark:text-neutral-400 uppercase block mb-1">Architectural Scope</span>
-                      <p className="text-sm text-slate-700 dark:text-neutral-200 leading-relaxed font-light">
-                        {current.summary}
-                      </p>
-                    </div>
-
-                    {/* Highlights Bullet List */}
-                    <div>
-                      <span className="text-xs font-mono text-slate-500 dark:text-neutral-400 uppercase block mb-2">Engineered Highlights</span>
-                      <div className="space-y-2">
-                        {current.highlights.map((h, i) => (
-                          <div key={i} className="flex items-start gap-2.5 text-xs text-slate-700 dark:text-neutral-300 font-mono">
-                            <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
-                            <span>{h}</span>
-                          </div>
-                        ))}
+              <div className="relative z-10 p-6 sm:p-8">
+                <AnimatePresence mode="wait">
+                  {activeTab === 'overview' ? (
+                    <motion.div 
+                      key="overview"
+                      initial={{ opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -6 }}
+                      transition={{ duration: 0.15 }}
+                      className="space-y-6"
+                    >
+                      <div>
+                        <span className="text-xs font-mono text-slate-500 dark:text-neutral-400 uppercase block mb-1">Architectural Scope</span>
+                        <p className="text-sm text-slate-700 dark:text-neutral-200 leading-relaxed font-light">
+                          {current.summary}
+                        </p>
                       </div>
-                    </div>
 
-                    {/* Tech Stack Chips */}
-                    <div>
-                      <span className="text-xs font-mono text-slate-500 dark:text-neutral-400 uppercase block mb-2">Production Stack</span>
-                      <div className="flex flex-wrap gap-2">
-                        {current.stack.map((t) => (
-                          <span
-                            key={t}
-                            className="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-neutral-900 border border-slate-200 dark:border-neutral-800 text-xs font-mono text-slate-800 dark:text-cyan-300"
-                          >
-                            {t}
+                      {/* Highlights Bullet List */}
+                      <div>
+                        <span className="text-xs font-mono text-slate-500 dark:text-neutral-400 uppercase block mb-2">Engineered Highlights</span>
+                        <div className="space-y-2">
+                          {current.highlights.map((h, i) => (
+                            <div key={i} className="flex items-start gap-2.5 text-xs text-slate-700 dark:text-neutral-300 font-mono">
+                              <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+                              <span>{h}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Tech Stack Chips */}
+                      <div>
+                        <span className="text-xs font-mono text-slate-500 dark:text-neutral-400 uppercase block mb-2">Production Stack</span>
+                        <div className="flex flex-wrap gap-2">
+                          {current.stack.map((t) => (
+                            <span
+                              key={t}
+                              className="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-neutral-900 border border-slate-200 dark:border-neutral-800 text-xs font-mono text-slate-800 dark:text-cyan-300"
+                            >
+                              {t}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Direct Live Action Launch */}
+                      {current.liveUrl && (
+                        <div className="pt-4 border-t border-slate-200 dark:border-neutral-800 flex items-center justify-between">
+                          <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 font-semibold">
+                            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                            LIVE DEPLOYMENT READY
                           </span>
-                        ))}
-                      </div>
-                    </div>
 
-                    {/* Direct Live Action Launch */}
-                    {current.liveUrl && (
-                      <div className="pt-4 border-t border-slate-200 dark:border-neutral-800 flex items-center justify-between">
-                        <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 font-semibold">
-                          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                          LIVE DEPLOYMENT READY
-                        </span>
-
-                        <a
-                          href={current.liveUrl}
-                          target={current.liveUrl.startsWith('http') ? '_blank' : '_self'}
-                          rel="noopener noreferrer"
-                          onClick={() => soundEngine.playClick()}
-                          className="px-5 py-2.5 rounded-full bg-slate-950 hover:bg-slate-800 text-white dark:bg-cyan-400 dark:hover:bg-cyan-300 dark:text-black text-xs font-mono font-bold uppercase tracking-wider shadow-sm transition-all flex items-center gap-2 cursor-pointer"
+                          <a
+                            href={current.liveUrl}
+                            target={current.liveUrl.startsWith('http') ? '_blank' : '_self'}
+                            rel="noopener noreferrer"
+                            onClick={() => soundEngine.playClick()}
+                            className="px-5 py-2.5 rounded-full bg-slate-950 hover:bg-slate-800 text-white dark:bg-cyan-400 dark:hover:bg-cyan-300 dark:text-black text-xs font-mono font-bold uppercase tracking-wider shadow-sm transition-all flex items-center gap-2 cursor-pointer group"
+                          >
+                            <span>Open Live System</span>
+                            <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                          </a>
+                        </div>
+                      )}
+                    </motion.div>
+                  ) : (
+                    <motion.div 
+                      key="code"
+                      initial={{ opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -6 }}
+                      transition={{ duration: 0.15 }}
+                      className="space-y-4"
+                    >
+                      <div className="flex items-center justify-between text-xs font-mono text-slate-600 dark:text-neutral-400">
+                        <span>PRODUCTION ROUTE HANDLER</span>
+                        <button
+                          onClick={() => handleCopy(current.apiSnippet)}
+                          className="flex items-center gap-1.5 text-sky-600 hover:text-sky-700 dark:text-cyan-400 dark:hover:text-cyan-300 transition-colors cursor-pointer"
                         >
-                          <span>Open Live System</span>
-                          <ExternalLink className="w-3.5 h-3.5" />
-                        </a>
+                          {copiedCode ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
+                          <span>{copiedCode ? 'COPIED TO CLIPBOARD' : 'COPY CODE'}</span>
+                        </button>
                       </div>
-                    )}
-                  </div>
-                ) : (
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between text-xs font-mono text-slate-600 dark:text-neutral-400">
-                      <span>PRODUCTION ROUTE HANDLER</span>
-                      <button
-                        onClick={() => handleCopy(current.apiSnippet)}
-                        className="flex items-center gap-1.5 text-sky-600 hover:text-sky-700 dark:text-cyan-400 dark:hover:text-cyan-300 transition-colors cursor-pointer"
-                      >
-                        {copiedCode ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
-                        <span>{copiedCode ? 'COPIED TO CLIPBOARD' : 'COPY CODE'}</span>
-                      </button>
-                    </div>
 
-                    <pre className="p-4 rounded-xl bg-slate-950 dark:bg-black/90 border border-slate-800 text-xs font-mono text-emerald-400 overflow-x-auto leading-relaxed shadow-inner">
-                      <code>{current.apiSnippet}</code>
-                    </pre>
-                  </div>
-                )}
+                      <pre className="p-4 rounded-xl bg-slate-950 dark:bg-black/90 border border-slate-800 text-xs font-mono text-emerald-400 overflow-x-auto leading-relaxed shadow-inner">
+                        <code>{current.apiSnippet}</code>
+                      </pre>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
 
             </div>
