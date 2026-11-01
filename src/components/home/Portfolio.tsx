@@ -147,18 +147,21 @@ export default function Portfolio() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 pb-8 border-b border-slate-200 dark:border-neutral-800">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 pb-8 border-b border-black/[0.08] dark:border-white/[0.08]">
           <div>
-            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-sky-500/10 dark:bg-cyan-500/10 border border-sky-500/20 dark:border-cyan-500/25 text-sky-700 dark:text-cyan-400 font-mono text-[11px] uppercase tracking-wider mb-3">
-              <Layers className="w-3.5 h-3.5 animate-pulse text-sky-600 dark:text-cyan-400" />
-              <span>[ 02 // FLAGSHIP SYSTEMS ]</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-black/[0.08] dark:border-white/[0.08] bg-black/[0.02] dark:bg-white/[0.03] text-slate-700 dark:text-zinc-300 font-mono text-xs mb-3">
+              <span className="w-2 h-2 rounded-full bg-cyan-500" />
+              <span>Flagship Systems • Production Case Studies</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-900 dark:text-white">
-              Engineered Systems <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 via-indigo-600 to-cyan-500 dark:from-cyan-400 dark:via-teal-300 dark:to-indigo-400">In Production</span>
+            <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white leading-[1.06]">
+              Engineered systems{' '}
+              <span className="text-slate-500 dark:text-zinc-400 font-normal">
+                in production.
+              </span>
             </h2>
           </div>
 
-          <p className="text-sm text-slate-600 dark:text-neutral-400 max-w-md leading-relaxed font-light">
+          <p className="text-sm text-slate-600 dark:text-zinc-400 max-w-md leading-relaxed font-light">
             Every product below was built by our engineering team from zero to production. Explore real live deployments, inspect architectural code, and verify performance benchmarks.
           </p>
         </div>

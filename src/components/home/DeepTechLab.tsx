@@ -114,29 +114,29 @@ export default function DeepTechLab() {
         {/* Lab Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 pb-8 border-b border-black/[0.08] dark:border-white/[0.08]">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 dark:bg-cyan-500/10 border border-sky-500/20 dark:border-cyan-500/25 text-sky-700 dark:text-cyan-300 font-mono text-[11px] uppercase tracking-widest mb-4">
-              <Sparkles className="w-3.5 h-3.5 text-sky-600 dark:text-cyan-400" />
-              <span>ADVANCED SYSTEMS LABORATORY // NASA-GRADE SUITE</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-black/[0.08] dark:border-white/[0.08] bg-black/[0.02] dark:bg-white/[0.03] text-slate-700 dark:text-zinc-300 font-mono text-xs mb-4">
+              <span className="w-2 h-2 rounded-full bg-cyan-500" />
+              <span>Advanced Systems Laboratory • Interactive Engineering Primitives</span>
             </div>
             
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.05]">
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 dark:text-white leading-[1.06]">
               The Deep-Tech{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 via-indigo-600 to-cyan-500 dark:from-cyan-400 dark:via-teal-300 dark:to-indigo-400">
+              <span className="text-slate-500 dark:text-zinc-400 font-normal">
                 Laboratory.
               </span>
             </h2>
 
-            <p className="text-base sm:text-lg text-slate-600 dark:text-neutral-400 mt-4 leading-relaxed font-light">
+            <p className="text-base sm:text-lg text-slate-600 dark:text-zinc-400 mt-4 leading-relaxed font-light">
               Interact directly with our low-level engineering primitives. From 3D orbital constellations and sub-45ms heuristic vector ALUs to 10M req/sec distributed concurrency stress testing.
             </p>
           </div>
 
           {/* Current Instrument Telemetry Pill */}
-          <div className="flex items-center gap-3 p-3 rounded-2xl bg-white/90 dark:bg-neutral-900/90 border border-black/[0.08] dark:border-white/[0.08] shadow-sm backdrop-blur-xl">
-            <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping" />
+          <div className="flex items-center gap-3 p-3 rounded-2xl bg-white/90 dark:bg-zinc-900/90 border border-black/[0.08] dark:border-white/[0.08] shadow-sm backdrop-blur-xl">
+            <div className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
             <div className="font-mono text-xs">
-              <div className="text-[10px] text-slate-500 dark:text-neutral-500 uppercase tracking-wider">ACTIVE INSTRUMENT</div>
-              <div className="text-slate-900 dark:text-white font-bold">{currentInstrument.name}</div>
+              <div className="text-[10px] text-slate-500 dark:text-zinc-500 uppercase tracking-wider">ACTIVE PRIMITIVE</div>
+              <div className="text-slate-900 dark:text-white font-semibold">{currentInstrument.name}</div>
             </div>
           </div>
         </div>
@@ -195,20 +195,16 @@ export default function DeepTechLab() {
         {/* Master Instrument Display Frame */}
         <div className="relative rounded-3xl border border-black/[0.08] dark:border-white/[0.08] bg-white/95 dark:bg-[#05070c] shadow-2xl overflow-hidden">
           
-          {/* Window Control Header */}
-          <div className="px-6 py-3.5 border-b border-black/[0.08] dark:border-white/[0.08] bg-slate-50/80 dark:bg-neutral-900/60 flex items-center justify-between">
+          {/* Instrument Header Bar */}
+          <div className="px-6 py-4 border-b border-black/[0.08] dark:border-white/[0.08] bg-slate-50/80 dark:bg-zinc-900/60 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
-                <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
-              </div>
-              <span className="text-xs font-mono font-bold text-slate-900 dark:text-white tracking-wider">
-                EAGLE LAB // {currentInstrument.name.toUpperCase()}
+              <div className="w-2 h-2 rounded-full bg-emerald-500" />
+              <span className="text-xs font-mono font-medium text-slate-900 dark:text-zinc-200 uppercase tracking-tight">
+                {currentInstrument.name}
               </span>
             </div>
 
-            <div className="hidden sm:flex items-center gap-3 text-xs font-mono text-slate-500 dark:text-neutral-400">
+            <div className="hidden sm:flex items-center gap-3 text-xs text-slate-500 dark:text-zinc-400">
               <span>{currentInstrument.summary}</span>
             </div>
           </div>

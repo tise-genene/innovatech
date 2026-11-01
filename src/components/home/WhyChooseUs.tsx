@@ -1,7 +1,6 @@
 'use client';
 
 import { ShieldCheck, Cpu, Code2, Clock } from 'lucide-react';
-import { soundEngine } from '@/lib/sound';
 
 export default function WhyChooseUs() {
   const principles = [
@@ -35,19 +34,19 @@ export default function WhyChooseUs() {
     <section id="why-us" className="py-24 lg:py-32 relative border-b border-black/[0.08] dark:border-white/[0.08] bg-white dark:bg-[#06070a] transition-colors">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 pb-8 border-b border-slate-200 dark:border-neutral-800">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 pb-8 border-b border-slate-200 dark:border-white/[0.08]">
           <div>
-            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-sky-500/10 dark:bg-cyan-500/10 border border-sky-500/20 dark:border-cyan-500/25 text-sky-700 dark:text-cyan-400 font-mono text-[11px] uppercase tracking-wider mb-3">
-              <ShieldCheck className="w-3.5 h-3.5 animate-pulse text-sky-600 dark:text-cyan-400" />
-              <span>[ 04 // METHODOLOGY ]</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] text-slate-700 dark:text-zinc-300 font-mono text-xs uppercase tracking-wider mb-4">
+              <ShieldCheck className="w-3.5 h-3.5 text-slate-600 dark:text-zinc-400" />
+              <span>Engineering Principles • Standards</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-900 dark:text-white">
-              Engineering <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 via-indigo-600 to-cyan-500 dark:from-cyan-400 dark:via-teal-300 dark:to-indigo-400">Principles</span>
+            <h2 className="text-3xl sm:text-5xl font-semibold tracking-tight text-slate-900 dark:text-white">
+              Engineering <span className="text-slate-400 dark:text-zinc-500 font-normal">principles.</span>
             </h2>
           </div>
 
-          <p className="text-sm text-slate-600 dark:text-neutral-400 max-w-md leading-relaxed">
-            How we approach software architecture. We build systems that are durable, verifiable, and easy to maintain across decades.
+          <p className="text-sm text-slate-600 dark:text-zinc-400 max-w-md leading-relaxed">
+            How we approach systems architecture. We build platforms that are durable, verifiable, and easy to maintain across decades.
           </p>
         </div>
 
@@ -58,22 +57,21 @@ export default function WhyChooseUs() {
             return (
               <div 
                 key={item.num} 
-                onMouseEnter={() => soundEngine.playKeystroke()}
-                className="p-6 rounded-2xl border border-slate-200 dark:border-neutral-800/80 bg-slate-50 dark:bg-neutral-950/60 hover:bg-white dark:hover:bg-neutral-900/50 hover:border-sky-500/40 dark:hover:border-cyan-500/40 hover:shadow-lg transition-all duration-200 space-y-4 shadow-xs group"
+                className="p-6 rounded-2xl border border-slate-200 dark:border-white/[0.08] bg-slate-50/60 dark:bg-zinc-950/40 hover:bg-white dark:hover:bg-zinc-900/60 hover:border-slate-300 dark:hover:border-white/20 transition-all duration-200 space-y-4 group"
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono text-sky-600 dark:text-cyan-400 font-bold block">
-                    [{item.num} // TENET]
+                  <span className="text-xs font-mono text-slate-400 dark:text-zinc-500 font-semibold block">
+                    {item.num}
                   </span>
-                  <div className="w-8 h-8 rounded-lg bg-sky-500/10 dark:bg-cyan-500/10 border border-sky-500/20 dark:border-cyan-500/20 text-sky-600 dark:text-cyan-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <div className="w-8 h-8 rounded-lg bg-slate-200/60 dark:bg-white/[0.06] border border-slate-200 dark:border-white/[0.08] text-slate-700 dark:text-zinc-300 flex items-center justify-center transition-colors">
                     <Icon className="w-4 h-4" />
                   </div>
                 </div>
 
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-sky-600 dark:group-hover:text-cyan-300 transition-colors">
+                <h3 className="text-base font-semibold text-slate-900 dark:text-white tracking-tight">
                   {item.title}
                 </h3>
-                <p className="text-xs text-slate-600 dark:text-neutral-300 leading-relaxed font-light">
+                <p className="text-xs text-slate-600 dark:text-zinc-400 leading-relaxed font-light">
                   {item.description}
                 </p>
               </div>
